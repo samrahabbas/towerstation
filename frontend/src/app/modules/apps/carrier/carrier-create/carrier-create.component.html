@@ -1,0 +1,630 @@
+<p-toast></p-toast>
+
+<div>
+  <form novalidate="" class="form" [formGroup]="carrierForm" (ngSubmit)="validSubmit()">
+    <div class="card mb-5 mb-xl-10">
+      <div
+        class="card-header border-0 cursor-pointer"
+        role="button"
+        aria-expanded="true">
+        <div class="card-title m-0">
+          <h3 class="fw-bolder m-0">Add New Carrier</h3>
+        </div>
+      </div>
+      <div class="collapse show">
+        <form novalidate="" class="form" [formGroup]="carrierForm">
+          <div class="card-body border-top p-9">
+            <div class="row mb-6">
+              <div class="col-lg-12">
+                <div class="row">
+                  <div class="col-lg-4 fv-row">
+                    <label class="col-form-label required fw-bold fs-6">
+                      First Name
+                    </label>
+                    <input
+                      type="text"
+                      formControlName="firstName"
+                      class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                      placeholder="First Name" />
+                  </div>
+                  <div class="col-lg-4 fv-row">
+                    <label class="col-form-label fw-bold fs-6">
+                      Middle Name
+                    </label>
+                    <input
+                      type="text"
+                      formControlName="middleName"
+                      class="form-control form-control-lg form-control-solid"
+                      placeholder="Middle Name"
+                    />
+                  </div>
+                  <div class="col-lg-4 fv-row">
+                    <label class="col-form-label required fw-bold fs-6">
+                      Last Name
+                    </label>
+                    <input
+                      type="text"
+                      formControlName="lastName"
+                      class="form-control form-control-lg form-control-solid"
+                      placeholder="Last Name"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-6">
+              <div class="col-lg-12">
+                <div class="row">
+                  <div class="col-lg-6 fv-row">
+                    <label class="col-form-label required fw-bold fs-6">
+                      Street 1
+                    </label>
+                    <input
+                      type="text"
+                      formControlName="street1"
+                      class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                      placeholder="Street 1" />
+                  </div>
+                  <div class="col-lg-6 fv-row">
+                    <label class="col-form-label fw-bold fs-6">
+                      Street 2
+                    </label>
+                    <input
+                      type="text"
+                      formControlName="street2"
+                      class="form-control form-control-lg form-control-solid"
+                      placeholder="Street 2" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-6">
+              <div class="col-lg-12">
+                <div class="row">
+                  <div class="col-lg-4 fv-row">
+                    <label class="col-form-label required fw-bold fs-6">
+                      Zip Code
+                    </label>
+                    <input
+                      type="text"
+                      formControlName="zipCode"
+                      mask="99999"
+                      class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                      placeholder="Zip Code" />
+                  </div>
+                  <div class="col-lg-4 fv-row">
+                    <label class="col-form-label required fw-bold fs-6">
+                      State
+                    </label>
+                    <select
+                      class="form-select form-select-solid form-select-lg"
+                      formControlName="state">
+                      <option [ngValue]="null">Select State</option>
+                      <option *ngFor="let state of states" [ngValue]="state.stateName">
+                        {{state.stateName}}
+                      </option>
+                    </select>
+                    <ng-container
+                      [ngTemplateOutlet]="formError"
+                      [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'Enter Zip Code First',
+                  control: f.zipCode
+                  }">
+                    </ng-container>
+                    <ng-container
+                      [ngTemplateOutlet]="formError"
+                      [ngTemplateOutletContext]="{
+                  validation: 'zipCodeNotFound',
+                  message: 'Zip Code not found',
+                  control: f.zipCode
+                  }">
+                    </ng-container>
+                  </div>
+                  <div class="col-lg-4 fv-row">
+                    <label class="col-form-label required fw-bold fs-6">
+                      City
+                    </label>
+                    <select
+                      class="form-select form-select-solid form-select-lg"
+                      formControlName="city">
+                      <option [ngValue]="null">Select City</option>
+                      <option *ngFor="let city of this.cities" [ngValue]="city.placeName">
+                        {{city.placeName}}
+                      </option>
+                    </select>
+                    <ng-container
+                      [ngTemplateOutlet]="formError"
+                      [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'Enter Zip Code First',
+                  control: f.zipCode
+                  }">
+                    </ng-container>
+                    <ng-container
+                      [ngTemplateOutlet]="formError"
+                      [ngTemplateOutletContext]="{
+                  validation: 'zipCodeNotFound',
+                  message: 'Zip Code not found',
+                  control: f.zipCode
+                  }">
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-6">
+              <div class="col-lg-12">
+                <div class="row">
+                  <div class="col-lg-4 fv-row">
+                    <label class="col-form-label required fw-bold fs-6">
+                      Telephone
+                    </label>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <div class="">
+                          <ng-select class="custom" [items]="telephoneCountryCodes"
+                                     [ngModelOptions]="{standalone: true}"
+                                     appendTo="body"
+                                     [(ngModel)]="telephoneCountryCodeSelected" [searchable]="false"
+                                     [clearable]="false">
+                            <ng-template ng-label-tmp let-item="item">
+                          <span
+                            [inlineSVG]="item.flag"
+                            class="svg-icon svg-icon-1">
+                          </span> &nbsp;
+                              <span class="fs-6">{{item.callingCode}}</span>
+                            </ng-template>
+                            <ng-template ng-option-tmp let-item="item">
+                          <span
+                            [inlineSVG]="item.flag"
+                            class="svg-icon svg-icon-1">
+                          </span> &nbsp;
+                              <span class="fs-6">{{item.callingCode}}</span>
+                            </ng-template>
+                          </ng-select>
+                        </div>
+                      </div>
+                      <input type="tel" formControlName="telephone" placeholder="Telephone"
+                             mask="(000) 000-0000" [showMaskTyped]="true" [dropSpecialCharacters]="false"
+                             class="form-control form-control-lg form-control-solid">
+                    </div>
+                  </div>
+                  <div class="col-lg-4 fv-row">
+                    <label class="col-form-label fw-bold fs-6">
+                      Checks Payable to
+                    </label>
+                    <div class="input-group mb-3">
+                      <input type="text" formControlName="checksPayableTo" placeholder="Checks Payable To"
+                             class="form-control form-control-lg form-control-solid">
+                    </div>
+                  </div>
+                  <div class="col-lg-4 fv-row">
+                    <label class="col-form-label fw-bold fs-6">
+                      Do Not Load
+                    </label>
+                    <p-selectButton [options]="isOKToLoadTypes" formControlName="isOKToLoad"
+                                    optionLabel="label" optionValue="value" styleClass="load-types-buttons">
+                    </p-selectButton>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-6">
+              <div class="col-lg-12">
+                <div class="row">
+                  <div class="col-lg-12 fv-row">
+                    <label class="col-form-label fw-bold fs-6">
+                      Private Notes
+                    </label>
+                    <textarea formControlName="privateNotes" class="form-control form-control-lg form-control-solid"
+                              rows="3" placeholder="Private Notes">
+                </textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-6">
+              <div class="col-lg-12">
+                <div class="row">
+                  <div class="col-lg-4">
+                    <button class="btn btn-sm btn-light-info" (click)="onAddFactoringAddress()"
+                            *ngIf="!this.isFactoringAddress">
+                      <i class="fas fa-plus"></i>
+                      Add <i class="far fa-paper-plane"></i>factoring company name and address
+                    </button>
+                  </div>
+                  <div class="col-lg-3">
+                    <button class="btn btn-sm btn-light-info" (click)="onAddMailingAddress()"
+                            *ngIf="!this.isMailAddress">
+                      <i class="fas fa-plus"></i>
+                      Add a new <i class="far fa-envelope"></i>mailing address
+                    </button>
+                  </div>
+                  <div class="col-lg-3">
+                    <button class="btn btn-sm btn-light-info" (click)="onAddRemitAddress()"
+                            *ngIf="!this.isRemitAddress">
+                      <i class="fas fa-plus"></i>
+                      Add a new <i class="far fa-money-bill-alt"></i>remit address
+                    </button>
+                  </div>
+                  <div class="col-lg-2">
+                    <!-- <button class="btn btn-sm btn-light-info" (click)="onAddNewAddress()"
+                            *ngIf="this.newAddressesFormArray.length < 3">
+                      <i class="fas fa-plus"></i>
+                      Add another address
+                    </button> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div *ngIf="this.isFactoringAddress">
+      <app-carrier-factoring-address formGroupName="factoringAddress"
+                                     (deleteAddress)="onDeleteFactoringAddress()"></app-carrier-factoring-address>
+    </div>
+    <div *ngIf="this.isMailAddress">
+      <app-carrier-mailing-address formGroupName="mailingAddress"
+                                   (deleteAddress)="onDeleteMailingAddress()"></app-carrier-mailing-address>
+    </div>
+    <div *ngIf="this.isRemitAddress">
+      <app-carrier-remit-address formGroupName="remitAddress"
+                                   (deleteAddress)="onDeleteRemitAddress()"></app-carrier-remit-address>
+    </div>
+    <div *ngIf="this.newAddressesFormArray.length > 0" formArrayName="newAddresses">
+      <div *ngFor="let address of this.newAddressesFormArray.controls; let i = index">
+        <app-carrier-address [formGroupName]="i" [addressCount]="i + 1"
+                             (deleteAddress)="onDeleteNewAddress(i)"></app-carrier-address>
+      </div>
+    </div>
+    <div class="card mb-5 mb-xl-10">
+      <div
+        class="card-header border-0 cursor-pointer"
+        role="button"
+        aria-expanded="true"
+        aria-controls="kt_account_profile_details">
+        <div class="card-title m-0">
+          <h3 class="fw-bolder m-0">Carrier Details</h3>
+        </div>
+      </div>
+      <div class="card-body border-top">
+        <div class="row mb-6">
+          <div class="col-lg-12">
+            <div class="row">
+              <div class="col-lg-6 fv-row">
+                <label class="col-form-label fw-bold fs-6">
+                  MC/FF/MX Number
+                </label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <div class="">
+                      <ng-select class="custom" [items]="mcFFMXNumberTypes"
+                                 [ngModelOptions]="{standalone: true}" appendTo="body"
+                                 [(ngModel)]="selectedMCFFMXNumber" [searchable]="false"
+                                 [clearable]="false">
+                      </ng-select>
+                    </div>
+                  </div>
+                  <input type="text" formControlName="MCFFMXNumber" placeholder="MC/FF/MX Number"
+                         class="form-control form-control-lg form-control-solid" mask="0*">
+                </div>
+              </div>
+              <div class="col-lg-6 fv-row">
+                <label class="col-form-label fw-bold fs-6">
+                  USDOT Number
+                </label>
+                <input type="text" formControlName="USDOTNumber" placeholder="USDOT Number"
+                       class="form-control form-control-lg form-control-solid" mask="0*">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-6">
+          <div class="col-lg-12">
+            <div class="row">
+              <div class="col-lg-6 fv-row">
+                <label class="col-form-label fw-bold fs-6">
+                  Tax ID / EIN
+                </label>
+                <input type="text" formControlName="taxIDNumber" placeholder="Tax ID / EIN"
+                       class="form-control form-control-lg form-control-solid" mask="00-0000000"
+                       [showMaskTyped]="true">
+              </div>
+              <div class="col-lg-1"></div>
+              <div class="col-lg-5 align-self-end fv-row">
+                <div class="row">
+                  <div class="col-lg-4 col-form-label fw-bold fs-6">
+                    is 1099 Vendor?
+                  </div>
+                  <div class="col-lg-8 fv-row fv-plugins-icon-center">
+                    <div class="d-flex align-items-center mt-3">
+                      <label class="form-check form-check-inline form-check-solid me-5">
+                        <input type="checkbox" formControlName="is1099Vendor"
+                               class="form-check-input">
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-6">
+          <div class="col-lg-12">
+            <div class="row">
+              <div class="col-lg-6 fv-row">
+                <label class="col-form-label fw-bold fs-6">
+                  Payment Terms
+                </label>
+                <div class="input-group mb-3">
+                  <input type="text" formControlName="paymentTerms" placeholder="Payment Terms"
+                         mask="0*" class="form-control form-control-lg form-control-solid">
+                  <span class="input-group-text">days</span>
+                </div>
+              </div>
+              <div class="col-lg-6 fv-row">
+                <label class="col-form-label required fw-bold fs-6">
+                  Payment Method
+                </label>
+                <select
+                  class="form-select form-select-solid form-select-lg"
+                  formControlName="paymentMethod">
+                  <option [ngValue]="null">Select Payment Method</option>
+                  <option *ngFor="let paymentMethod of paymentMethods" [ngValue]="paymentMethod">
+                    {{paymentMethod}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer d-flex justify-content-end py-6 px-9"></div>
+    </div>
+    <div class="card mb-5 mb-xl-10">
+      <div
+        class="card-header border-0 cursor-pointer"
+        role="button"
+        aria-expanded="true"
+        aria-controls="kt_account_profile_details">
+        <div class="card-title m-0">
+          <h3 class="fw-bolder m-0">Carrier Insurance</h3>
+        </div>
+      </div>
+      <div class="card-body border-top">
+        <div class="row mb-6">
+          <div class="col-lg-12">
+            <div class="row">
+              <div class="col-lg-6 fv-row">
+                <label class="col-form-label fw-bold fs-6">
+                  Primary Insurance ( BIPD ) Details
+                </label>
+                <textarea formControlName="primaryInsuranceDetails"
+                          class="form-control form-control-lg form-control-solid"
+                          rows="3" placeholder="Primary Insurance Details">
+                    </textarea>
+              </div>
+              <div class="col-lg-6 fv-row">
+                <label class="col-form-label fw-bold fs-6">
+                  Primary Insurance Expiration Date
+                </label>
+                <input mwlFlatpickr type="text" formControlName="primaryInsuranceExpirationDate"
+                       [altInput]="true" [convertModelValue]="true" [options]="flatPickrOptions"
+                       class="form-control form-control-lg form-control-solid">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-6">
+          <div class="col-lg-12">
+            <div class="row">
+              <div class="col-lg-6 fv-row">
+                <label class="col-form-label fw-bold fs-6">
+                  Cargo Insurance Details
+                </label>
+                <textarea formControlName="cargoInsuranceDetails"
+                          class="form-control form-control-lg form-control-solid"
+                          rows="3" placeholder="Cargo Insurance Details">
+                    </textarea>
+              </div>
+              <div class="col-lg-6 fv-row">
+                <label class="col-form-label fw-bold fs-6">
+                  Cargo Insurance Expiration Date
+                </label>
+                <input mwlFlatpickr type="text" formControlName="cargoInsuranceExpirationDate"
+                       [altInput]="true" [convertModelValue]="true" [options]="flatPickrOptions"
+                       class="form-control form-control-lg form-control-solid">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer d-flex justify-content-end py-6 px-9">
+      </div>
+    </div>
+    <div class="card mb-5 mb-xl-10">
+      <div
+        class="card-header border-0"
+        aria-expanded="true">
+        <div class="card-title m-0">
+          <h3 class="fw-bolder m-0">Carrier Contacts List</h3>
+        </div>
+        <div class="card-title m-0">
+          <div [hidden]="!(!isAddingNewContact && isPreviousContact)" class="pe-10">
+            <button class="btn btn-sm btn-link" (click)="goToPreviousContact()">
+              <span class="svg-icon svg-icon-primary svg-icon-2x m-0">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     xmlns:xlink="http://www.w3.org/1999/xlink"
+                     width="24px" height="24px" viewBox="0 0 24 24"
+                     version="1.1">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <polygon points="0 0 24 0 24 24 0 24" />
+                    <path
+                      d="M6.70710678,15.7071068 C6.31658249,16.0976311 5.68341751,16.0976311 5.29289322,15.7071068 C4.90236893,15.3165825 4.90236893,14.6834175 5.29289322,14.2928932 L11.2928932,8.29289322 C11.6714722,7.91431428 12.2810586,7.90106866 12.6757246,8.26284586 L18.6757246,13.7628459 C19.0828436,14.1360383 19.1103465,14.7686056 18.7371541,15.1757246 C18.3639617,15.5828436 17.7313944,15.6103465 17.3242754,15.2371541 L12.0300757,10.3841378 L6.70710678,15.7071068 Z"
+                      fill="#000000" fill-rule="nonzero"
+                      transform="translate(12.000003, 11.999999) scale(-1, 1) rotate(-270.000000) translate(-12.000003, -11.999999) " />
+                  </g>
+                </svg>
+              </span>
+              Previous
+            </button>
+          </div>
+          <div>
+            Viewing contact&nbsp;
+            <span class="badge badge-sm badge-circle badge-light-primary">
+              {{selectedContactIndex + 1}}
+            </span>&nbsp;
+            out of&nbsp;
+            <span class="badge badge-sm badge-circle badge-light-primary">
+              {{carrierContactsLength}}
+            </span>&nbsp;
+            total for this carrier
+          </div>
+          <div [hidden]="!(!isAddingNewContact && isNextContact)" class="ps-10">
+            <button class="btn btn-sm btn-link" (click)="goToNextContact()">
+              Next
+              <span class="svg-icon svg-icon-primary svg-icon-2x m-0">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                     height="24px" viewBox="0 0 24 24" version="1.1">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <polygon points="0 0 24 0 24 24 0 24" />
+                    <path
+                      d="M6.70710678,15.7071068 C6.31658249,16.0976311 5.68341751,16.0976311 5.29289322,15.7071068 C4.90236893,15.3165825 4.90236893,14.6834175 5.29289322,14.2928932 L11.2928932,8.29289322 C11.6714722,7.91431428 12.2810586,7.90106866 12.6757246,8.26284586 L18.6757246,13.7628459 C19.0828436,14.1360383 19.1103465,14.7686056 18.7371541,15.1757246 C18.3639617,15.5828436 17.7313944,15.6103465 17.3242754,15.2371541 L12.0300757,10.3841378 L6.70710678,15.7071068 Z"
+                      fill="#000000" fill-rule="nonzero"
+                      transform="translate(12.000003, 11.999999) rotate(-270.000000) translate(-12.000003, -11.999999) " />
+                  </g>
+                </svg>
+              </span>
+            </button>
+          </div>
+        </div>
+        <div class="card-title m-0">
+          <!-- <button *ngIf="!isAddingNewContact" class="btn btn-sm btn-linkedin" (click)="tryAddingCarrierContact()">
+            Add another contact
+          </button> -->
+          <div *ngIf="isAddingNewContact">
+            <button class="btn btn-sm btn-warning me-10" (click)="cancelAddingCarrierContact()">
+              <i class="fas fa-undo"></i>
+              Cancel
+            </button>
+            <button class="btn btn-sm btn-success" (click)="addCarrierContact()">
+              <i class="fas fa-save"></i>
+              Add contact
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="card-body border-top">
+        <app-carrier-contact
+          [carrierContactFormGroup]="selectedCarrierContactFormGroup"
+          [isAddingContact]="isAddingNewContact"
+          (onSetAsPrimaryContact)="onSetAsPrimaryContact()"
+          (onDeleteContact)="onDeleteContact()">
+        </app-carrier-contact>
+      </div>
+      <div class="card-footer d-flex justify-content-end py-6 px-9">
+      </div>
+    </div>
+    <div class="card mb-5 mb-xl-10">
+      <div
+        class="card-header border-0 cursor-pointer"
+        role="button"
+        aria-expanded="true">
+        <div class="card-title m-0">
+          <h3 class="fw-bolder m-0">Customize Units of Measurements</h3>
+        </div>
+      </div>
+      <div class="card-body border-top">
+        <div class="row mb-6">
+          <div class="col-lg-12">
+            <div class="row">
+              <div class="col-lg-4 fv-row">
+                <label class="col-form-label fw-bold fs-6">
+                  Weight Unit
+                </label>
+                <select
+                  class="form-select form-select-solid form-select-lg"
+                  formControlName="weightUnit">
+                  <option [ngValue]="null">Select Weight Unit</option>
+                  <option *ngFor="let weightUnit of this.weightUnits" [ngValue]="weightUnit">
+                    {{weightUnit}}
+                  </option>
+                </select>
+              </div>
+              <div class="col-lg-4 fv-row">
+                <label class="col-form-label fw-bold fs-6">
+                  Distance Unit
+                </label>
+                <select
+                  class="form-select form-select-solid form-select-lg"
+                  formControlName="distanceUnit">
+                  <option [ngValue]="null">Select Distance Unit</option>
+                  <option *ngFor="let distanceUnit of this.distanceUnits" [ngValue]="distanceUnit">
+                    {{distanceUnit}}
+                  </option>
+                </select>
+              </div>
+              <div class="col-lg-4 fv-row">
+                <label class="col-form-label fw-bold fs-6">
+                  Temperature Unit
+                </label>
+                <select
+                  class="form-select form-select-solid form-select-lg"
+                  formControlName="temperatureUnit">
+                  <option [ngValue]="null">Select Temperature Unit</option>
+                  <option *ngFor="let temperatureUnit of this.temperatureUnits" [ngValue]="temperatureUnit">
+                    {{temperatureUnit}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer d-flex justify-content-end py-6 px-9">
+      </div>
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary">
+               <ng-container *ngIf="!isLoading">Save Changes</ng-container>
+               <ng-container *ngIf="isLoading">
+                 <span clas="indicator-progress" [style.display]="'block'">
+                   Please wait...{{ " " }}
+                   <span
+                     class="spinner-border spinner-border-sm align-middle ms-2"
+                   ></span>
+                 </span>
+               </ng-container>
+    </button>
+  </form>
+</div>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="cog"
+>
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+
+<ng-template
+  #formError
+  let-control="control"
+  let-message="message"
+  let-validation="validation"
+>
+  <ng-container
+    *ngIf="control.hasError(validation)"
+  >
+    <div class="fv-plugins-message-container">
+      <span role="alert">
+        {{ message }}
+      </span>
+    </div>
+  </ng-container>
+</ng-template>

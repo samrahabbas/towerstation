@@ -1,0 +1,66 @@
+<div *ngIf="isCameraExist; else noCameraExist">
+<div>
+    <div class="col-lg-12">
+      <div class="row">
+        <div *ngIf="showWeb">
+          <webcam 
+             [trigger]="triggerObservable" 
+             (imageCapture)="handleImage($event)"></webcam>
+        <div class="row mb-3">
+         <div class="col-lg-4">
+           <button class="btn btn-success" (click)="triggerSnapshot();">Take A Snapshot</button>
+         </div>
+        </div>
+
+        </div>
+      </div>
+    
+  
+      <div *ngIf="webimage">
+
+        <div *ngIf="webcamImage" class="mb-3">
+            <img [src]="webcamImage.imageAsDataUrl">
+        </div>
+      </div>
+
+    </div>
+      <div class="row mb-3">
+        <div class="col-lg-4">
+          <button
+            type="button"
+            class="btn btn-primary" (click)="addLoadPicture()">
+                    <ng-container *ngIf="!isLoading">Save Changes</ng-container>
+                    <ng-container *ngIf="isLoading">
+                      <span clas="indicator-progress" [style.display]="'block'">
+                        Please wait...{{ " " }}
+                        <span
+                          class="spinner-border spinner-border-sm align-middle ms-2"
+                        ></span>
+                      </span>
+                    </ng-container>
+          </button>
+
+        </div>
+        <div class="col-lg-4">
+          <button
+            type="button"
+            class="btn btn-danger" (click)="discardLoadPicture()">
+                    <ng-container *ngIf="!isLoadingDiscard">Discard Changes</ng-container>
+                    <ng-container *ngIf="isLoadingDiscard">
+                      <span clas="indicator-progress" [style.display]="'block'">
+                        Please wait...{{ " " }}
+                        <span
+                          class="spinner-border spinner-border-sm align-middle ms-2"
+                        ></span>
+                      </span>
+                    </ng-container>
+          </button>
+
+        </div>
+      </div>
+</div>
+</div>
+
+<ng-template #noCameraExist>
+  Camera device
+</ng-template>

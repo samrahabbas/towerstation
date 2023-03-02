@@ -1,0 +1,93 @@
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from "@angular/forms";
+
+@Component({
+  selector: 'app-commission-reports',
+  templateUrl: './commission-reports.component.html',
+  styleUrls: ['./commission-reports.component.scss']
+})
+export class CommissionReportsComponent implements OnInit {
+
+  public form: FormGroup;
+  public roles: { text: string, value: string | null }[] = [
+    {
+      text: "Show All Roles",
+      value: null
+    },
+    {
+      text: "Test Role 1",
+      value: "TestRole1"
+    }
+  ];
+  public users: { text: string, value: string | null }[] = [
+    {
+      text: "Show All Users",
+      value: null
+    },
+    {
+      text: "Test User 1",
+      value: "TestUser1"
+    }
+  ];
+  public statuses: { text: string, value: string | null }[] = [
+    {
+      text: "Show All Statuses",
+      value: null
+    },
+    {
+      text: "Pending Approval",
+      value: "pending"
+    },
+    {
+      text: "Approved",
+      value: "approved"
+    },
+    {
+      text: "Paid",
+      value: "paid"
+    },
+    {
+      text: "Do Not Pay",
+      value: "do-not-pay"
+    }
+  ];
+  public invoiceStatuses: { text: string, value: string | null }[] = [
+    {
+      text: "Show All Invoice Statuses",
+      value: null
+    },
+    {
+      text: "Unsent",
+      value: "unsent"
+    },
+    {
+      text: "Sent",
+      value: "sent"
+    },
+    {
+      text: "Paid",
+      value: "paid"
+    }
+  ];
+
+  public searchFilters = {
+    role: null,
+    user: null,
+    status: null,
+    invoiceStatus: null
+  };
+
+  constructor(
+    private readonly formBuilder: FormBuilder
+  ) { }
+
+  ngOnInit(): void {
+    this.initForm()
+  }
+
+  private initForm(): void {
+    this.form = this.formBuilder.group({
+      dateRange: [null, []],
+    })
+  }
+}

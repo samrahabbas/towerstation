@@ -1,0 +1,199 @@
+<div>
+  <div class="card mb-5 mb-xl-8">
+    <!-- begin::Header -->
+    <div class="card-header border-0 pt-5">
+      <h3 class="card-title align-items-start flex-column">
+        <span class="card-label fw-bolder fs-3 mb-1">Edit Branches / Departments</span>
+      </h3>
+      <div class="card-toolbar">
+        <a class="btn btn-sm btn-light-primary" (click)="openAddBranchModal()">
+      <span
+        [inlineSVG]="'./assets/media/icons/duotune/arrows/arr075.svg'"
+        class="svg-icon svg-icon-3"
+      ></span>
+          Add New Branch / Department
+        </a>
+      </div>
+    </div>
+    <!-- end::Header -->
+    <!-- begin::Body -->
+    <div class="card-body py-3">
+      <!-- begin::Table container -->
+      <div class="table-responsive">
+        <!-- begin::Table -->
+        <table class="table align-middle gs-0 gy-4">
+          <!-- begin::Table head -->
+          <thead>
+          <tr class="fw-bolder text-muted bg-light">
+            <th class="ps-4 min-w-225px rounded-start">Branch / Department Name</th>
+            <th class="min-w-200px">Description</th>
+            <th class="min-w-200px text-end rounded-end pe-4">Actions</th>
+          </tr>
+          </thead>
+          <!-- end::Table head -->
+          <!-- begin::Table body -->
+          <tbody>
+          <tr>
+            <td>
+            <span class="fw-bolder d-block mb-1 fs-6 ps-4">
+            <span class="badge badge-info fs-7 fw-bold">Shared</span>
+            </span>
+            </td>
+            <td>
+            <span class="fw-bolder d-block mb-1 fs-6">
+              <span class="d-block">This is the default Branch / Department that all Users belong to. It cannot be deleted nor can Users be removed from it, but you may change the name or this description.</span>
+            </span>
+            </td>
+            <td class="text-end">
+              <div class="pe-4">
+                <a class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                   (click)="editBranch()" ngbTooltip="Edit">
+              <span
+                [inlineSVG]="'./assets/media/icons/duotune/art/art005.svg'"
+                class="svg-icon svg-icon-3">
+              </span>
+                </a>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+          <!-- end::Table body -->
+        </table>
+        <!-- end::Table -->
+      </div>
+      <!-- end::Table container -->
+    </div>
+    <!-- begin::Body -->
+  </div>
+
+  <div class="card mb-5 mb-xl-8">
+    <div class="card-header border-0 pt-5">
+      <h3 class="card-title align-items-start flex-column">
+        <span class="card-label fw-bolder fs-3 mb-1">Default Branch / Department Selections</span>
+      </h3>
+    </div>
+    <div class="card-body border-top p-9">
+      <div class="mb-10 mt-5 bg-light-info p-8 rounded">
+        <div class="text-info">
+          <strong>
+            <i class="far fa-lightbulb text-info"></i>
+            Did you know?
+          </strong>
+          <ul>
+            <li class="py-3 text-justify">
+              For each group below, you should select <span class="badge badge-info fs-8 fw-bold">Shared</span> if you
+              want to share each item in that group amongst all the users in your company. This will help you prevent
+              duplicate items from being created and allow for universal reporting across your company. This option is
+              useful, for example, if the different branches / departments in your company share locations that they
+              pick-up or deliver to.
+            </li>
+            <li class="py-3 text-justify">
+              Alternatively, <span class="badge badge-primary fs-8 fw-bold">User Choice</span> should be used if you
+              want to allow your users to choose to add items to any of their own branches / departments, including
+              Shared. This allows your users to keep their data within their own silo, either to help declutter the
+              system, or to prevent others from viewing protected or sensitive information.
+            </li>
+            <li class="py-3 text-justify">
+              Provided you have added yourself to all branches, as an Administrator, you are able to view and modify any
+              data entered in TowerStation regardless of branch. In addition, you have the added ability to switch the
+              branches / departments that any individual item or user belongs to at any time, regardless of the settings
+              below.
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="row mb-6">
+            <div class="col-lg-2">
+              <label class="col-form-label required fw-bold fs-6">
+                Customers
+              </label>
+            </div>
+            <div class="col-lg-10">
+              <div class="m-0 pt-4">
+                <span class="form-check form-check-custom form-check-solid">
+                  <input type="radio" [(ngModel)]="isCustomersShared" [value]="true"
+                         class="form-check-input" name="isCustomersShared">
+                  <label class="form-check-label">
+                    <span class="badge badge-primary w-90px fs-8 fw-bold">Shared</span>
+                    All new customers added to TowerStation will be added to the Shared Branch / Department.
+                  </label>
+                </span>
+              </div>
+              <div class="m-0 pt-4">
+                <span class="form-check form-check-custom form-check-solid">
+                  <input type="radio" [(ngModel)]="isCustomersShared" [value]="false"
+                         class="form-check-input" name="isCustomersShared">
+                  <label class="form-check-label">
+                    <span class="badge badge-info w-90px fs-8 fw-bold">User Choice</span>
+                    Allow your users to choose to add new customers to Shared or to any other Branch / Department to which they belong.
+                  </label>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-2">
+              <label class="col-form-label required fw-bold fs-6">
+                Carriers
+              </label>
+            </div>
+            <div class="col-lg-10">
+              <div class="m-0 pt-4">
+                <span class="form-check form-check-custom form-check-solid">
+                  <input type="radio" [(ngModel)]="isCarriesShared" [value]="true"
+                         class="form-check-input" name="isCarriesShared">
+                  <label class="form-check-label">
+                    <span class="badge badge-primary w-90px fs-8 fw-bold">Shared</span>
+                    All new carriers added to TowerStation will be added to the Shared Branch / Department.
+                  </label>
+                </span>
+              </div>
+              <div class="m-0 pt-4">
+                <span class="form-check form-check-custom form-check-solid">
+                  <input type="radio" [(ngModel)]="isCarriesShared" [value]="false"
+                         class="form-check-input" name="isCarriesShared">
+                  <label class="form-check-label">
+                    <span class="badge badge-info w-90px fs-8 fw-bold">User Choice</span>
+                    Allow your users to choose to add new carriers to Shared or to any other Branch / Department to which they belong.
+                  </label>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-2">
+              <label class="col-form-label required fw-bold fs-6">
+                Locations
+              </label>
+            </div>
+            <div class="col-lg-10">
+              <div class="m-0 pt-4">
+                <span class="form-check form-check-custom form-check-solid">
+                  <input type="radio" [(ngModel)]="isLocationsShared" [value]="true"
+                         class="form-check-input" name="isLocationsShared">
+                  <label class="form-check-label">
+                    <span class="badge badge-primary w-90px fs-8 fw-bold">Shared</span>
+                    All new locations added to TowerStation will be added to the Shared Branch / Department.
+                  </label>
+                </span>
+              </div>
+              <div class="m-0 pt-4">
+                <span class="form-check form-check-custom form-check-solid">
+                  <input type="radio" [(ngModel)]="isLocationsShared" [value]="false"
+                         class="form-check-input" name="isLocationsShared">
+                  <label class="form-check-label">
+                    <span class="badge badge-info w-90px fs-8 fw-bold">User Choice</span>
+                    Allow your users to choose to add new locations to Shared or to any other Branch / Department to which they belong.
+                  </label>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

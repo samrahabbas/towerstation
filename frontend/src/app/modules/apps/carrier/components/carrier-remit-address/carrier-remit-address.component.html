@@ -1,0 +1,196 @@
+<ng-container [formGroup]="formGroup">
+  <div class="card mb-5 mb-xl-10">
+    <div
+      class="card-header border-0 cursor-pointer"
+      role="button"
+      aria-expanded="true"
+      aria-controls="kt_account_profile_details">
+      <div class="card-title m-0">
+        <h3 class="fw-bolder m-0">Remit Address</h3>
+      </div>
+    </div>
+    <div class="card-body border-top">
+      <div class="row mb-6">
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-lg-4">
+              <label class="col-form-label required fw-bold fs-6">
+                Checks payable to
+              </label>
+              <input
+                type="text"
+                formControlName="checksPayableTo"
+                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                placeholder="Checks payable to" />
+            </div>
+            <div class="col-lg-4 fv-row">
+              <label class="col-form-label required fw-bold fs-6">
+                Street 1
+              </label>
+              <input
+                type="text"
+                formControlName="street1"
+                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                placeholder="Street 1" />
+            </div>
+            <div class="col-lg-4 fv-row">
+              <label class="col-form-label fw-bold fs-6">
+                Street 2
+              </label>
+              <input
+                type="text"
+                formControlName="street2"
+                class="form-control form-control-lg form-control-solid"
+                placeholder="Street 2" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-6">
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-lg-4 fv-row">
+              <label class="col-form-label required fw-bold fs-6">
+                Zip Code
+              </label>
+              <input
+                type="text"
+                formControlName="zipCode"
+                mask="99999"
+                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                placeholder="Zip Code" />
+            </div>
+            <div class="col-lg-4 fv-row">
+              <label class="col-form-label required fw-bold fs-6">
+                State
+              </label>
+              <select
+                class="form-select form-select-solid form-select-lg"
+                formControlName="state">
+                <option [ngValue]="null">Select State</option>
+                <option *ngFor="let state of states" [ngValue]="state.stateName">
+                  {{state.stateName}}
+                </option>
+              </select>
+              <ng-container
+                [ngTemplateOutlet]="formError"
+                [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'Enter Zip Code First',
+                  control: f.zipCode
+                  }">
+              </ng-container>
+              <ng-container
+                [ngTemplateOutlet]="formError"
+                [ngTemplateOutletContext]="{
+                  validation: 'zipCodeNotFound',
+                  message: 'Zip Code not found',
+                  control: f.zipCode
+                  }">
+              </ng-container>
+            </div>
+            <div class="col-lg-4 fv-row">
+              <label class="col-form-label required fw-bold fs-6">
+                City
+              </label>
+              <select
+                class="form-select form-select-solid form-select-lg"
+                formControlName="city">
+                <option [ngValue]="null">Select City</option>
+                <option *ngFor="let city of this.cities" [ngValue]="city.placeName">
+                  {{city.placeName}}
+                </option>
+              </select>
+              <ng-container
+                [ngTemplateOutlet]="formError"
+                [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'Enter Zip Code First',
+                  control: f.zipCode
+                  }">
+              </ng-container>
+              <ng-container
+                [ngTemplateOutlet]="formError"
+                [ngTemplateOutletContext]="{
+                  validation: 'zipCodeNotFound',
+                  message: 'Zip Code not found',
+                  control: f.zipCode
+                  }">
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-6">
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-lg-4 fv-row">
+              <label class="col-form-label required fw-bold fs-6">
+                Telephone
+              </label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <div class="">
+                    <ng-select class="custom" [items]="telephoneCountryCodes"
+                               [ngModelOptions]="{standalone: true}"
+                               appendTo="body"
+                               [(ngModel)]="telephoneCountryCodeSelected" [searchable]="false"
+                               [clearable]="false">
+                      <ng-template ng-label-tmp let-item="item">
+                          <span
+                            [inlineSVG]="item.flag"
+                            class="svg-icon svg-icon-1">
+                          </span> &nbsp;
+                        <span class="fs-6">{{item.callingCode}}</span>
+                      </ng-template>
+                      <ng-template ng-option-tmp let-item="item">
+                          <span
+                            [inlineSVG]="item.flag"
+                            class="svg-icon svg-icon-1">
+                          </span> &nbsp;
+                        <span class="fs-6">{{item.callingCode}}</span>
+                      </ng-template>
+                    </ng-select>
+                  </div>
+                </div>
+                <input type="tel" formControlName="telephone" placeholder="Telephone"
+                       mask="(000) 000-0000" [showMaskTyped]="true" [dropSpecialCharacters]="false"
+                       class="form-control form-control-lg form-control-solid">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-lg-4">
+              <button class="btn btn-sm btn-danger" (click)="onDeleteAddress()">
+                <i class="far fa-trash-alt"></i>
+                Delete Address
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer d-flex justify-content-end py-6 px-9"></div>
+  </div>
+</ng-container>
+
+<ng-template
+  #formError
+  let-control="control"
+  let-message="message"
+  let-validation="validation"
+>
+  <ng-container
+    *ngIf="control.hasError(validation)"
+  >
+    <div class="fv-plugins-message-container">
+      <span role="alert">
+        {{ message }}
+      </span>
+    </div>
+  </ng-container>
+</ng-template>

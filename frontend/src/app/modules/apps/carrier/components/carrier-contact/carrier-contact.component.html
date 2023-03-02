@@ -1,0 +1,150 @@
+<div>
+  <form class="form" [formGroup]="carrierContactFormGroup" novalidate>
+    <div class="row mb-6">
+      <div class="col-lg-12">
+        <div class="row">
+          <div class="col-lg-6 fv-row">
+            <label class="col-form-label required fw-bold fs-6">
+              Contact Name
+            </label>
+            <input
+              type="text"
+              formControlName="name"
+              class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+              placeholder="Contact Name" />
+          </div>
+          <div class="col-lg-6 fv-row">
+            <label class="col-form-label required fw-bold fs-6">
+              Telephone
+            </label>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <div class="">
+                  <ng-select class="custom" [items]="callingCountryCodes"
+                             [ngModelOptions]="{standalone: true}"
+                             appendTo="body"
+                             [(ngModel)]="telephoneCountryCodeSelected" [searchable]="false"
+                             [clearable]="false">
+                    <ng-template ng-label-tmp let-item="item">
+                          <span
+                            [inlineSVG]="item.flag"
+                            class="svg-icon svg-icon-1">
+                          </span> &nbsp;
+                      <span class="fs-6">{{item.callingCode}}</span>
+                    </ng-template>
+                    <ng-template ng-option-tmp let-item="item">
+                          <span
+                            [inlineSVG]="item.flag"
+                            class="svg-icon svg-icon-1">
+                          </span> &nbsp;
+                      <span class="fs-6">{{item.callingCode}}</span>
+                    </ng-template>
+                  </ng-select>
+                </div>
+              </div>
+              <input type="tel" formControlName="telephone" placeholder="Telephone"
+                     mask="(000) 000-0000" [showMaskTyped]="true" [dropSpecialCharacters]="false"
+                     class="form-control form-control-lg form-control-solid">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-6">
+      <div class="col-lg-12">
+        <div class="row">
+          <div class="col-lg-6 fv-row">
+            <label class="col-form-label required fw-bold fs-6">
+              Email
+            </label>
+            <input
+              type="text"
+              formControlName="email"
+              class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+              placeholder="Email" />
+          </div>
+          <div class="col-lg-6 fv-row">
+            <label class="col-form-label required fw-bold fs-6">
+              Fax
+            </label>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <div class="">
+                  <ng-select class="custom" [items]="callingCountryCodes"
+                             [ngModelOptions]="{standalone: true}"
+                             appendTo="body"
+                             [(ngModel)]="faxCountryCodeSelected" [searchable]="false"
+                             [clearable]="false">
+                    <ng-template ng-label-tmp let-item="item">
+                          <span
+                            [inlineSVG]="item.flag"
+                            class="svg-icon svg-icon-1">
+                          </span>&nbsp;
+                      <span class="fs-6">{{item.callingCode}}</span>
+                    </ng-template>
+                    <ng-template ng-option-tmp let-item="item">
+                          <span
+                            [inlineSVG]="item.flag"
+                            class="svg-icon svg-icon-1">
+                          </span> &nbsp;
+                      <span class="fs-6">{{item.callingCode}}</span>
+                    </ng-template>
+                  </ng-select>
+                </div>
+              </div>
+              <input type="tel" formControlName="fax" placeholder="Fax"
+                     mask="(000) 000-0000" [showMaskTyped]="true" [dropSpecialCharacters]="false"
+                     class="form-control form-control-lg form-control-solid">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="row" *ngIf="f.isPrimaryContact.value">
+          <div class="col-lg-8">
+            <div class="bg-light-info p-5 rounded">
+              <div class="text-info">
+                <strong>
+                  This is the primary contact for this carrier and will automatically be included in contact email
+                  lists.
+                </strong>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" *ngIf="!f.isPrimaryContact.value && !this.isAddingContact">
+          <div class="col-lg-6">
+            <div class="form-check form-check-solid">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                formControlName="isIncludedInContactEmailList"/>
+              <label class="form-check-label ps-2">
+                Include this contact in contact email lists
+              </label>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="row text-end">
+              <div class="col-lg-3"></div>
+              <div class="col-lg-4">
+                <button class="btn btn-sm btn-link" (click)="onSetAsPrimaryContactClick()">
+                  <i class="far fa-star text-primary"></i>
+                  Set as primary contact
+                </button>
+              </div>
+              <div class="col-lg-5">
+                <button class="btn btn-sm btn-danger" (click)="onDeleteContactClick()">
+                  <i class="far fa-trash-alt"></i>
+                  Delete contact
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

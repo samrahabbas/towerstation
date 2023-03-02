@@ -1,0 +1,486 @@
+<p-toast></p-toast>
+
+<div>
+  <form novalidate="" class="form" [formGroup]="searchLoadsForm">
+    <div class="card mb-5 mb-xl-10">
+      <div
+        class="card-header border-0"
+        aria-expanded="true">
+        <div class="card-title m-0">
+          <h3 class="fw-bolder m-0">Search Loads</h3>
+        </div>
+      </div>
+      <div class="collapse show">
+        <div class="card-body border-top p-9">
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Origin
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="origin"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Origin" />
+                </div>
+                <div class="col-lg-2 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    DH-O
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="DHO"
+                    class="form-control form-control-lg form-control-solid"
+                    placeholder="DH-O" />
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Destination
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="destination"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Destination" />
+                </div>
+                <div class="col-lg-2 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    DH-D
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="DHD"
+                    class="form-control form-control-lg form-control-solid"
+                    placeholder="DH-D" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Company
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="company"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Company">
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Contact
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="contact"
+                    class="form-control form-control-lg form-control-solid"
+                    placeholder="Contact" />
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Offer
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="offer"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Offer" />
+                </div>
+        
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-6">
+                  <label class="col-form-label fw-bold fs-6">
+                    Truck Type Group
+                  </label>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="m-0 pt-4">
+                        <span class="form-check form-check-custom form-check-solid">
+                          <input type="radio" formControlName="truckTypeGroup" value="General"
+                                 class="form-check-input" name="truckTypeGroup">
+                          <label class="form-check-label">
+                            General
+                          </label>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="m-0 pt-4">
+                        <span class="form-check form-check-custom form-check-solid">
+                          <input type="radio" formControlName="truckTypeGroup" value="Specific"
+                                 class="form-check-input" name="truckTypeGroup">
+                          <label class="form-check-label">
+                            Specific
+                          </label>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Truck Type
+                  </label>
+                  <ng-select
+                    [items]="this.truckTypes" formControlName="truckTypes"
+                    class="custom-tag-select"
+                    [clearable]="true" [selectOnTab]="true"
+                    placeholder="Select Truck Types">
+                  </ng-select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-3 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Full / Partial
+                  </label>
+                  <ng-select
+                    [items]="this.loadTypes" formControlName="loadType"
+                    class="custom-tag-select" [clearable]="true"
+                    [selectOnTab]="true" placeholder="Select Load Type">
+                  </ng-select>
+                </div>
+                <div class="col-lg-3 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Look Back (hrs)
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="DHO" mask="0*"
+                    class="form-control form-control-lg form-control-solid"
+                    placeholder="lookBackHours" />
+                </div>
+                <div class="col-lg-3">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Start Date
+                  </label>
+                  <input mwlFlatpickr type="text" formControlName="startDate"
+                         placeholder="Start Date"
+                         [altInput]="true" [convertModelValue]="true"
+                         class="form-control form-control-lg form-control-solid" />
+                </div>
+                <div class="col-lg-3">
+                  <label class="col-form-label required fw-bold fs-6">
+                    End Date
+                  </label>
+                  <input mwlFlatpickr type="text" formControlName="endDate"
+                         placeholder="End Date"
+                         [altInput]="true" [convertModelValue]="true"
+                         class="form-control form-control-lg form-control-solid" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-3 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Age
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="age"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Age" />
+                </div>
+                <div class="col-lg-3 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Pickup
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="pickup"
+                    class="form-control form-control-lg form-control-solid"
+                    placeholder="Pickup" />
+                </div>
+                <div class="col-lg-3 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Weight
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="weight"
+                    class="form-control form-control-lg form-control-solid"
+                    placeholder="Weight" />
+                </div>
+                <div class="col-lg-3 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Trip
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="trip" 
+                    class="form-control form-control-lg form-control-solid"
+                    placeholder="Trip" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-3 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    EQ
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="eq"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="EQ" />
+                </div>
+                <div class="col-lg-3 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Length
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="length"
+                    class="form-control form-control-lg form-control-solid"
+                    placeholder="Length" />
+                </div>
+                <div class="col-lg-3 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Factor
+                  </label>
+                  <ng-select
+                    [items]="this.factor" formControlName="factor"
+                    class="custom-tag-select" [clearable]="true"
+                    [selectOnTab]="true" placeholder="Select factor">
+                  </ng-select>
+                </div>
+                <div class="col-lg-3 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    CS
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="cs" 
+                    class="form-control form-control-lg form-control-solid"
+                    placeholder="CS" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-lg-4">
+              <button
+                type="button"
+                class="btn btn-primary" (click)="searchLoad()">
+                         <ng-container *ngIf="!isLoading">Search Loads</ng-container>
+                         <ng-container *ngIf="isLoading">
+                           <span clas="indicator-progress" [style.display]="'block'">
+                             Please wait...{{ " " }}
+                             <span
+                               class="spinner-border spinner-border-sm align-middle ms-2"
+                             ></span>
+                           </span>
+                       </ng-container>
+
+              </button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div>
+    <div class="card mb-5 mb-xl-10">
+      <div
+        class="card-header border-0"
+        aria-expanded="true">
+        <div class="card-title m-0">
+          <h3 class="fw-bolder m-0">Loads</h3>
+        </div>
+      </div>
+      <div class="collapse show">
+        <div class="card-body border-top p-9">
+          <p-table [value]="loads" dataKey="id" responsiveLayout="scroll">
+            <ng-template pTemplate="header">
+              <tr>
+                <th pSortableColumn="age">
+                  Age
+                  <p-sortIcon field="age"></p-sortIcon>
+                </th>
+                <th pSortableColumn="pickup">
+                  Pickup
+                  <p-sortIcon field="pickup"></p-sortIcon>
+                </th>
+                <th pSortableColumn="origin">
+                  Origin
+                  <p-sortIcon field="origin"></p-sortIcon>
+                </th>
+                <th pSortableColumn="DHO">
+                  DH-O
+                  <p-sortIcon field="DHO"></p-sortIcon>
+                </th>
+                <th pSortableColumn="destination">
+                  DEST
+                  <p-sortIcon field="destination"></p-sortIcon>
+                </th>
+                <th pSortableColumn="DHD">
+                  DH-D
+                  <p-sortIcon field="DHD"></p-sortIcon>
+                </th>
+                <th pSortableColumn="trip">
+                  Trip
+                  <p-sortIcon field="trip"></p-sortIcon>
+                </th>
+                <th pSortableColumn="eq">
+                  EQ
+                  <p-sortIcon field="eq"></p-sortIcon>
+                </th>
+                <th pSortableColumn="length">
+                  LEN
+                  <p-sortIcon field="length"></p-sortIcon>
+                </th>
+                <th pSortableColumn="weight">
+                  Weight
+                  <p-sortIcon field="weight"></p-sortIcon>
+                </th>
+                <th pSortableColumn="type">
+                  F/P
+                  <p-sortIcon field="type"></p-sortIcon>
+                </th>
+                <th pSortableColumn="factor">
+                  Factor
+                  <p-sortIcon field="factor"></p-sortIcon>
+                </th>
+                <th pSortableColumn="CS">
+                  CS
+                  <p-sortIcon field="CS"></p-sortIcon>
+                </th>
+                <th pSortableColumn="DTP">
+                  DTP
+                  <p-sortIcon field="DTP"></p-sortIcon>
+                </th>
+                <th pSortableColumn="company">
+                  Company
+                  <p-sortIcon field="company"></p-sortIcon>
+                </th>
+                <th pSortableColumn="contact">
+                  Contact
+                  <p-sortIcon field="contact"></p-sortIcon>
+                </th>
+                <th pSortableColumn="offer">
+                  Offer
+                  <p-sortIcon field="offer"></p-sortIcon>
+                </th>
+                <!-- <th>Actions</th> -->
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-item let-ri="rowIndex" *ngIf="!noData">
+              <tr>
+                <td>
+                  <span *ngIf="item.pickup">{{ item.pickup }}</span>
+                  <span *ngIf="!item.pickup">-</span>
+                </td>
+                <td>
+                  <span *ngIf="item.pickup">{{ item.pickup }}</span>
+                  <span *ngIf="!item.pickup">-</span>
+                </td>
+                <td>
+                  <span *ngIf="item.origin">{{ item.origin }}</span>
+                  <span *ngIf="!item.origin">-</span>
+                </td>
+                <td>
+                  <span *ngIf="item.DHO">{{ item.DHO }}</span>
+                  <span *ngIf="!item.DHO">-</span>
+                </td>
+                <td>
+                  <span *ngIf="item.destination">{{ item.destination }}</span>
+                  <span *ngIf="!item.destination">-</span>
+                </td>
+                <td>
+                  <span *ngIf="item.DHD">{{ item.DHD }}</span>
+                  <span *ngIf="!item.DHD">-</span>
+                </td>
+                <td>
+                  <span *ngIf="item.trip">{{ item.trip }}</span>
+                  <span *ngIf="!item.trip">-</span>
+                </td>
+                <td>
+                  <span *ngIf="item.eq">{{ item.eq }}</span>
+                  <span *ngIf="!item.eq">-</span>
+                </td>
+                <td>
+                  <span *ngIf="item.length">{{ item.length }}</span>
+                  <span *ngIf="!item.length">-</span>
+                </td>
+                <td>
+                  <span *ngIf="item.weight">{{ item.weight }}</span>
+                  <span *ngIf="!item.weight">-</span>
+                </td>
+                <td>
+                  <span *ngIf="item.load_type">{{ item.load_type }}</span>
+                  <span *ngIf="!item.load_type">-</span>
+                </td>
+                <td>
+                  <span *ngIf="item.factor">{{ item.factor }}</span>
+                  <span *ngIf="!item.factor">-</span>
+                </td>
+                <td>
+                  <span *ngIf="item.cs">{{ item.cs }}</span>
+                  <span *ngIf="!item.cs">-</span>
+                </td>
+                <td>
+                  <span *ngIf="item.DTP">{{ item.DTP }}</span>
+                  <span *ngIf="!item.DTP">-</span>
+                </td>
+                <td>
+                  <span *ngIf="item.company">{{ item.company }}</span>
+                  <span *ngIf="!item.company">-</span>
+                </td>
+                <td>
+                  <span *ngIf="item.contact">{{ item.contact }}</span>
+                  <span *ngIf="!item.contact">-</span>
+                </td>
+                <td>
+                  <span *ngIf="item.offer">{{ item.offer }}</span>
+                  <span *ngIf="!item.offer">-</span>
+                </td>
+                <!-- <td>
+                  <button class="btn btn-sm btn-outline-primary">
+                    Book
+                  </button>
+                </td> -->
+              </tr>
+            </ng-template>
+            <ng-template *ngIf="noData">
+              <tr>
+                <td colspan="11" class="text-center">No data found</td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </div>
+    </div>
+</div>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="cog"
+>
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+

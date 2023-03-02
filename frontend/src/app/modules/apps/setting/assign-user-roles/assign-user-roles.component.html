@@ -1,0 +1,96 @@
+<div class="card mb-5 mb-xl-8">
+  <!-- begin::Header -->
+  <div class="card-header border-0 pt-5">
+    <h3 class="card-title align-items-start flex-column">
+      <span class="card-label fw-bolder fs-3 mb-1">Assign User Roles / Commission Overrides</span>
+    </h3>
+    <div class="card-toolbar">
+      <a href="#" class="btn btn-sm btn-light-primary" [routerLink]="['/apps/settings/assign-user-role']">
+      <span
+        [inlineSVG]="'./assets/media/icons/duotune/arrows/arr075.svg'"
+        class="svg-icon svg-icon-3"
+      ></span>
+        Assign User Roles / Commission Override
+      </a>
+    </div>
+  </div>
+  <!-- end::Header -->
+  <!-- begin::Body -->
+  <div class="card-body py-3">
+    <!-- begin::Table container -->
+    <div class="table-responsive">
+      <!-- begin::Table -->
+      <table class="table align-middle gs-0 gy-4">
+        <!-- begin::Table head -->
+        <thead>
+        <tr class="fw-bolder text-muted bg-light">
+          <th class="ps-4 min-w-125px rounded-start">User</th>
+          <th class="min-w-200px">Role</th>
+          <th class="min-w-125px">Rate Source</th>
+          <th class="min-w-125px">Rate Type</th>
+          <th class="min-w-125px">Rate Amount</th>
+          <th class="min-w-200px text-end rounded-end pe-4">Actions</th>
+        </tr>
+        </thead>
+        <!-- end::Table head -->
+        <!-- begin::Table body -->
+        <tbody>
+        <tr>
+          <td>
+            <span class="fw-bolder d-block mb-1 fs-6 ps-4">
+              User
+            </span>
+          </td>
+          <td>
+            <span class="fw-bolder d-block mb-1 fs-6">
+              Admin
+            </span>
+          </td>
+          <td>
+            <span class="fw-bolder d-block mb-1 fs-6">
+              Commission
+            </span>
+          </td>
+          <td>
+            <span class="fw-bolder d-block mb-1 fs-6">
+              Flat
+            </span>
+          </td>
+          <td>
+            <span class="fw-bolder d-block mb-1 fs-6">
+              10.00%
+            </span>
+          </td>
+          <td class="text-end">
+            <div class="pe-4">
+              <a class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                 (click)="editRole()" ngbTooltip="Edit">
+              <span
+                [inlineSVG]="'./assets/media/icons/duotune/art/art005.svg'"
+                class="svg-icon svg-icon-3">
+              </span>
+              </a>
+              <a class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
+                 (click)="disableRole()" ngbTooltip="Disable">
+                <i class="fas fa-ban"></i>
+              </a>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+        <!-- end::Table body -->
+      </table>
+      <!-- end::Table -->
+    </div>
+    <!-- end::Table container -->
+  </div>
+  <!-- begin::Body -->
+</div>
+
+<swal #DisableRoleSwal
+      text="This cannot be undone!"
+      icon="question"
+      [showCancelButton]="true" [focusCancel]="true" (confirm)="confirmDisableRole()">
+
+</swal>
+

@@ -1,0 +1,66 @@
+<div>
+  <div class="card mb-6 mb-xl-10">
+    <div
+      class="card-header border-0"
+      aria-expanded="true">
+      <div class="card-title m-0">
+        <h3 class="fw-bolder m-0">Add / Edit Permissions Groups</h3>
+      </div>
+      <div class="card-toolbar">
+        <button class="btn btn-light-primary" (click)="openAddPermissionsGroupModal()">
+          <i class="fa fa-plus"></i> Add New / Copy Permissions Group
+        </button>
+      </div>
+    </div>
+    <div class="card-body border-top p-9">
+      <div class="table-responsive">
+        <table class="table align-middle gs-0 gy-4">
+          <thead>
+          <tr class="fw-bolder text-muted bg-light">
+            <th class="ps-4 min-w-200px rounded-start"></th>
+            <th class="min-w-125px">Administrator</th>
+            <th class="min-w-125px">Accounting</th>
+            <th class="min-w-125px">Standard</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let permission of permissions">
+            <td colspan="4" class="p-0 bg-light" *ngIf="permission.includes('group|')">
+              <h3 class="m-0 p-3">
+                <span>{{permission.split('group|')[1]}}</span>
+              </h3>
+            </td>
+            <td class="p-0 fw-bold fs-5 p-3" *ngIf="!permission.includes('group|')">
+              <span>{{permission}}</span>
+            </td>
+            <td class="p-0 fw-bold fs-5 p-3" *ngIf="!permission.includes('group|')">
+              <div class="d-flex align-items-center mt-3">
+                <label class="form-check form-check-inline form-check-solid me-5">
+                  <input type="checkbox"
+                         class="form-check-input">
+                </label>
+              </div>
+            </td>
+            <td class="p-0 fw-bold fs-5 p-3" *ngIf="!permission.includes('group|')">
+              <div class="d-flex align-items-center mt-3">
+                <label class="form-check form-check-inline form-check-solid me-5">
+                  <input type="checkbox"
+                         class="form-check-input">
+                </label>
+              </div>
+            </td>
+            <td class="p-0 fw-bold fs-5 p-3" *ngIf="!permission.includes('group|')">
+              <div class="d-flex align-items-center mt-3">
+                <label class="form-check form-check-inline form-check-solid me-5">
+                  <input type="checkbox"
+                         class="form-check-input">
+                </label>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

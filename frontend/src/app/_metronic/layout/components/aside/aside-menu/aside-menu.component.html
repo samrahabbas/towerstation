@@ -1,0 +1,1913 @@
+<!-- Dashboard -->
+<div class="menu-item">
+  <a
+    class="menu-link without-sub"
+    routerLink="/dashboard"
+    routerLinkActive="active"
+  ><span class="menu-icon">
+      <span
+        [inlineSVG]="'./assets/media/icons/duotune/art/art002.svg'"
+        class="svg-icon svg-icon-2"
+      ></span>
+    </span>
+    <span class="menu-title" translate="MENU.DASHBOARD"></span
+    ></a>
+</div>
+
+<!-- Layout builder -->
+<!--<div class="menu-item">-->
+<!--  <a-->
+<!--    class="menu-link without-sub"-->
+<!--    routerLink="/builder"-->
+<!--    routerLinkActive="active">-->
+<!--    <span class="menu-icon">-->
+<!--      <span-->
+<!--        [inlineSVG]="'./assets/media/icons/duotune/general/gen019.svg'"-->
+<!--        class="svg-icon svg-icon-2">-->
+<!--      </span>-->
+<!--  </span>-->
+<!--    <span class="menu-title">Layout Builder</span></a>-->
+<!--</div>-->
+
+<!-- Separator -->
+<!--<div class="menu-item">-->
+<!--  <div class="menu-content pt-8 pb-2">-->
+<!--    <span class="menu-section text-muted text-uppercase fs-8 ls-1"-->
+<!--    >Crafted</span-->
+<!--    >-->
+<!--  </div>-->
+<!--</div>-->
+
+<!-- Pages -->
+<!--<div-->
+<!--  class="menu-item menu-accordion"-->
+<!--  data-kt-menu-trigger="click"-->
+<!--  routerLinkActive="here show">-->
+<!--  <span class="menu-link">-->
+<!--    <span class="menu-icon">-->
+<!--      <span-->
+<!--    class="svg-icon svg-icon-2"-->
+<!--    [inlineSVG]="'./assets/media/icons/duotune/general/gen022.svg'">-->
+
+<!--      </span>-->
+<!--    </span>-->
+<!--    <span class="menu-title">-->
+<!--      Pages-->
+<!--    </span>-->
+<!--    <span class="menu-arrow">-->
+<!--    </span>-->
+<!--  </span>-->
+<!--  <div class="menu-sub menu-sub-accordion" routerLinkActive="menu-active-bg">-->
+<!--    <div-->
+<!--      class="menu-item menu-accordion"-->
+<!--      routerLinkActive="here show"-->
+<!--      data-kt-menu-trigger="click">-->
+<!--      <span class="menu-link">-->
+<!--        <span class="menu-bullet">-->
+<!--          <span class="bullet bullet-dot">-->
+<!--          </span>-->
+<!--        </span>-->
+<!--        <span class="menu-title" data-link="/crafted/pages/profile">-->
+<!--          Profile-->
+<!--        </span>-->
+<!--        <span class="menu-arrow">-->
+
+<!--        </span>-->
+<!--      </span>-->
+<!--      <div-->
+<!--        class="menu-sub menu-sub-accordion"-->
+<!--        routerLinkActive="menu-active-bg"-->
+<!--      >-->
+<!--        <div class="menu-item">-->
+<!--          <a-->
+<!--            class="menu-link without-sub"-->
+<!--            routerLinkActive="active"-->
+<!--            routerLink="/crafted/pages/profile/overview"-->
+<!--          ><span class="menu-bullet"-->
+<!--          ><span class="bullet bullet-dot"></span></span-->
+<!--          ><span class="menu-title">Overview</span></a-->
+<!--          >-->
+<!--        </div>-->
+<!--        <div class="menu-item">-->
+<!--          <a-->
+<!--            class="menu-link without-sub"-->
+<!--            routerLinkActive="active"-->
+<!--            routerLink="/crafted/pages/profile/projects"-->
+<!--          ><span class="menu-bullet"-->
+<!--          ><span class="bullet bullet-dot"></span></span-->
+<!--          ><span class="menu-title">Projects</span></a-->
+<!--          >-->
+<!--        </div>-->
+<!--        <div class="menu-item">-->
+<!--          <a-->
+<!--            class="menu-link without-sub"-->
+<!--            routerLinkActive="active"-->
+<!--            routerLink="/crafted/pages/profile/campaigns"-->
+<!--          ><span class="menu-bullet"-->
+<!--          ><span class="bullet bullet-dot"></span></span-->
+<!--          ><span class="menu-title">Campaigns</span></a-->
+<!--          >-->
+<!--        </div>-->
+<!--        <div class="menu-item">-->
+<!--          <a-->
+<!--            class="menu-link without-sub"-->
+<!--            routerLinkActive="active"-->
+<!--            routerLink="/crafted/pages/profile/documents"-->
+<!--          ><span class="menu-bullet"-->
+<!--          ><span class="bullet bullet-dot"></span></span-->
+<!--          ><span class="menu-title">Documents</span></a-->
+<!--          >-->
+<!--        </div>-->
+<!--        <div class="menu-item">-->
+<!--          <a-->
+<!--            class="menu-link without-sub"-->
+<!--            routerLinkActive="active"-->
+<!--            routerLink="/crafted/pages/profile/connections"-->
+<!--          ><span class="menu-bullet"-->
+<!--          ><span class="bullet bullet-dot"></span></span-->
+<!--          ><span class="menu-title">Connections</span></a-->
+<!--          >-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div-->
+<!--      class="menu-item menu-accordion"-->
+<!--      routerLinkActive="here show"-->
+<!--      data-kt-menu-trigger="click"-->
+<!--    >-->
+<!--      <span class="menu-link"-->
+<!--      ><span class="menu-bullet"><span class="bullet bullet-dot"></span></span-->
+<!--      ><span class="menu-title" data-link="/crafted/pages/wizards"-->
+<!--      >Wizards</span-->
+<!--      ><span class="menu-arrow"></span-->
+<!--      ></span>-->
+<!--      <div-->
+<!--        class="menu-sub menu-sub-accordion"-->
+<!--        routerLinkActive="menu-active-bg"-->
+<!--      >-->
+<!--        <div class="menu-item">-->
+<!--          <a-->
+<!--            class="menu-link without-sub"-->
+<!--            routerLinkActive="active"-->
+<!--            routerLink="/crafted/pages/wizards/horizontal"-->
+<!--          ><span class="menu-bullet"-->
+<!--          ><span class="bullet bullet-dot"></span></span-->
+<!--          ><span class="menu-title">Horizontal</span></a-->
+<!--          >-->
+<!--        </div>-->
+<!--        <div class="menu-item">-->
+<!--          <a-->
+<!--            class="menu-link without-sub"-->
+<!--            routerLinkActive="active"-->
+<!--            routerLink="/crafted/pages/wizards/vertical"-->
+<!--          ><span class="menu-bullet"-->
+<!--          ><span class="bullet bullet-dot"></span></span-->
+<!--          ><span class="menu-title">Vertical</span></a-->
+<!--          >-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!-- Accounts -->
+<!--<div-->
+<!--  class="menu-item menu-accordion"-->
+<!--  data-kt-menu-trigger="click"-->
+<!--  routerLinkActive="here show"-->
+<!--&gt;-->
+<!--  <span class="menu-link"-->
+<!--  ><span class="menu-icon"-->
+<!--  ><span-->
+<!--    class="svg-icon svg-icon-2"-->
+<!--    [inlineSVG]="'./assets/media/icons/duotune/communication/com006.svg'"-->
+<!--  ></span></span-->
+<!--  ><span class="menu-title" data-link="/crafted/account">Accounts</span-->
+<!--  ><span class="menu-arrow"></span-->
+<!--  ></span>-->
+<!--  <div class="menu-sub menu-sub-accordion" routerLinkActive="menu-active-bg">-->
+<!--    <div class="menu-item">-->
+<!--      <a-->
+<!--        class="menu-link without-sub"-->
+<!--        routerLinkActive="active"-->
+<!--        routerLink="/crafted/account/overview"-->
+<!--      ><span class="menu-bullet"><span class="bullet bullet-dot"></span></span-->
+<!--      ><span class="menu-title">Overview</span></a-->
+<!--      >-->
+<!--    </div>-->
+<!--    <div class="menu-item">-->
+<!--      <a-->
+<!--        class="menu-link without-sub"-->
+<!--        routerLinkActive="active"-->
+<!--        routerLink="/crafted/account/settings"-->
+<!--      ><span class="menu-bullet"><span class="bullet bullet-dot"></span></span-->
+<!--      ><span class="menu-title">Settings</span></a-->
+<!--      >-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!-- Errors -->
+<!--<div-->
+<!--  class="menu-item menu-accordion"-->
+<!--  data-kt-menu-trigger="click"-->
+<!--  routerLinkActive="here show"-->
+<!--&gt;-->
+<!--  <span class="menu-link"-->
+<!--  ><span class="menu-icon"-->
+<!--  ><span-->
+<!--    class="svg-icon svg-icon-2"-->
+<!--    [inlineSVG]="'./assets/media/icons/duotune/general/gen040.svg'"-->
+<!--  ></span></span-->
+<!--  ><span class="menu-title" data-link="/error">Errors</span-->
+<!--  ><span class="menu-arrow"></span-->
+<!--  ></span>-->
+<!--  <div class="menu-sub menu-sub-accordion" routerLinkActive="menu-active-bg">-->
+<!--    <div class="menu-item">-->
+<!--      <a-->
+<!--        class="menu-link without-sub"-->
+<!--        routerLink="/error/404"-->
+<!--        routerLinkActive="active"-->
+<!--      ><span class="menu-bullet"><span class="bullet bullet-dot"></span></span-->
+<!--      ><span class="menu-title">Error 404</span></a-->
+<!--      >-->
+<!--    </div>-->
+<!--    <div class="menu-item">-->
+<!--      <a-->
+<!--        class="menu-link without-sub"-->
+<!--        routerLink="/error/500"-->
+<!--        routerLinkActive="active"-->
+<!--      ><span class="menu-bullet"><span class="bullet bullet-dot"></span></span-->
+<!--      ><span class="menu-title">Error 500</span></a-->
+<!--      >-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!-- Widgets -->
+<!--<div-->
+<!--  class="menu-item menu-accordion"-->
+<!--  data-kt-menu-trigger="click"-->
+<!--  routerLinkActive="here show"-->
+<!--&gt;-->
+<!--  <span class="menu-link"-->
+<!--  ><span class="menu-icon"-->
+<!--  ><span-->
+<!--    class="svg-icon svg-icon-2"-->
+<!--    [inlineSVG]="'./assets/media/icons/duotune/general/gen025.svg'"-->
+<!--  ></span></span-->
+<!--  ><span class="menu-title" data-link="/crafted/widgets">Widgets</span-->
+<!--  ><span class="menu-arrow"></span-->
+<!--  ></span>-->
+<!--  <div class="menu-sub menu-sub-accordion" routerLinkActive="menu-active-bg">-->
+<!--    <div class="menu-item">-->
+<!--      <a-->
+<!--        class="menu-link without-sub"-->
+<!--        routerLinkActive="active"-->
+<!--        routerLink="/crafted/widgets/lists"-->
+<!--      ><span class="menu-bullet"><span class="bullet bullet-dot"></span></span-->
+<!--      ><span class="menu-title">Lists</span></a-->
+<!--      >-->
+<!--    </div>-->
+<!--    <div class="menu-item">-->
+<!--      <a-->
+<!--        class="menu-link without-sub"-->
+<!--        routerLinkActive="active"-->
+<!--        routerLink="/crafted/widgets/statistics"-->
+<!--      ><span class="menu-bullet"><span class="bullet bullet-dot"></span></span-->
+<!--      ><span class="menu-title">Statistics</span></a-->
+<!--      >-->
+<!--    </div>-->
+<!--    <div class="menu-item">-->
+<!--      <a-->
+<!--        class="menu-link without-sub"-->
+<!--        routerLinkActive="active"-->
+<!--        routerLink="/crafted/widgets/charts"-->
+<!--      ><span class="menu-bullet"><span class="bullet bullet-dot"></span></span-->
+<!--      ><span class="menu-title">Charts</span></a-->
+<!--      >-->
+<!--    </div>-->
+<!--    <div class="menu-item">-->
+<!--      <a-->
+<!--        class="menu-link without-sub"-->
+<!--        routerLinkActive="active"-->
+<!--        routerLink="/crafted/widgets/mixed"-->
+<!--      ><span class="menu-bullet"><span class="bullet bullet-dot"></span></span-->
+<!--      ><span class="menu-title">Mixed</span></a-->
+<!--      >-->
+<!--    </div>-->
+<!--    <div class="menu-item">-->
+<!--      <a-->
+<!--        class="menu-link without-sub"-->
+<!--        routerLinkActive="active"-->
+<!--        routerLink="/crafted/widgets/tables"-->
+<!--      ><span class="menu-bullet"><span class="bullet bullet-dot"></span></span-->
+<!--      ><span class="menu-title">Tables</span></a-->
+<!--      >-->
+<!--    </div>-->
+<!--    <div class="menu-item">-->
+<!--      <a-->
+<!--        class="menu-link without-sub"-->
+<!--        routerLinkActive="active"-->
+<!--        routerLink="/crafted/widgets/feeds"-->
+<!--      ><span class="menu-bullet"><span class="bullet bullet-dot"></span></span-->
+<!--      ><span class="menu-title">Feeds</span></a-->
+<!--      >-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; Separator &ndash;&gt;-->
+<!--<div class="menu-item">-->
+<!--  <div class="menu-content pt-8 pb-2">-->
+<!--    <span class="menu-section text-muted text-uppercase fs-8 ls-1">Apps</span>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!-- Chat -->
+<!--<div-->
+<!--  class="menu-item menu-accordion"-->
+<!--  data-kt-menu-trigger="click"-->
+<!--  routerLinkActive="here show">-->
+<!--  <span class="menu-link"><span class="menu-icon"><span-->
+<!--    class="svg-icon svg-icon-2"-->
+<!--    [inlineSVG]="'./assets/media/icons/duotune/communication/com012.svg'"></span></span><span class="menu-title"-->
+<!--                                                                                              data-link="/apps/chat">Chat</span><span-->
+<!--    class="menu-arrow"></span-->
+<!--  ></span>-->
+<!--  <div class="menu-sub menu-sub-accordion" routerLinkActive="menu-active-bg">-->
+<!--    <div class="menu-item">-->
+<!--      <a-->
+<!--        class="menu-link without-sub"-->
+<!--        routerLinkActive="active"-->
+<!--        routerLink="/apps/chat/private-chat">-->
+<!--        <span class="menu-bullet">-->
+<!--          <span class="bullet bullet-dot">-->
+<!--          </span>-->
+<!--        </span>-->
+<!--        <span class="menu-title">Private Chat</span>-->
+<!--      </a>-->
+<!--    </div>-->
+<!--    <div class="menu-item">-->
+<!--      <a-->
+<!--        class="menu-link without-sub"-->
+<!--        routerLinkActive="active"-->
+<!--        routerLink="/apps/chat/group-chat"-->
+<!--      ><span class="menu-bullet"><span class="bullet bullet-dot"></span></span-->
+<!--      ><span class="menu-title">Group Chart</span></a-->
+<!--      >-->
+<!--    </div>-->
+<!--    <div class="menu-item">-->
+<!--      <a-->
+<!--        class="menu-link without-sub"-->
+<!--        routerLinkActive="active"-->
+<!--        routerLink="/apps/chat/drawer-chat"-->
+<!--      ><span class="menu-bullet"><span class="bullet bullet-dot"></span></span-->
+<!--      ><span class="menu-title">Drawer Chart</span></a-->
+<!--      >-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+
+
+<div *ngIf="user">
+
+<!-- Load Board -->
+<div *ngIf="loadBoard"
+  class="menu-item menu-accordion"
+  data-kt-menu-trigger="click"
+  routerLinkActive="here show">
+  <span class="menu-link">
+    <span class="menu-icon">
+      <i class="fa fa-list-alt fs-4"></i>
+    </span>
+    <span class="menu-title fw-bolder">
+      Load Board
+    </span>
+    <span class="menu-arrow">
+    </span>
+  </span>
+  <div *ngIf="create"class="menu-sub menu-sub-accordion" routerLinkActive="menu-active-bg">
+    <div class="menu-item">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/loads/create">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Create Load</span>
+      </a>
+    </div>
+    <div *ngIf="loadRead" class="menu-item">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/loads/search">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Search Loads</span>
+      </a>
+    </div>
+    <div *ngIf="pickupLoad" class="menu-item">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/loads/pickup">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Pickup Loads</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- User Management -->
+<div *ngIf="userManagement"
+  class="menu-item menu-accordion"
+  data-kt-menu-trigger="click"
+  routerLinkActive="here show">
+  <span class="menu-link">
+    <span class="menu-icon">
+      <span class="svg-icon svg-icon-2" [inlineSVG]="'./assets/media/icons/duotune/general/gen051.svg'">
+      </span>
+    </span>
+    <span class="menu-title">
+      User Management
+    </span>
+    <span class="menu-arrow">
+    </span>
+  </span>
+  <div class="menu-sub menu-sub-accordion" routerLinkActive="menu-active-bg">
+    <!--    <div class="menu-item menu-accordion"-->
+    <!--         routerLinkActive="here show"-->
+    <!--         data-kt-menu-trigger="click">-->
+    <!--      <span class="menu-link">-->
+    <!--        <span class="menu-bullet">-->
+    <!--          <span class="bullet bullet-dot">-->
+    <!--          </span>-->
+    <!--        </span>-->
+    <!--        <span class="menu-title" data-link="/apps/user-management/users">-->
+    <!--          Users-->
+    <!--        </span>-->
+    <!--        <span class="menu-arrow">-->
+    <!--        </span>-->
+    <!--      </span>-->
+    <!--      <div-->
+    <!--        class="menu-sub menu-sub-accordion"-->
+    <!--        routerLinkActive="menu-active-bg">-->
+    <!--        <div class="menu-item">-->
+    <!--          <a-->
+    <!--            class="menu-link without-sub"-->
+    <!--            routerLinkActive="active"-->
+    <!--            routerLink="/apps/user-management/users/list">-->
+    <!--            <span class="menu-bullet">-->
+    <!--              <span class="bullet bullet-dot">-->
+
+    <!--              </span>-->
+    <!--            </span>-->
+    <!--            <span class="menu-title">Users List</span>-->
+    <!--          </a>-->
+    <!--        </div>-->
+    <!--        <div class="menu-item">-->
+    <!--          <a-->
+    <!--            class="menu-link without-sub"-->
+    <!--            routerLinkActive="active"-->
+    <!--            routerLink="/apps/user-management/users/view">-->
+    <!--            <span class="menu-bullet">-->
+    <!--              <span class="bullet bullet-dot">-->
+
+    <!--              </span>-->
+    <!--            </span>-->
+    <!--            <span class="menu-title">View User</span>-->
+    <!--          </a>-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <div class="menu-item" *ngIf="userManagementRead">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/user-management/users/list">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Users</span>
+      </a>
+    </div>
+    <div *ngIf="roles" class="menu-item menu-accordion"
+         data-kt-menu-trigger="click">
+      <span class="menu-link">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title" data-link="/apps/user-management/roles">
+          Roles
+        </span>
+        <span class="menu-arrow">
+        </span>
+      </span>
+      <div 
+        class="menu-sub menu-sub-accordion"
+        routerLinkActive="menu-active-bg">
+        <div class="menu-item" *ngIf="rolesCreate">
+          <a
+            class="menu-link without-sub"
+            routerLinkActive="active"
+            routerLink="/apps/user-management/roles/create">
+            <span class="menu-bullet">
+              <span class="bullet bullet-dot">
+
+              </span>
+            </span>
+            <span class="menu-title">Create Role</span>
+          </a>
+        </div>
+        <div class="menu-item" *ngIf="rolesRead">
+          <a
+            class="menu-link without-sub"
+            routerLinkActive="active"
+            routerLink="/apps/user-management/roles/list">
+            <span class="menu-bullet">
+              <span class="bullet bullet-dot">
+
+              </span>
+            </span>
+            <span class="menu-title">Roles List</span>
+          </a>
+        </div>
+        <!-- <div class="menu-item">
+          <a
+            class="menu-link without-sub"
+            routerLinkActive="active"
+            routerLink="/apps/user-management/roles/view">
+            <span class="menu-bullet">
+              <span class="bullet bullet-dot">
+
+              </span>
+            </span>
+            <span class="menu-title">View Role</span>
+          </a>
+        </div> -->
+        <!-- <div class="menu-item">
+          <a
+            class="menu-link without-sub"
+            routerLinkActive="active"
+            routerLink="/apps/user-management/permissions">
+            <span class="menu-bullet">
+              <span class="bullet bullet-dot">
+
+              </span>
+            </span>
+            <span class="menu-title">Permissions</span>
+          </a>
+        </div> -->
+      </div>
+    </div>
+    <!--    <div class="menu-item">-->
+    <!--      <a-->
+    <!--        class="menu-link without-sub"-->
+    <!--        routerLinkActive="active"-->
+    <!--        routerLink="/apps/user-management/permissions">-->
+    <!--        <span class="menu-bullet">-->
+    <!--          <span class="bullet bullet-dot">-->
+    <!--          </span>-->
+    <!--        </span>-->
+    <!--        <span class="menu-title">Permissions</span>-->
+    <!--      </a>-->
+    <!--    </div>-->
+  </div>
+</div>
+
+<!-- Customer -->
+<div *ngIf="customers"
+  class="menu-item menu-accordion"
+  data-kt-menu-trigger="click"
+  routerLinkActive="here show">
+  <span class="menu-link">
+
+    <span class="menu-icon">
+      <i class="fas fa-user-alt fs-4"></i>
+    </span>
+    <span class="menu-title">
+      Customers
+    </span>
+    <span class="menu-arrow">
+    </span>
+  </span>
+  <div class="menu-sub menu-sub-accordion" routerLinkActive="menu-active-bg">
+    <div class="menu-item" *ngIf="customersCreate">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/customer/create">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Add Customer</span>
+      </a>
+    </div>
+    <div class="menu-item" *ngIf="customersRead">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/customer/list">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">View Customers</span>
+      </a>
+    </div>
+    <div class="menu-item menu-accordion" *ngIf="shippers"
+    data-kt-menu-trigger="click">
+ <span class="menu-link">
+   <span class="menu-bullet">
+     <span class="bullet bullet-dot">
+     </span>
+   </span>
+   <span class="menu-title" data-link="/apps/user-management/roles">
+     Shipper
+   </span>
+   <span class="menu-arrow">
+   </span>
+ </span>
+ <div
+   class="menu-sub menu-sub-accordion"
+   routerLinkActive="menu-active-bg">
+   <div class="menu-item" *ngIf="shippersCreate">
+     <a
+       class="menu-link without-sub"
+       routerLinkActive="active"
+       routerLink="/apps/customer/shipper-create">
+       <span class="menu-bullet">
+         <span class="bullet bullet-dot">
+
+         </span>
+       </span>
+       <span class="menu-title">Create Shipper</span>
+     </a>
+   </div>
+   <div class="menu-item" *ngIf="shippersRead">
+     <a
+       class="menu-link without-sub"
+       routerLinkActive="active"
+       routerLink="/apps/customer/shipper-directory">
+       <span class="menu-bullet">
+         <span class="bullet bullet-dot">
+
+         </span>
+       </span>
+       <span class="menu-title">Shipper List</span>
+     </a>
+   </div>
+ </div>
+</div>
+    <!-- <div class="menu-item">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/customer/shipper-directory">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Shipper Directory</span>
+      </a>
+    </div> -->
+    <!-- <div class="menu-item">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/customer/import">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Bulk Import Customers</span>
+      </a>
+    </div> -->
+  </div>
+</div>
+
+<!-- Carrier -->
+<div *ngIf="carriers"
+  class="menu-item menu-accordion"
+  data-kt-menu-trigger="click"
+  routerLinkActive="here show">
+  <span class="menu-link">
+    <span class="menu-icon">
+      <i class="fas fa-truck-moving fs-4"></i>
+      <!--      <span class="svg-icon svg-icon-2"-->
+      <!--            [inlineSVG]="'./assets/media/icons/truck-front-white.svg'">-->
+      <!--      </span>-->
+    </span>
+    <span class="menu-title">
+      Carriers
+    </span>
+    <span class="menu-arrow">
+    </span>
+  </span>
+  <div class="menu-sub menu-sub-accordion" routerLinkActive="menu-active-bg">
+    <div class="menu-item" *ngIf="carriersCreate">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/carrier/create">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Create Carrier</span>
+      </a>
+    </div>
+    <div class="menu-item">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/carrier/list">
+        <span class="menu-bullet" *ngIf="carriersRead">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">View Carriers</span>
+      </a>
+    </div>
+    <!-- <div class="menu-item">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/carrier/import">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Carriers Bulk Import</span>
+      </a>
+    </div> -->
+  </div>
+</div>
+
+<!-- Asset -->
+<div *ngIf="assets"
+  class="menu-item menu-accordion"
+  data-kt-menu-trigger="click"
+  routerLinkActive="here show">
+  <span class="menu-link">
+    <span class="menu-icon">
+      <i class="fas fa-truck-loading fs-4"></i>
+      <!--      <span class="svg-icon svg-icon-2" [inlineSVG]="'./assets/media/icons/duotune/finance/fin006.svg'">-->
+      <!--      </span>-->
+    </span>
+    <span class="menu-title">
+      Assets
+    </span>
+    <span class="menu-arrow">
+    </span>
+  </span>
+  <div class="menu-sub menu-sub-accordion" routerLinkActive="menu-active-bg">
+    <div class="menu-item" *ngIf="assetGroupsRead">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/asset/groups">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">View Asset Groups</span>
+      </a>
+    </div>
+    <div class="menu-item" *ngIf="powerUnitsRead">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/asset/power-units">
+        <span class="menu-icon">
+          <i class="fas fa-car fs-4"></i>
+        </span>
+        <span class="menu-title">View Power Units</span>
+      </a>
+    </div>
+    <div class="menu-item" *ngIf="trailersRead">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/asset/trailers">
+        <span class="menu-icon">
+          <i class="fas fa-trailer fs-4"></i>
+        </span>
+        <span class="menu-title">View Trailers</span>
+      </a>
+    </div>
+    <div class="menu-item" *ngIf="driversRead">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/asset/drivers">
+
+        <span class="menu-icon">
+          <i class="fas fa-users-cog fs-4"></i>
+        </span>
+        <span class="menu-title">View Drivers</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Location -->
+<div *ngIf="location"
+  class="menu-item menu-accordion"
+  data-kt-menu-trigger="click"
+  routerLinkActive="here show">
+  <span class="menu-link">
+    <span class="menu-icon">
+      <i class="fas fa-map-marker-alt fs-4"></i>
+      <!--      <span class="svg-icon svg-icon-2" [inlineSVG]="'./assets/media/icons/duotune/finance/fin006.svg'">-->
+      <!--      </span>-->
+    </span>
+    <span class="menu-title">
+      Locations
+    </span>
+    <span class="menu-arrow">
+    </span>
+  </span>
+  <div class="menu-sub menu-sub-accordion" routerLinkActive="menu-active-bg">
+    <div class="menu-item" *ngIf="locationCreate">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/location/create">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Create Location</span>
+      </a>
+    </div>
+    <div class="menu-item" *ngIf="locationRead">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/location/list">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">View Locations</span>
+      </a>
+    </div>
+    <!-- <div class="menu-item">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/location/import">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Locations Bulk Import</span>
+      </a>
+    </div> -->
+  </div>
+</div>
+
+
+<!-- Form -->
+<!-- <div *ngIf="form"
+  class="menu-item menu-accordion"
+  data-kt-menu-trigger="click"
+  routerLinkActive="here show">
+  <span class="menu-link">
+    <span class="menu-icon">
+      <i class="fa fa-list-alt fs-4"></i>
+    </span>
+    <span class="menu-title fw-bolder">
+      Form
+    </span>
+    <span class="menu-arrow">
+    </span>
+  </span>
+  <div class="menu-sub menu-sub-accordion" routerLinkActive="menu-active-bg">
+    <div class="menu-item">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/form/create">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Create Form</span>
+      </a>
+    </div>
+    <div class="menu-item">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/form/list">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Assign Document</span>
+      </a>
+    </div>
+  </div>
+</div> -->
+
+<!-- Doc Management -->
+<div *ngIf="docManagement"
+  class="menu-item menu-accordion"
+  data-kt-menu-trigger="click"
+  routerLinkActive="here show">
+  <span class="menu-link">
+    <span class="menu-icon">
+      <i class="fas fa-file-alt fs-4"></i>
+      <!--      <span class="svg-icon svg-icon-2" [inlineSVG]="'./assets/media/icons/duotune/finance/fin006.svg'">-->
+      <!--      </span>-->
+    </span>
+    <span class="menu-title">
+      Doc Management
+    </span>
+    <span class="menu-arrow">
+    </span>
+  </span>
+  <div class="menu-sub menu-sub-accordion" routerLinkActive="menu-active-bg">
+    <div class="menu-item" *ngIf="docManagementRead">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/doc-management/doc-processing">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Doc Processing</span>
+      </a>
+    </div>
+    <!-- <div class="menu-item" *ngIf="docManagementRead">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/doc-management/doc-management-search">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Doc Management & Search</span>
+      </a>
+    </div> -->
+    <!-- <div class="menu-item">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/doc-management/upload-doc">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Upload Doc</span>
+      </a>
+    </div> -->
+  </div>
+</div>
+
+<!-- Reporting -->
+<!-- <div *ngIf="reporting"
+  class="menu-item menu-accordion"
+  data-kt-menu-trigger="click"
+  routerLinkActive="here show">
+  <span class="menu-link">
+    <span class="menu-icon">
+      <i class="fas fa-file-invoice fs-4"></i>
+    </span>
+    <span class="menu-title">
+      Reporting
+    </span>
+    <span class="menu-arrow">
+    </span>
+  </span>
+  <div class="menu-sub menu-sub-accordion" routerLinkActive="menu-active-bg">
+    <div class="menu-item">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/reporting/loads">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Load Reports</span>
+      </a>
+    </div>
+    <div class="menu-item">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/reporting/commissions">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Commissions</span>
+      </a>
+    </div>
+    <div class="menu-item">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/reporting/additional-cargo-insurance">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Additional Cargo Insurance Reporting</span>
+      </a>
+    </div>
+  </div>
+</div> -->
+
+<!-- Accounting -->
+<!-- <div *ngIf="accounting"
+  class="menu-item menu-accordion"
+  data-kt-menu-trigger="click"
+  routerLinkActive="here show">
+  <span class="menu-link">
+    <span class="menu-icon">
+      <i class="fas fa-dollar-sign fs-4"></i>
+    </span>
+    <span class="menu-title">
+      Accounting
+    </span>
+    <span class="menu-arrow">
+    </span>
+  </span>
+  <div class="menu-sub menu-sub-accordion" routerLinkActive="menu-active-bg">
+    <div class="menu-item">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/accounting/reports">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">AR / AP Reports</span>
+      </a>
+    </div>
+    <div class="menu-item">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/accounting/management/invoices">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Invoices / Bills</span>
+      </a>
+    </div>
+    <div class="menu-item">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/accounting/commissions-management">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Commissions Management</span>
+      </a>
+    </div>
+    <div class="menu-item">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/accounting/driver-pay-management">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Driver Pay Management</span>
+      </a>
+    </div>
+  </div>
+</div> -->
+
+<!-- Settings -->
+<div class="menu-item">
+  <a
+    class="menu-link without-sub"
+    routerLinkActive="active"
+    routerLink="/apps/settings">
+    <span class="menu-icon">
+      <i class="fas fa-cogs fs-4"></i>
+    </span>
+    <span class="menu-title">
+      Settings
+    </span>
+  </a>
+</div>
+
+<!-- Separator -->
+<!--<div class="menu-item">-->
+<!--  <div class="menu-content">-->
+<!--    <div class="separator mx-1 my-4"></div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!-- Changelog  -->
+<!--<div class="menu-item">-->
+<!--  <a target="_blank" class="menu-link" [href]="appPreviewChangelogUrl">-->
+<!--    <span class="menu-icon">-->
+<!--      <span-->
+<!--        class="svg-icon svg-icon-2"-->
+<!--        [inlineSVG]="'./assets/media/icons/duotune/general/gen005.svg'"-->
+<!--      ></span>-->
+<!--    </span>-->
+<!--    <span class="menu-title">Changelog {{ appAngularVersion }}</span>-->
+<!--  </a>-->
+<!--</div>-->
+  
+</div>
+
+<div *ngIf="admin"> 
+<div *ngIf="loadBoard"
+  class="menu-item menu-accordion"
+  data-kt-menu-trigger="click"
+  routerLinkActive="here show">
+  <span class="menu-link">
+    <span class="menu-icon">
+      <i class="fa fa-list-alt fs-4"></i>
+    </span>
+    <span class="menu-title fw-bolder">
+      Load Board
+    </span>
+    <span class="menu-arrow">
+    </span>
+  </span>
+  <div *ngIf="create"class="menu-sub menu-sub-accordion" routerLinkActive="menu-active-bg">
+    <div class="menu-item">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/loads/create">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Create Load</span>
+      </a>
+    </div>
+    <div *ngIf="loadRead" class="menu-item">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/loads/search">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Search Loads</span>
+      </a>
+    </div>
+    <div *ngIf="pickupLoad" class="menu-item">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/loads/pickup">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Pickup Loads</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- User Management -->
+<div *ngIf="userManagement"
+  class="menu-item menu-accordion"
+  data-kt-menu-trigger="click"
+  routerLinkActive="here show">
+  <span class="menu-link">
+    <span class="menu-icon">
+      <span class="svg-icon svg-icon-2" [inlineSVG]="'./assets/media/icons/duotune/general/gen051.svg'">
+      </span>
+    </span>
+    <span class="menu-title">
+      User Management
+    </span>
+    <span class="menu-arrow">
+    </span>
+  </span>
+  <div class="menu-sub menu-sub-accordion" routerLinkActive="menu-active-bg">
+    <!--    <div class="menu-item menu-accordion"-->
+    <!--         routerLinkActive="here show"-->
+    <!--         data-kt-menu-trigger="click">-->
+    <!--      <span class="menu-link">-->
+    <!--        <span class="menu-bullet">-->
+    <!--          <span class="bullet bullet-dot">-->
+    <!--          </span>-->
+    <!--        </span>-->
+    <!--        <span class="menu-title" data-link="/apps/user-management/users">-->
+    <!--          Users-->
+    <!--        </span>-->
+    <!--        <span class="menu-arrow">-->
+    <!--        </span>-->
+    <!--      </span>-->
+    <!--      <div-->
+    <!--        class="menu-sub menu-sub-accordion"-->
+    <!--        routerLinkActive="menu-active-bg">-->
+    <!--        <div class="menu-item">-->
+    <!--          <a-->
+    <!--            class="menu-link without-sub"-->
+    <!--            routerLinkActive="active"-->
+    <!--            routerLink="/apps/user-management/users/list">-->
+    <!--            <span class="menu-bullet">-->
+    <!--              <span class="bullet bullet-dot">-->
+
+    <!--              </span>-->
+    <!--            </span>-->
+    <!--            <span class="menu-title">Users List</span>-->
+    <!--          </a>-->
+    <!--        </div>-->
+    <!--        <div class="menu-item">-->
+    <!--          <a-->
+    <!--            class="menu-link without-sub"-->
+    <!--            routerLinkActive="active"-->
+    <!--            routerLink="/apps/user-management/users/view">-->
+    <!--            <span class="menu-bullet">-->
+    <!--              <span class="bullet bullet-dot">-->
+
+    <!--              </span>-->
+    <!--            </span>-->
+    <!--            <span class="menu-title">View User</span>-->
+    <!--          </a>-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <div class="menu-item" *ngIf="userManagementRead">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/user-management/users/list">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Users</span>
+      </a>
+    </div>
+    <div *ngIf="roles" class="menu-item menu-accordion"
+         data-kt-menu-trigger="click">
+      <span class="menu-link">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title" data-link="/apps/user-management/roles">
+          Roles
+        </span>
+        <span class="menu-arrow">
+        </span>
+      </span>
+      <div 
+        class="menu-sub menu-sub-accordion"
+        routerLinkActive="menu-active-bg">
+        <div class="menu-item" *ngIf="rolesCreate">
+          <a
+            class="menu-link without-sub"
+            routerLinkActive="active"
+            routerLink="/apps/user-management/roles/create">
+            <span class="menu-bullet">
+              <span class="bullet bullet-dot">
+
+              </span>
+            </span>
+            <span class="menu-title">Create Role</span>
+          </a>
+        </div>
+        <div class="menu-item" *ngIf="rolesRead">
+          <a
+            class="menu-link without-sub"
+            routerLinkActive="active"
+            routerLink="/apps/user-management/roles/list">
+            <span class="menu-bullet">
+              <span class="bullet bullet-dot">
+
+              </span>
+            </span>
+            <span class="menu-title">Roles List</span>
+          </a>
+        </div>
+        <!-- <div class="menu-item">
+          <a
+            class="menu-link without-sub"
+            routerLinkActive="active"
+            routerLink="/apps/user-management/roles/view">
+            <span class="menu-bullet">
+              <span class="bullet bullet-dot">
+
+              </span>
+            </span>
+            <span class="menu-title">View Role</span>
+          </a>
+        </div> -->
+        <!-- <div class="menu-item">
+          <a
+            class="menu-link without-sub"
+            routerLinkActive="active"
+            routerLink="/apps/user-management/permissions">
+            <span class="menu-bullet">
+              <span class="bullet bullet-dot">
+
+              </span>
+            </span>
+            <span class="menu-title">Permissions</span>
+          </a>
+        </div> -->
+      </div>
+    </div>
+    <!--    <div class="menu-item">-->
+    <!--      <a-->
+    <!--        class="menu-link without-sub"-->
+    <!--        routerLinkActive="active"-->
+    <!--        routerLink="/apps/user-management/permissions">-->
+    <!--        <span class="menu-bullet">-->
+    <!--          <span class="bullet bullet-dot">-->
+    <!--          </span>-->
+    <!--        </span>-->
+    <!--        <span class="menu-title">Permissions</span>-->
+    <!--      </a>-->
+    <!--    </div>-->
+  </div>
+</div>
+
+<!-- Customer -->
+<div *ngIf="customers"
+  class="menu-item menu-accordion"
+  data-kt-menu-trigger="click"
+  routerLinkActive="here show">
+  <span class="menu-link">
+
+    <span class="menu-icon">
+      <i class="fas fa-user-alt fs-4"></i>
+    </span>
+    <span class="menu-title">
+      Customers
+    </span>
+    <span class="menu-arrow">
+    </span>
+  </span>
+  <div class="menu-sub menu-sub-accordion" routerLinkActive="menu-active-bg">
+    <div class="menu-item" *ngIf="customersCreate">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/customer/create">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Add Customer</span>
+      </a>
+    </div>
+    <div class="menu-item" *ngIf="customersRead">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/customer/list">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">View Customers</span>
+      </a>
+    </div>
+    <div class="menu-item menu-accordion" *ngIf="shippers"
+    data-kt-menu-trigger="click">
+ <span class="menu-link">
+   <span class="menu-bullet">
+     <span class="bullet bullet-dot">
+     </span>
+   </span>
+   <span class="menu-title" data-link="/apps/user-management/roles">
+     Shipper
+   </span>
+   <span class="menu-arrow">
+   </span>
+ </span>
+ <div
+   class="menu-sub menu-sub-accordion"
+   routerLinkActive="menu-active-bg">
+   <div class="menu-item" *ngIf="shippersCreate">
+     <a
+       class="menu-link without-sub"
+       routerLinkActive="active"
+       routerLink="/apps/customer/shipper-create">
+       <span class="menu-bullet">
+         <span class="bullet bullet-dot">
+
+         </span>
+       </span>
+       <span class="menu-title">Create Shipper</span>
+     </a>
+   </div>
+   <div class="menu-item" *ngIf="shippersRead">
+     <a
+       class="menu-link without-sub"
+       routerLinkActive="active"
+       routerLink="/apps/customer/shipper-directory">
+       <span class="menu-bullet">
+         <span class="bullet bullet-dot">
+
+         </span>
+       </span>
+       <span class="menu-title">Shipper List</span>
+     </a>
+   </div>
+ </div>
+</div>
+    <!-- <div class="menu-item">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/customer/shipper-directory">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Shipper Directory</span>
+      </a>
+    </div> -->
+    <!-- <div class="menu-item">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/customer/import">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Bulk Import Customers</span>
+      </a>
+    </div> -->
+  </div>
+</div>
+
+<!-- Carrier -->
+<div *ngIf="carriers"
+  class="menu-item menu-accordion"
+  data-kt-menu-trigger="click"
+  routerLinkActive="here show">
+  <span class="menu-link">
+    <span class="menu-icon">
+      <i class="fas fa-truck-moving fs-4"></i>
+      <!--      <span class="svg-icon svg-icon-2"-->
+      <!--            [inlineSVG]="'./assets/media/icons/truck-front-white.svg'">-->
+      <!--      </span>-->
+    </span>
+    <span class="menu-title">
+      Carriers
+    </span>
+    <span class="menu-arrow">
+    </span>
+  </span>
+  <div class="menu-sub menu-sub-accordion" routerLinkActive="menu-active-bg">
+    <div class="menu-item" *ngIf="carriersCreate">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/carrier/create">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Create Carrier</span>
+      </a>
+    </div>
+    <div class="menu-item">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/carrier/list">
+        <span class="menu-bullet" *ngIf="carriersRead">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">View Carriers</span>
+      </a>
+    </div>
+    <!-- <div class="menu-item">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/carrier/import">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Carriers Bulk Import</span>
+      </a>
+    </div> -->
+  </div>
+</div>
+
+<!-- Asset -->
+<div *ngIf="assets"
+  class="menu-item menu-accordion"
+  data-kt-menu-trigger="click"
+  routerLinkActive="here show">
+  <span class="menu-link">
+    <span class="menu-icon">
+      <i class="fas fa-truck-loading fs-4"></i>
+      <!--      <span class="svg-icon svg-icon-2" [inlineSVG]="'./assets/media/icons/duotune/finance/fin006.svg'">-->
+      <!--      </span>-->
+    </span>
+    <span class="menu-title">
+      Assets
+    </span>
+    <span class="menu-arrow">
+    </span>
+  </span>
+  <div class="menu-sub menu-sub-accordion" routerLinkActive="menu-active-bg">
+    <div class="menu-item" *ngIf="assetGroupsRead">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/asset/groups">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">View Asset Groups</span>
+      </a>
+    </div>
+    <div class="menu-item" *ngIf="powerUnitsRead">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/asset/power-units">
+        <span class="menu-icon">
+          <i class="fas fa-car fs-4"></i>
+        </span>
+        <span class="menu-title">View Power Units</span>
+      </a>
+    </div>
+    <div class="menu-item" *ngIf="trailersRead">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/asset/trailers">
+        <span class="menu-icon">
+          <i class="fas fa-trailer fs-4"></i>
+        </span>
+        <span class="menu-title">View Trailers</span>
+      </a>
+    </div>
+    <div class="menu-item" *ngIf="driversRead">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/asset/drivers">
+
+        <span class="menu-icon">
+          <i class="fas fa-users-cog fs-4"></i>
+        </span>
+        <span class="menu-title">View Drivers</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Location -->
+<div *ngIf="location"
+  class="menu-item menu-accordion"
+  data-kt-menu-trigger="click"
+  routerLinkActive="here show">
+  <span class="menu-link">
+    <span class="menu-icon">
+      <i class="fas fa-map-marker-alt fs-4"></i>
+      <!--      <span class="svg-icon svg-icon-2" [inlineSVG]="'./assets/media/icons/duotune/finance/fin006.svg'">-->
+      <!--      </span>-->
+    </span>
+    <span class="menu-title">
+      Locations
+    </span>
+    <span class="menu-arrow">
+    </span>
+  </span>
+  <div class="menu-sub menu-sub-accordion" routerLinkActive="menu-active-bg">
+    <div class="menu-item" *ngIf="locationCreate">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/location/create">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Create Location</span>
+      </a>
+    </div>
+    <div class="menu-item" *ngIf="locationRead">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/location/list">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">View Locations</span>
+      </a>
+    </div>
+    <!-- <div class="menu-item">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/location/import">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Locations Bulk Import</span>
+      </a>
+    </div> -->
+  </div>
+</div>  
+
+<!-- Form -->
+<!-- <div *ngIf="form"
+  class="menu-item menu-accordion"
+  data-kt-menu-trigger="click"
+  routerLinkActive="here show">
+  <span class="menu-link">
+    <span class="menu-icon">
+      <i class="fa fa-list-alt fs-4"></i>
+    </span>
+    <span class="menu-title fw-bolder">
+      Form
+    </span>
+    <span class="menu-arrow">
+    </span>
+  </span>
+  <div class="menu-sub menu-sub-accordion" routerLinkActive="menu-active-bg">
+    <div class="menu-item">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/form/create">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Create Form</span>
+      </a>
+    </div>
+    <div class="menu-item">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/form/list">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Assign Document</span>
+      </a>
+    </div>
+  </div>
+</div> -->
+
+<!-- Doc Management -->
+<div *ngIf="docManagement"
+  class="menu-item menu-accordion"
+  data-kt-menu-trigger="click"
+  routerLinkActive="here show">
+  <span class="menu-link">
+    <span class="menu-icon">
+      <i class="fas fa-file-alt fs-4"></i>
+      <!--      <span class="svg-icon svg-icon-2" [inlineSVG]="'./assets/media/icons/duotune/finance/fin006.svg'">-->
+      <!--      </span>-->
+    </span>
+    <span class="menu-title">
+      Doc Management
+    </span>
+    <span class="menu-arrow">
+    </span>
+  </span>
+  <div class="menu-sub menu-sub-accordion" routerLinkActive="menu-active-bg">
+    <div class="menu-item" *ngIf="docManagementRead">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/doc-management/doc-processing">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Doc Processing</span>
+      </a>
+    </div>
+    <!-- <div class="menu-item" *ngIf="docManagementRead">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/doc-management/doc-management-search">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Doc Management & Search</span>
+      </a>
+    </div> -->
+    <!-- <div class="menu-item">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/doc-management/upload-doc">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Upload Doc</span>
+      </a>
+    </div> -->
+  </div>
+</div>
+
+<!-- Reporting -->
+<!-- <div *ngIf="reporting"
+  class="menu-item menu-accordion"
+  data-kt-menu-trigger="click"
+  routerLinkActive="here show">
+  <span class="menu-link">
+    <span class="menu-icon">
+      <i class="fas fa-file-invoice fs-4"></i>
+    </span>
+    <span class="menu-title">
+      Reporting
+    </span>
+    <span class="menu-arrow">
+    </span>
+  </span>
+  <div class="menu-sub menu-sub-accordion" routerLinkActive="menu-active-bg">
+    <div class="menu-item">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/reporting/loads">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Load Reports</span>
+      </a>
+    </div>
+    <div class="menu-item">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/reporting/commissions">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Commissions</span>
+      </a>
+    </div>
+    <div class="menu-item">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/reporting/additional-cargo-insurance">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Additional Cargo Insurance Reporting</span>
+      </a>
+    </div>
+  </div>
+</div> -->
+
+<!-- Accounting -->
+<!-- <div *ngIf="accounting"
+  class="menu-item menu-accordion"
+  data-kt-menu-trigger="click"
+  routerLinkActive="here show">
+  <span class="menu-link">
+    <span class="menu-icon">
+      <i class="fas fa-dollar-sign fs-4"></i>
+    </span>
+    <span class="menu-title">
+      Accounting
+    </span>
+    <span class="menu-arrow">
+    </span>
+  </span>
+  <div class="menu-sub menu-sub-accordion" routerLinkActive="menu-active-bg">
+    <div class="menu-item">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/accounting/reports">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">AR / AP Reports</span>
+      </a>
+    </div>
+    <div class="menu-item">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/accounting/management/invoices">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Invoices / Bills</span>
+      </a>
+    </div>
+    <div class="menu-item">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/accounting/commissions-management">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Commissions Management</span>
+      </a>
+    </div>
+    <div class="menu-item">
+      <a
+        class="menu-link without-sub"
+        routerLinkActive="active"
+        routerLink="/apps/accounting/driver-pay-management">
+        <span class="menu-bullet">
+          <span class="bullet bullet-dot">
+          </span>
+        </span>
+        <span class="menu-title">Driver Pay Management</span>
+      </a>
+    </div>
+  </div>
+</div> -->
+
+<!-- Settings -->
+
+<div class="menu-item">
+  <a
+    class="menu-link without-sub"
+    routerLink="/apps/signed-documents"
+    routerLinkActive="active"
+    ><span class="menu-icon">
+      <span
+        [inlineSVG]="'./assets/media/icons/duotune/general/gen019.svg'"
+        class="svg-icon svg-icon-2"
+      ></span> </span
+    ><span class="menu-title">Signed Document</span></a
+  >
+</div>
+
+<div class="menu-item">
+  <a
+    class="menu-link without-sub"
+    routerLinkActive="active"
+    routerLink="/apps/settings">
+    <span class="menu-icon">
+      <i class="fas fa-cogs fs-4"></i>
+    </span>
+    <span class="menu-title">
+      Settings
+    </span>
+  </a>
+</div>
+</div>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="cog"
+>
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>

@@ -1,0 +1,149 @@
+<p-toast></p-toast>
+<div class="card mb-5 mb-xl-8">
+  <!-- begin::Header -->
+  <div class="card-header border-0 pt-5">
+    <h3 class="card-title align-items-start flex-column">
+      <span class="card-label fw-bolder fs-3 mb-1">Your Documents</span>
+    </h3>
+    <div *ngIf="customersCreate" class="card-toolbar">
+      <a href="#" class="btn btn-sm btn-light-primary" [routerLink]="['/apps/signed-documents/sign']">
+      <span
+        [inlineSVG]="'./assets/media/icons/duotune/arrows/arr075.svg'"
+        class="svg-icon svg-icon-3"
+      ></span>
+        Sign a Document
+      </a>
+      <a href="#" class="btn btn-sm btn-light-primary ms-2" [routerLink]="['/apps/signed-documents/create']">
+      <span
+        [inlineSVG]="'./assets/media/icons/duotune/arrows/arr075.svg'"
+        class="svg-icon svg-icon-3"
+      ></span>
+        Add New Document
+      </a>
+     
+    </div>
+    
+  </div>
+  <!-- end::Header -->
+  <!-- begin::Body -->
+  <div class="card-body py-3">
+    <!-- begin::Table container -->
+    <div class="table-responsive">
+      <!-- begin::Table -->
+      <table class="table align-middle gs-0 gy-4">
+        <!-- begin::Table head -->
+        <thead>
+        <tr class="fw-bolder text-muted bg-light">
+          <th class="min-w-200px">Role</th>
+          <th class="min-w-150px">Original Document</th>
+          <th class="min-w-150px">Details</th>
+          <th class="min-w-200px rounded-end pe-4">Actions</th>
+        </tr>
+        </thead>
+        <!-- end::Table head -->
+        <!-- begin::Table body -->
+        <tbody>
+        <tr *ngFor="let customer of customers let i = index">
+          <!-- <td> -->
+            <!-- <div class="d-flex align-items-center ps-4"> -->
+              <!--              <div class="symbol symbol-50px me-5">-->
+              <!--                <img-->
+              <!--                  src="./assets/media/stock/600x400/img-26.jpg"-->
+              <!--                  class=""-->
+              <!--                  alt=""-->
+              <!--                />-->
+              <!--              </div>-->
+              <!-- <div class="d-flex justify-content-start flex-column me-5">
+                <a class="text-dark fw-bolder text-hover-primary mb-1 fs-6">
+                  {{i+1}}
+                </a> -->
+                <!--                <span class="text-muted fw-bold text-muted d-block fs-7">-->
+                <!--                  HTML, JS, ReactJS-->
+                <!--                </span>-->
+              <!-- </div> -->
+            <!-- </div> -->
+          <!-- </td> -->
+          <td>
+            <div class="d-flex align-items-center">
+              <!-- <div class="symbol symbol-50px me-5">
+                <img
+                  src="./assets/media/avatars/150-18.jpg"
+                  class=""
+                  alt=""
+                />
+              </div> -->
+              <div class="d-flex justify-content-start flex-column">
+                <a
+                  class="text-dark fw-bolder text-hover-primary mb-1 fs-6">
+                  {{customer.role}} 
+                </a>
+                
+              </div>
+            </div>
+          </td>
+          <td>
+           
+            <span  class="text-primary fw-bolder text-hover-primary d-block mb-1 fs-6">
+              
+              <a href="{{this.env.apiUrlForDownload}}{{customer.file}}">Download</a>
+            </span>
+            <!--            <span class="text-muted fw-bold text-muted d-block fs-7">Rejected</span>-->
+          </td>
+          
+         
+          <td>
+             <button type="button" class="btn btn-sm btn-light-primary" (click)="editCustomer(customer.id)">
+              
+                Signed By
+             </button>
+            <!--            <span class="badge badge-light-primary fs-7 fw-bold">Approved</span>-->
+          </td>
+          <td class="">
+            <!--            <a-->
+            <!--              href="#"-->
+            <!--              class="-->
+            <!--                btn btn-icon btn-bg-light btn-active-color-primary btn-sm-->
+            <!--                me-1-->
+            <!--              "-->
+            <!--            >-->
+            <!--              <span-->
+            <!--                [inlineSVG]="'./assets/media/icons/duotune/general/gen019.svg'"-->
+            <!--                class="svg-icon svg-icon-3"-->
+            <!--              ></span>-->
+            <!--            </a>-->
+           
+            <a *ngIf="customersDelete" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
+               (click)="openDeleteCustomerConfirmationDialogue(customer.id)" ngbTooltip="Delete">
+              <span
+                [inlineSVG]="'./assets/media/icons/duotune/general/gen027.svg'"
+                class="svg-icon svg-icon-3">
+              </span>
+            </a>
+          </td>
+        </tr>
+        </tbody>
+        <!-- end::Table body -->
+      </table>
+      <!-- end::Table -->
+    </div>
+    <!-- end::Table container -->
+  </div>
+  <!-- begin::Body -->
+</div>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="cog"
+>
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+
+<swal #DeleteCustomerSwal
+      text="This cannot be undone!"
+      icon="question"
+      [showCancelButton]="true" [focusCancel]="true" (confirm)="confirmDeleteCustomer()">
+
+</swal>
+

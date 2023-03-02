@@ -1,0 +1,19 @@
+::ng-deep .commissionable-types-buttons div[role="button"] {
+  width: 50%;
+  height: 3.5rem;
+
+  span {
+    line-height: 1.5;
+    font-weight: 500;
+  }
+}
+
+::ng-deep .commissionable-types-buttons div[aria-pressed="true"][aria-label="Commissionable"] {
+  background-color: #5FB860 !important;
+  color: white !important;
+}
+
+::ng-deep .commissionable-types-buttons div[aria-pressed="true"][aria-label="Non-Commissionable"] {
+  background-color: #E54941 !important;
+  color: white !important;
+}

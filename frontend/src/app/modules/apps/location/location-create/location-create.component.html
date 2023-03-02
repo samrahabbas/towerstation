@@ -1,0 +1,319 @@
+<p-toast></p-toast>
+
+<div>
+  <form novalidate="" class="form" [formGroup]="locationFormGroup" (ngSubmit)="validSubmit()">
+    <div class="card mb-5 mb-xl-10">
+      <div
+        class="card-header border-0 cursor-pointer"
+        aria-expanded="true">
+        <div class="card-title m-0">
+          <h3 class="fw-bolder m-0">
+            {{this.isEditing ? 'Edit Location' : 'Add New Location'}}
+          </h3>
+        </div>
+      </div>
+      <div class="collapse show">
+        <form novalidate="" class="form" [formGroup]="locationFormGroup">
+          <div class="card-body border-top p-9">
+            <div class="row mb-6">
+              <div class="col-lg-12">
+                <div class="row">
+                  <div class="col-lg-6 fv-row">
+                    <label class="col-form-label required fw-bold fs-6">
+                      Street 1
+                    </label>
+                    <input
+                      type="text"
+                      formControlName="street1"
+                      class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                      placeholder="Street 1" />
+                  </div>
+                  <div class="col-lg-6 fv-row">
+                    <label class="col-form-label fw-bold fs-6">
+                      Street 2
+                    </label>
+                    <input
+                      type="text"
+                      formControlName="street2"
+                      class="form-control form-control-lg form-control-solid"
+                      placeholder="Street 2" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-6">
+              <div class="col-lg-12">
+                <div class="row">
+                  <div class="col-lg-4 fv-row">
+                    <label class="col-form-label required fw-bold fs-6">
+                      Zip Code
+                    </label>
+                    <input
+                      type="text"
+                      formControlName="zipCode"
+                      mask="99999"
+                      class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                      placeholder="Zip Code" />
+                  </div>
+                  <div class="col-lg-4 fv-row">
+                    <label class="col-form-label required fw-bold fs-6">
+                      State
+                    </label>
+                    <select
+                      class="form-select form-select-solid form-select-lg"
+                      formControlName="state">
+                      <option [ngValue]="null">Select State</option>
+                      <option *ngFor="let state of states" [ngValue]="state.stateName">
+                        {{state.stateName}}
+                      </option>
+                    </select>
+                    <ng-container
+                      [ngTemplateOutlet]="formError"
+                      [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'Enter Zip Code First',
+                  control: f.zipCode
+                  }">
+                    </ng-container>
+                    <ng-container
+                      [ngTemplateOutlet]="formError"
+                      [ngTemplateOutletContext]="{
+                  validation: 'zipCodeNotFound',
+                  message: 'Zip Code not found',
+                  control: f.zipCode
+                  }">
+                    </ng-container>
+                  </div>
+                  <div class="col-lg-4 fv-row">
+                    <label class="col-form-label required fw-bold fs-6">
+                      City
+                    </label>
+                    <select
+                      class="form-select form-select-solid form-select-lg"
+                      formControlName="city">
+                      <option [ngValue]="null">Select City</option>
+                      <option *ngFor="let city of this.cities" [ngValue]="city.placeName">
+                        {{city.placeName}}
+                      </option>
+                    </select>
+                    <ng-container
+                      [ngTemplateOutlet]="formError"
+                      [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'Enter Zip Code First',
+                  control: f.zipCode
+                  }">
+                    </ng-container>
+                    <ng-container
+                      [ngTemplateOutlet]="formError"
+                      [ngTemplateOutletContext]="{
+                  validation: 'zipCodeNotFound',
+                  message: 'Zip Code not found',
+                  control: f.zipCode
+                  }">
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-6">
+              <div class="col-lg-12">
+                <div class="row">
+                  <div class="col-lg-4 fv-row">
+                    <label class="col-form-label required fw-bold fs-6">
+                      Telephone
+                    </label>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <div class="">
+                          <ng-select class="custom" [items]="telephoneCountryCodes"
+                                     [ngModelOptions]="{standalone: true}"
+                                     appendTo="body"
+                                     [(ngModel)]="telephoneCountryCodeSelected" [searchable]="false"
+                                     [clearable]="false">
+                            <ng-template ng-label-tmp let-item="item">
+                          <span
+                            [inlineSVG]="item.flag"
+                            class="svg-icon svg-icon-1">
+                          </span> &nbsp;
+                              <span class="fs-6">{{item.callingCode}}</span>
+                            </ng-template>
+                            <ng-template ng-option-tmp let-item="item">
+                          <span
+                            [inlineSVG]="item.flag"
+                            class="svg-icon svg-icon-1">
+                          </span> &nbsp;
+                              <span class="fs-6">{{item.callingCode}}</span>
+                            </ng-template>
+                          </ng-select>
+                        </div>
+                      </div>
+                      <input type="text" formControlName="telephone" placeholder="Telephone"
+                             mask="(000) 000-0000" [showMaskTyped]="true" [dropSpecialCharacters]="false"
+                             class="form-control form-control-lg form-control-solid">
+                    </div>
+                  </div>
+                  <!-- <div class="col-lg-4 fv-row">
+                    <label class="col-form-label fw-bold fs-6">
+                      Location Types
+                    </label>
+                    <ng-select
+                      [items]="[]" formControlName="locationTypes"
+                      [addTag]="true" [multiple]="true" class="custom-tag-select"
+                      [selectOnTab]="true" [isOpen]="false" placeholder="Enter multiple location types">
+                    </ng-select>
+                  </div>
+                  <div class="col-lg-4 fv-row">
+                    <label class="col-form-label fw-bold fs-6">
+                      Location Codes
+                    </label>
+                    <ng-select
+                      [items]="[]" formControlName="locationCodes"
+                      [addTag]="true" [multiple]="true" class="custom-tag-select"
+                      [selectOnTab]="true" [isOpen]="false" placeholder="Enter multiple location codes">
+                    </ng-select>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+            <div class="row mb-6">
+              <div class="col-lg-12">
+                <div class="row">
+                  <div class="col-lg-12 fv-row">
+                    <label class="col-form-label fw-bold fs-6">
+                      Private Notes
+                    </label>
+                    <textarea formControlName="privateNotes" class="form-control form-control-lg form-control-solid"
+                              rows="3" placeholder="Private Notes">
+                </textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="card mb-5 mb-xl-10">
+      <div
+        class="card-header border-0"
+        aria-expanded="true">
+        <div class="card-title m-0">
+          <h3 class="fw-bolder m-0">Location Contacts List</h3>
+        </div>
+        <div class="card-title m-0">
+          <div [hidden]="!(!isAddingNewContact && isPreviousContact)" class="pe-10">
+            <button class="btn btn-sm btn-link" type="button" (click)="goToPreviousContact()">
+              <span class="svg-icon svg-icon-primary svg-icon-2x m-0">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     xmlns:xlink="http://www.w3.org/1999/xlink"
+                     width="24px" height="24px" viewBox="0 0 24 24"
+                     version="1.1">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <polygon points="0 0 24 0 24 24 0 24" />
+                    <path
+                      d="M6.70710678,15.7071068 C6.31658249,16.0976311 5.68341751,16.0976311 5.29289322,15.7071068 C4.90236893,15.3165825 4.90236893,14.6834175 5.29289322,14.2928932 L11.2928932,8.29289322 C11.6714722,7.91431428 12.2810586,7.90106866 12.6757246,8.26284586 L18.6757246,13.7628459 C19.0828436,14.1360383 19.1103465,14.7686056 18.7371541,15.1757246 C18.3639617,15.5828436 17.7313944,15.6103465 17.3242754,15.2371541 L12.0300757,10.3841378 L6.70710678,15.7071068 Z"
+                      fill="#000000" fill-rule="nonzero"
+                      transform="translate(12.000003, 11.999999) scale(-1, 1) rotate(-270.000000) translate(-12.000003, -11.999999) " />
+                  </g>
+                </svg>
+              </span>
+              Previous
+            </button>
+          </div>
+          <div>
+            Viewing contact&nbsp;
+            <span class="badge badge-sm badge-circle badge-light-primary">
+              {{selectedContactIndex + 1}}
+            </span>&nbsp;
+            out of&nbsp;
+            <span class="badge badge-sm badge-circle badge-light-primary">
+              {{locationContactsLength}}
+            </span>&nbsp;
+            total for this carrier
+          </div>
+          <div [hidden]="!(!isAddingNewContact && isNextContact)" class="ps-10">
+            <button class="btn btn-sm btn-link" type="button" (click)="goToNextContact()">
+              Next
+              <span class="svg-icon svg-icon-primary svg-icon-2x m-0">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                     height="24px" viewBox="0 0 24 24" version="1.1">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <polygon points="0 0 24 0 24 24 0 24" />
+                    <path
+                      d="M6.70710678,15.7071068 C6.31658249,16.0976311 5.68341751,16.0976311 5.29289322,15.7071068 C4.90236893,15.3165825 4.90236893,14.6834175 5.29289322,14.2928932 L11.2928932,8.29289322 C11.6714722,7.91431428 12.2810586,7.90106866 12.6757246,8.26284586 L18.6757246,13.7628459 C19.0828436,14.1360383 19.1103465,14.7686056 18.7371541,15.1757246 C18.3639617,15.5828436 17.7313944,15.6103465 17.3242754,15.2371541 L12.0300757,10.3841378 L6.70710678,15.7071068 Z"
+                      fill="#000000" fill-rule="nonzero"
+                      transform="translate(12.000003, 11.999999) rotate(-270.000000) translate(-12.000003, -11.999999) " />
+                  </g>
+                </svg>
+              </span>
+            </button>
+          </div>
+        </div>
+        <div class="card-title m-0">
+          <!-- <button *ngIf="!isAddingNewContact" class="btn btn-sm btn-linkedin" (click)="tryAddingCarrierContact()">
+            Add another contact
+          </button> -->
+          <div *ngIf="isAddingNewContact">
+            <button class="btn btn-sm btn-warning me-10" (click)="cancelAddingCarrierContact()">
+              <i class="fas fa-undo"></i>
+              Cancel
+            </button>
+            <button class="btn btn-sm btn-success" (click)="addCarrierContact()">
+              <i class="fas fa-save"></i>
+              Add contact
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="card-body border-top" formArrayName="locationContacts">
+        <app-location-contact
+          [formGroupName]="selectedContactIndex"
+          [isAddingContact]="isAddingNewContact"
+          (onSetAsPrimaryContact)="onSetAsPrimaryContact()"
+          (onDeleteContact)="onDeleteContact()">
+        </app-location-contact>
+      </div>
+      <div class="card-footer d-flex justify-content-end py-6 px-9">
+      </div>
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary">
+      <ng-container *ngIf="!isLoading">Save Changes</ng-container>
+      <ng-container *ngIf="isLoading">
+        <span class="indicator-progress" [style.display]="'block'">
+          Please wait...{{ " " }}
+          <span class="spinner-border spinner-border-sm align-middle ms-2">
+          </span>
+        </span>
+      </ng-container>
+    </button>
+  </form>
+</div>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="cog"
+>
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+
+<ng-template
+  #formError
+  let-control="control"
+  let-message="message"
+  let-validation="validation"
+>
+  <ng-container
+    *ngIf="control.hasError(validation)"
+  >
+    <div class="fv-plugins-message-container">
+      <span role="alert">
+        {{ message }}
+      </span>
+    </div>
+  </ng-container>
+</ng-template>

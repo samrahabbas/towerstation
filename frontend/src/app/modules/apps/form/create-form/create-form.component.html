@@ -1,0 +1,487 @@
+<div>
+  <form novalidate="" class="form">
+    <div class="card mb-5 mb-xl-10">
+      <div class="card-header border-0" aria-expanded="true">
+        <div class="card-title m-0">
+          <h3 class="fw-bolder m-0">Form</h3>
+        </div>
+        <button (click)="addQuestion()">Add Question</button>
+      </div>
+      <div class="collapse show question-wrapper">
+        <div class="card-body border-top p-9 question-1">
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-12 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Question
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="question"
+                    class="question-input form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Question"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-8 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Question Type
+                  </label>
+                  <select
+                    [(ngModel)]="selectedType"
+                    name="type"
+                    class="question-type form-select form-select-solid form-select-lg"
+                  >
+                    <option [ngValue]="null">Select Type</option>
+                    <option *ngFor="let type of types" value="{{type}}">
+                      {{ type }}
+                    </option>
+                  </select>
+                </div>
+                <div class="col-lg-4 fv-row mt-12" (click)="addOptions()">
+                  <button class="btn btn-primary">Add Option</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="text" class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-12 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Option Text
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="question"
+                    class="text-input form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Option"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="email" class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-12 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Option Email
+                  </label>
+                  <input
+                    type="email"
+                    formControlName="question"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Option"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="number" class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-12 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Option Number
+                  </label>
+                  <input
+                    type="number"
+                    formControlName="question"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Option"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="radio" class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-12 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Option
+                  </label>
+
+                  <div
+                    *ngFor="
+                      let option of optionsArray.controls;
+                      last as isLast;
+                      index as id
+                    "
+                  >
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="m-0 pt-4">
+                          <span
+                            class="form-check form-check-custom form-check-solid"
+                          >
+                            <input
+                              type="radio"
+                              value="General"
+                              class="form-check-input"
+                              name="truckTypeGroup"
+                            />
+                            <!-- <label class="form-check-label">
+                                  General
+                                </label> -->
+
+                            <input
+                              type="text"
+                              [formControl]="getDeviceByIndex(id)"
+                              class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                              placeholder="Option"
+                            />
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="m-0 pt-4">
+                          <!-- <span class="form-check form-check-custom form-check-solid">
+                                <input type="radio" formControlName="truckTypeGroup" value="Specific"
+                                       class="form-check-input" name="truckTypeGroup">
+                                <label class="form-check-label">
+                                  Specific
+                                </label>
+                              </span> -->
+                          <div class="card-title m-0">
+                            <button
+                              class="btn btn-sm btn-info"
+                              (click)="onAddRadio()"
+                              *ngIf="isLast"
+                            >
+                              <i class="fas fa-plus"></i>
+                              Add
+                            </button>
+                            <button
+                              class="btn btn-sm btn-danger"
+                              (click)="onRemoveRadio(id)"
+                              *ngIf="optionsArray.length > 1"
+                            >
+                              Remove
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <h2>Value</h2>
+                    <div> {{ optionsArray.valueChanges | async | json }}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="textArea" class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-12 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Option Text Area
+                  </label>
+                  <textarea
+                    formControlName="notes"
+                    class="form-control form-control-lg form-control-solid"
+                    rows="3"
+                    placeholder="Option"
+                  >
+                  </textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="row mb-6">
+              <div class="col-lg-12">
+                <div class="row">
+                  <div class="col-lg-12 fv-row">
+                    <label class="col-form-label fw-bold fs-6">
+                      Status
+                    </label>
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="m-0 pt-4">
+                          <span class="form-check form-check-custom form-check-solid">
+                            <input type="radio" formControlName="status"  [value]="true"
+                            [(ngModel)]="status"  class="form-check-input" name="status">
+                            <label class="form-check-label">
+                              Active
+                            </label>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="m-0 pt-4">
+                          <span class="form-check form-check-custom form-check-solid">
+                            <input type="radio" formControlName="status" value="0"
+                                   class="form-check-input" name="status">
+                            <label class="form-check-label">
+                              Inactive
+                            </label>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="getValue()">
+      <ng-container *ngIf="!isLoading">Save Changes</ng-container>
+      <ng-container *ngIf="isLoading">
+        <span class="indicator-progress" [style.display]="'block'">
+          Please wait...{{ " " }}
+          <span
+            class="spinner-border spinner-border-sm align-middle ms-2"
+          ></span>
+        </span>
+      </ng-container>
+    </button>
+  </form>
+</div>
+<div id="sample-data" class="d-none">
+  <div class="card-body border-top p-9">
+    <div class="row mb-6">
+      <div class="col-lg-12">
+        <div class="row">
+          <div class="col-lg-12 fv-row">
+            <label class="col-form-label required fw-bold fs-6">
+              Question
+            </label>
+            <input
+              type="text"
+              formControlName="question"
+              class="question-input form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+              placeholder="Question"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-6">
+      <div class="col-lg-12">
+        <div class="row">
+          <div class="col-lg-8 fv-row">
+            <label class="col-form-label required fw-bold fs-6">
+              Question Type
+            </label>
+            <select
+              [(ngModel)]="selectedType"
+              name="type"
+              class="question-type form-select form-select-solid form-select-lg"
+            >
+              <option [ngValue]="null">Select Type</option>
+              <option *ngFor="let type of types" value="{{type}}">
+                {{ type }}
+              </option>
+            </select>
+          </div>
+          <div class="col-lg-4 fv-row mt-12" (click)="addOptions()">
+            <button class="btn btn-primary">Add Option</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="text" class="row mb-6">
+      <div class="col-lg-12">
+        <div class="row">
+          <div class="col-lg-12 fv-row">
+            <label class="col-form-label required fw-bold fs-6">
+              Option Text
+            </label>
+            <input
+              type="text"
+              formControlName="question"
+              class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+              placeholder="Option"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="email" class="row mb-6">
+      <div class="col-lg-12">
+        <div class="row">
+          <div class="col-lg-12 fv-row">
+            <label class="col-form-label required fw-bold fs-6">
+              Option Email
+            </label>
+            <input
+              type="email"
+              formControlName="question"
+              class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+              placeholder="Option"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="number" class="row mb-6">
+      <div class="col-lg-12">
+        <div class="row">
+          <div class="col-lg-12 fv-row">
+            <label class="col-form-label required fw-bold fs-6">
+              Option Number
+            </label>
+            <input
+              type="number"
+              formControlName="question"
+              class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+              placeholder="Option"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="radio" class="row mb-6">
+      <div class="col-lg-12">
+        <div class="row">
+          <div class="col-lg-12 fv-row">
+            <label class="col-form-label required fw-bold fs-6">
+              Option
+            </label>
+
+            <div
+              *ngFor="
+                let option of optionsArray.controls;
+                last as isLast;
+                index as id
+              "
+            >
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="m-0 pt-4">
+                    <span
+                      class="form-check form-check-custom form-check-solid"
+                    >
+                      <input
+                        type="radio"
+                        value="General"
+                        class="form-check-input"
+                        name="truckTypeGroup"
+                      />
+                      <!-- <label class="form-check-label">
+                            General
+                          </label> -->
+
+                      <input
+                        type="text"
+                        [formControl]="getDeviceByIndex(id)"
+                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                        placeholder="Option"
+                      />
+                    </span>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="m-0 pt-4">
+                    <!-- <span class="form-check form-check-custom form-check-solid">
+                          <input type="radio" formControlName="truckTypeGroup" value="Specific"
+                                 class="form-check-input" name="truckTypeGroup">
+                          <label class="form-check-label">
+                            Specific
+                          </label>
+                        </span> -->
+                    <div class="card-title m-0">
+                      <button
+                        class="btn btn-sm btn-info"
+                        (click)="onAddRadio()"
+                        *ngIf="isLast"
+                      >
+                        <i class="fas fa-plus"></i>
+                        Add
+                      </button>
+                      <button
+                        class="btn btn-sm btn-danger"
+                        (click)="onRemoveRadio(id)"
+                        *ngIf="optionsArray.length > 1"
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h2>Value</h2>
+              <div> {{ optionsArray.valueChanges | async | json }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="textArea" class="row mb-6">
+      <div class="col-lg-12">
+        <div class="row">
+          <div class="col-lg-12 fv-row">
+            <label class="col-form-label fw-bold fs-6">
+              Option Text Area
+            </label>
+            <textarea
+              formControlName="notes"
+              class="form-control form-control-lg form-control-solid"
+              rows="3"
+              placeholder="Option"
+            >
+            </textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="row mb-6">
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-lg-12 fv-row">
+              <label class="col-form-label fw-bold fs-6">
+                Status
+              </label>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="m-0 pt-4">
+                    <span class="form-check form-check-custom form-check-solid">
+                      <input type="radio" formControlName="status"  [value]="true"
+                      [(ngModel)]="status"  class="form-check-input" name="status">
+                      <label class="form-check-label">
+                        Active
+                      </label>
+                    </span>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="m-0 pt-4">
+                    <span class="form-check form-check-custom form-check-solid">
+                      <input type="radio" formControlName="status" value="0"
+                             class="form-check-input" name="status">
+                      <label class="form-check-label">
+                        Inactive
+                      </label>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+  </div>
+</div>

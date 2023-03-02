@@ -1,0 +1,77 @@
+<div>
+  <div class="card mb-5 mb-xl-10">
+    <div
+      class="card-header border-0 cursor-pointer"
+      aria-expanded="true">
+      <div class="card-title m-0">
+        <h3 class="fw-bolder m-0">Edit Bill of Lading Settings</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-5 mb-xl-10">
+    <div class="card-body">
+      <div class="bg-light-info p-8 rounded">
+        <div class="text-info">
+          <strong>
+            SUGGESTION: Include any details you wish to add to every Bill Of Lading relating to your terms and
+            conditions.
+          </strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-5 mb-xl-10">
+    <div
+      class="card-header border-0 cursor-pointer"
+      aria-expanded="true">
+      <div class="card-title m-0">
+        <h3 class="fw-bolder m-0">Edit Terms And Conditions</h3>
+      </div>
+    </div>
+    <div class="card-body border-top p-9">
+      <p-editor [(ngModel)]="termsAndConditionsHTML" [style]="{'height':'320px'}"></p-editor>
+    </div>
+  </div>
+
+  <div class="card mb-5 mb-xl-10">
+    <div class="card-body">
+      <div class="bg-light-info p-8 rounded">
+        <div class="text-info">
+          <strong>
+            SUGGESTION: The footer is used to give the recipient any special instructions on how to handle your Bill Of Lading. For example: 'Please remit payment to our address ATTN: Accounting'
+          </strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-5 mb-xl-10">
+    <div
+      class="card-header border-0 cursor-pointer"
+      aria-expanded="true">
+      <div class="card-title m-0">
+        <h3 class="fw-bolder m-0">Edit Bill of Lading Footer</h3>
+      </div>
+    </div>
+    <div class="card-body border-top p-9">
+      <p-editor [(ngModel)]="footerHTML" [style]="{'height':'320px'}"></p-editor>
+    </div>
+  </div>
+
+  <button
+    type="button"
+    class="btn btn-primary"> Save Changes
+    <!--          <ng-container *ngIf="!isLoading">Save Changes</ng-container>-->
+    <!--          <ng-container *ngIf="isLoading">-->
+    <!--            <span clas="indicator-progress" [style.display]="'block'">-->
+    <!--              Please wait...{{ " " }}-->
+    <!--              <span-->
+    <!--                class="spinner-border spinner-border-sm align-middle ms-2"-->
+    <!--              ></span>-->
+    <!--            </span>-->
+    <!--          </ng-container>-->
+  </button>
+
+</div>

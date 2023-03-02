@@ -1,0 +1,316 @@
+
+<div>
+  <div *ngIf="success" class="alert alert-success" role="alert">
+   <strong>Success!</strong> Added Successfully.
+  </div>
+  <!-- <div *ngIf="error" class="alert alert-danger" role="alert">
+    Error occurs, Please Try Again! 
+  </div> -->
+  <form novalidate="" class="form" [formGroup]="createLoadForm">
+    <div class="card mb-5 mb-xl-10">
+      <div
+        class="card-header border-0"
+        aria-expanded="true">
+        <div class="card-title m-0">
+          <h3 class="fw-bolder m-0">Create Loads</h3>
+        </div>
+      </div>
+      <div class="collapse show">
+        <div class="card-body border-top p-9">
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Origin
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="origin"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Origin" />
+                    <span class="text-danger" *ngIf="origin">Origin is required</span>
+                </div>
+                <div class="col-lg-2 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    DH-O
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="DHO"
+                    class="form-control form-control-lg form-control-solid"
+                    placeholder="DH-O" />
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Destination
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="destination"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Destination" />
+                    <span class="text-danger" *ngIf="destination">Destination is required</span>
+                </div>
+                <div class="col-lg-2 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    DH-D
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="DHD"
+                    class="form-control form-control-lg form-control-solid"
+                    placeholder="DH-D" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Company
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="company"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Company">
+                    <span class="text-danger" *ngIf="company">Company is required</span>
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Contact
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="contact"
+                    class="form-control form-control-lg form-control-solid"
+                    placeholder="Contact" />
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Offer
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="offer"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Offer" />
+                    <span class="text-danger" *ngIf="offer">Offer is required</span>
+                </div>
+        
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-6">
+                  <label class="col-form-label fw-bold fs-6">
+                    Truck Type Group
+                  </label>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="m-0 pt-4">
+                        <span class="form-check form-check-custom form-check-solid">
+                          <input type="radio" formControlName="truckTypeGroup" value="General"
+                                 class="form-check-input" name="truckTypeGroup">
+                          <label class="form-check-label">
+                            General
+                          </label>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="m-0 pt-4">
+                        <span class="form-check form-check-custom form-check-solid">
+                          <input type="radio" formControlName="truckTypeGroup" value="Specific"
+                                 class="form-check-input" name="truckTypeGroup">
+                          <label class="form-check-label">
+                            Specific
+                          </label>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Truck Type
+                  </label>
+                  <ng-select
+                    [items]="this.truckTypes" formControlName="truckTypes"
+                    class="custom-tag-select"
+                    [clearable]="true" [selectOnTab]="true"
+                    placeholder="Select Truck Types">
+                  </ng-select>
+                  <span class="text-danger" *ngIf="istruckTypes">Truck Types is required</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-3 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Full / Partial
+                  </label>
+                  <ng-select
+                    [items]="this.loadTypes" formControlName="loadType"
+                    class="custom-tag-select" [clearable]="true"
+                    [selectOnTab]="true" placeholder="Select Load Type">
+                  </ng-select>
+                </div>
+                <div class="col-lg-3 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Look Back (hrs)
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="lookBackHours" mask="0*"
+                    class="form-control form-control-lg form-control-solid"
+                    placeholder="lookBackHours" />
+                </div>
+                <div class="col-lg-3">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Start Date
+                  </label>
+                  <input mwlFlatpickr type="text" formControlName="startDate"
+                         placeholder="Start Date"
+                         [altInput]="true" [convertModelValue]="true"
+                         class="form-control form-control-lg form-control-solid" />
+                  <span class="text-danger" *ngIf="startDate">Start Date is required</span>
+                </div>
+                <div class="col-lg-3">
+                  <label class="col-form-label required fw-bold fs-6">
+                    End Date
+                  </label>
+                  <input mwlFlatpickr type="text" formControlName="endDate"
+                         placeholder="End Date"
+                         [altInput]="true" [convertModelValue]="true"
+                         class="form-control form-control-lg form-control-solid" />
+                  <span class="text-danger" *ngIf="endDate">End Date is required</span>     
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-3 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Age
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="age"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Age" />
+                </div>
+                <div class="col-lg-3 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Pickup
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="pickup"
+                    class="form-control form-control-lg form-control-solid"
+                    placeholder="Pickup" />
+                </div>
+                <div class="col-lg-3 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Weight
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="weight"
+                    class="form-control form-control-lg form-control-solid"
+                    placeholder="Weight" />
+                </div>
+                <div class="col-lg-3 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Trip
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="trip" 
+                    class="form-control form-control-lg form-control-solid"
+                    placeholder="Trip" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-3 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    EQ
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="eq"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="EQ" />
+                </div>
+                <div class="col-lg-3 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Length
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="length"
+                    class="form-control form-control-lg form-control-solid"
+                    placeholder="Length" />
+                </div>
+                <div class="col-lg-3 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Factor
+                  </label>
+                  <ng-select
+                    [items]="this.factor" formControlName="factor"
+                    class="custom-tag-select" [clearable]="true"
+                    [selectOnTab]="true" placeholder="Select factor">
+                  </ng-select>
+                  <span class="text-danger" *ngIf="isFactor">Factor is required</span>     
+                </div>
+                <div class="col-lg-3 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    CS
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="cs" 
+                    class="form-control form-control-lg form-control-solid"
+                    placeholder="CS" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-lg-4">
+              <button
+                type="button"
+                class="btn btn-primary" (click)="createLoad()">
+                         <ng-container *ngIf="!isLoading">Save Changes</ng-container>
+                         <ng-container *ngIf="isLoading">
+                           <span clas="indicator-progress" [style.display]="'block'">
+                             Please wait...{{ " " }}
+                             <span
+                               class="spinner-border spinner-border-sm align-middle ms-2"
+                             ></span>
+                           </span>
+                         </ng-container>
+              </button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

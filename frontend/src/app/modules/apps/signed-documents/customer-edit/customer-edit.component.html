@@ -1,0 +1,626 @@
+<p-toast></p-toast>
+<div>
+  <form novalidate="" class="form" [formGroup]="customerForm" (ngSubmit)="validSubmit()">
+    <div class="card mb-5 mb-xl-10">
+      <div
+        class="card-header border-0"
+        aria-expanded="true">
+        <div class="card-title m-0">
+          <h3 class="fw-bolder m-0">Add New Customer</h3>
+        </div>
+      </div>
+      <div class="collapse show">
+        <div class="card-body border-top p-9">
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    First Name
+                  </label>
+                  <input
+                    type="text" [ngClass]="{
+                      'invalid-input': customerForm.controls.firstName.hasError('required') && !customerForm.controls.firstName.valid && customerForm.controls.firstName.touched
+                    }"
+                    formControlName="firstName"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="First Name"/>
+                  <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                      validation: 'required',
+                      message: 'Enter first name',
+                      isTouched: true,
+                      control: f.firstName
+                    }"
+                  >
+                  </ng-container>
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Middle Name
+                  </label>
+                  <input
+                    type="text" [ngClass]="{
+                      'invalid-input': customerForm.controls.middleName.hasError('required') && !customerForm.controls.middleName.valid && customerForm.controls.middleName.touched
+                    }"
+                    formControlName="middleName"
+                    class="form-control form-control-lg form-control-solid"
+                    placeholder="Middle Name"
+                  />
+                  <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                      validation: 'required',
+                      message: 'Enter middle name',
+                      isTouched: true,
+                      control: f.middleName
+                    }"
+                  >
+                  </ng-container>
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Last Name
+                  </label>
+                  <input
+                    type="text" [ngClass]="{
+                      'invalid-input': customerForm.controls.lastName.hasError('required') && !customerForm.controls.lastName.valid && customerForm.controls.lastName.touched
+                    }"
+                    formControlName="lastName"
+                    class="form-control form-control-lg form-control-solid"
+                    placeholder="Last Name"
+                  />
+                  <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                      validation: 'required',
+                      message: 'Enter last name',
+                      isTouched: true,
+                      control: f.lastName
+                    }"
+                  >
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Street 1
+                  </label>
+                  <input
+                    type="text" [ngClass]="{
+                      'invalid-input': customerForm.controls.street1.hasError('required') && !customerForm.controls.street1.valid && customerForm.controls.street1.touched
+                    }"
+                    formControlName="street1"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Street 1" />
+                  <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                      validation: 'required',
+                      message: 'Enter street 1',
+                      isTouched: true,
+                      control: f.street1
+                    }"></ng-container>
+                </div>
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Street 2
+                  </label>
+                  <input
+                    type="text" [ngClass]="{
+                      'invalid-input': customerForm.controls.street2.hasError('required') && !customerForm.controls.street2.valid && customerForm.controls.street2.touched
+                    }"
+                    formControlName="street2"
+                    class="form-control form-control-lg form-control-solid"
+                    placeholder="Street 2" />
+                  <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                      validation: 'required',
+                      message: 'Enter street 2',
+                      isTouched: true,
+                      control: f.street2
+                    }"></ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Zip Code
+                  </label>
+                  <input
+                    type="text" [ngClass]="{
+                      'invalid-input': customerForm.controls.zipCode.hasError('required') && !customerForm.controls.zipCode.valid && customerForm.controls.zipCode.touched
+                    }"
+                    formControlName="zipCode"
+                    mask="99999"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Zip Code" />
+                  <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                      validation: 'required',
+                      message: 'Enter zip code',
+                      isTouched: true,
+                      control: f.zipCode
+                    }"></ng-container>
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    State
+                  </label>
+                  <select
+                    class="form-select form-select-solid form-select-lg"
+                    formControlName="state">
+                    <option [ngValue]="null">Select State</option>
+                    <option *ngFor="let state of states" [ngValue]="state.stateName">
+                      {{state.stateName}}
+                    </option>
+                  </select>
+                  <ng-container
+                    [ngTemplateOutlet]="formError"
+                    [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'Enter Zip Code First',
+                  control: f.zipCode,
+                  isTouched: false
+                  }">
+                  </ng-container>
+                  <ng-container
+                    [ngTemplateOutlet]="formError"
+                    [ngTemplateOutletContext]="{
+                  validation: 'zipCodeNotFound',
+                  message: 'Zip Code not found',
+                  control: f.zipCode,
+                  isTouched: false
+                  }">
+                  </ng-container>
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    City
+                  </label>
+                  <select
+                    class="form-select form-select-solid form-select-lg"
+                    formControlName="city">
+                    <option [ngValue]="null">Select City</option>
+                    <option *ngFor="let city of this.cities" [ngValue]="city.placeName">
+                      {{city.placeName}}
+                    </option>
+                  </select>
+                  <ng-container
+                    [ngTemplateOutlet]="formError"
+                    [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'Enter Zip Code First',
+                  control: f.zipCode,
+                  isTouched: false
+                  }">
+                  </ng-container>
+                  <ng-container
+                    [ngTemplateOutlet]="formError"
+                    [ngTemplateOutletContext]="{
+                  validation: 'zipCodeNotFound',
+                  message: 'Zip Code not found',
+                  control: f.zipCode,
+                  isTouched: false
+                  }">
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Telephone
+                  </label>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <div class="">
+                        <ng-select class="custom" [items]="telephoneCountryCodes" [ngModelOptions]="{standalone: true}"
+                                   appendTo="body"
+                                   [(ngModel)]="telephoneCountryCodeSelected" [searchable]="false" [clearable]="false">
+                          <ng-template ng-label-tmp let-item="item">
+                          <span
+                            [inlineSVG]="item.flag"
+                            class="svg-icon svg-icon-1">
+                          </span> &nbsp;
+                            <span class="fs-6">{{item.callingCode}}</span>
+                          </ng-template>
+                          <ng-template ng-option-tmp let-item="item">
+                          <span
+                            [inlineSVG]="item.flag"
+                            class="svg-icon svg-icon-1">
+                          </span> &nbsp;
+                            <span class="fs-6">{{item.callingCode}}</span>
+                          </ng-template>
+                        </ng-select>
+                      </div>
+                    </div>
+                    <input type="tel" [ngClass]="{
+                      'invalid-input': customerForm.controls.telephone.hasError('required') && !customerForm.controls.telephone.valid && customerForm.controls.telephone.touched
+                    }"
+                           formControlName="telephone" placeholder="Telephone"
+                           mask="(000) 000-0000" [showMaskTyped]="true" [dropSpecialCharacters]="false"
+                           class="form-control form-control-lg form-control-solid">
+                  </div>
+                  <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                      validation: 'required',
+                      message: 'Enter telephone number',
+                      isTouched: true,
+                      control: f.telephone
+                    }"></ng-container>
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Cell Phone
+                  </label>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <div class="">
+                        <ng-select class="custom" [items]="cellPhoneCountryCodes" [ngModelOptions]="{standalone: true}"
+                                   appendTo="body"
+                                   [(ngModel)]="cellPhoneCountryCodeSelected" [searchable]="false" [clearable]="false">
+                          <ng-template ng-label-tmp let-item="item">
+                          <span
+                            [inlineSVG]="item.flag"
+                            class="svg-icon svg-icon-1">
+                          </span> &nbsp;
+                            <span class="fs-6">{{item.callingCode}}</span>
+                          </ng-template>
+                          <ng-template ng-option-tmp let-item="item">
+                          <span
+                            [inlineSVG]="item.flag"
+                            class="svg-icon svg-icon-1">
+                          </span> &nbsp;
+                            <span class="fs-6">{{item.callingCode}}</span>
+                          </ng-template>
+                        </ng-select>
+                      </div>
+                    </div>
+                    <input type="tel" [ngClass]="{
+                      'invalid-input': customerForm.controls.cellPhone.hasError('required') && !customerForm.controls.cellPhone.valid && customerForm.controls.cellPhone.touched
+                    }"
+                           formControlName="cellPhone" placeholder="Cell Phone"
+                           mask="(000) 000-0000" [showMaskTyped]="true" [dropSpecialCharacters]="false"
+                           class="form-control form-control-lg form-control-solid">
+                  </div>
+                  <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                      validation: 'required',
+                      message: 'Enter cellphone number',
+                      isTouched: true,
+                      control: f.cellPhone
+                    }"></ng-container>
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Fax
+                  </label>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <div class="">
+                        <ng-select class="custom" [items]="faxCountryCodes" [ngModelOptions]="{standalone: true}"
+                                   appendTo="body"
+                                   [(ngModel)]="faxCountryCodeSelected" [searchable]="false" [clearable]="false">
+                          <ng-template ng-label-tmp let-item="item">
+                          <span
+                            [inlineSVG]="item.flag"
+                            class="svg-icon svg-icon-1">
+                          </span> &nbsp;
+                            <span class="fs-6">{{item.callingCode}}</span>
+                          </ng-template>
+                          <ng-template ng-option-tmp let-item="item">
+                          <span
+                            [inlineSVG]="item.flag"
+                            class="svg-icon svg-icon-1">
+                          </span> &nbsp;
+                            <span class="fs-6">{{item.callingCode}}</span>
+                          </ng-template>
+                        </ng-select>
+                      </div>
+                    </div>
+                    <input type="tel" [ngClass]="{
+                      'invalid-input': customerForm.controls.fax.hasError('required') && !customerForm.controls.fax.valid && customerForm.controls.fax.touched
+                    }"
+                           formControlName="fax" placeholder="Fax"
+                           mask="(000) 000-0000" [showMaskTyped]="true" [dropSpecialCharacters]="false"
+                           class="form-control form-control-lg form-control-solid">
+                  </div>
+                  <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                      validation: 'required',
+                      message: 'Enter fax number',
+                      isTouched: true,
+                      control: f.fax
+                    }"></ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    formControlName="email"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Email" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-12 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Private Notes
+                  </label>
+                  <textarea formControlName="privateNotes" class="form-control form-control-lg form-control-solid"
+                            rows="3" placeholder="Private Notes">
+                </textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-12 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Status
+                  </label>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="m-0 pt-4">
+                        <span class="form-check form-check-custom form-check-solid">
+                          <input type="radio" formControlName="status" value="1"
+                                 class="form-check-input" name="status">
+                          <label class="form-check-label">
+                            Active
+                          </label>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="m-0 pt-4">
+                        <span class="form-check form-check-custom form-check-solid">
+                          <input type="radio" formControlName="status" value="0"
+                                 class="form-check-input" name="status">
+                          <label class="form-check-label">
+                            Inactive
+                          </label>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="card mb-5 mb-xl-10">
+      <div
+        class="card-header border-0 cursor-pointer"
+        role="button"
+        aria-expanded="true">
+        <div class="card-title m-0">
+          <h3 class="fw-bolder m-0">Accounting</h3>
+        </div>
+      </div>
+      <div class="collapse show">
+        <div class="card-body border-top">
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Credit Limit
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="accountingCreditLimit"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Credit Limit" mask="separator.2" prefix="$" thousandSeparator="," />
+                </div>
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Credit Hold
+                  </label>
+                  <p-selectButton [options]="creditHoldOptions" formControlName="accountingIsCreditHold"
+                                  optionLabel="label" optionValue="value" styleClass="credit-hold-buttons">
+                  </p-selectButton>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Available Credit
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="accountingAvailableCredit"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Available Credit" mask="separator.2" prefix="$" thousandSeparator="," />
+                </div>
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Payment Terms
+                  </label>
+                  <div class="input-group mb-3">
+                    <input type="text" formControlName="accountingPaymentTerms" placeholder="Payment Terms"
+                           mask="0*" class="form-control form-control-lg form-control-solid">
+                    <span class="input-group-text">days</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer d-flex justify-content-end py-6 px-9"></div>
+    </div>
+    <div class="card mb-5 mb-xl-10">
+      <div
+        class="card-header border-0 cursor-pointer"
+        role="button"
+        aria-expanded="true">
+        <div class="card-title m-0">
+          <h3 class="fw-bolder m-0">Operating Authority</h3>
+        </div>
+      </div>
+      <div class="card-body border-top">
+        <div class="row mb-6">
+          <div class="col-lg-12">
+            <div class="row">
+              <div class="col-lg-6 fv-row">
+                <label class="col-form-label fw-bold fs-6">
+                  MC/FF/MX Number
+                </label>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <div class="">
+                      <ng-select class="custom" [items]="operatingAuthorityNumberTypes"
+                                 [ngModelOptions]="{standalone: true}" appendTo="body"
+                                 [(ngModel)]="selectedOperatingAuthorityNumberType" [searchable]="false"
+                                 [clearable]="false">
+                      </ng-select>
+                    </div>
+                  </div>
+                  <input type="text" formControlName="operatingAuthorityNumber" placeholder="MC/FF/MX Number"
+                         class="form-control form-control-lg form-control-solid" mask="0*">
+                </div>
+              </div>
+              <div class="col-lg-6 fv-row">
+                <label class="col-form-label fw-bold fs-6">
+                  USDOT Number
+                </label>
+                <input type="text" formControlName="operatingAuthorityUSDOTNumber" placeholder="USDOT Number"
+                       class="form-control form-control-lg form-control-solid" mask="0*">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer d-flex justify-content-end py-6 px-9">
+      </div>
+    </div>
+    <div class="card mb-5 mb-xl-10">
+      <div
+        class="card-header border-0 cursor-pointer"
+        role="button"
+        aria-expanded="true">
+        <div class="card-title m-0">
+          <h3 class="fw-bolder m-0">Customize Units of Measurements</h3>
+        </div>
+      </div>
+      <div class="card-body border-top">
+        <div class="row mb-6">
+          <div class="col-lg-12">
+            <div class="row">
+              <div class="col-lg-4 fv-row">
+                <label class="col-form-label fw-bold fs-6">
+                  Weight Unit
+                </label>
+                <select
+                  class="form-select form-select-solid form-select-lg"
+                  formControlName="weightUnit">
+                  <option [ngValue]="null">Select Weight Unit</option>
+                  <option *ngFor="let weightUnit of this.weightUnits" [ngValue]="weightUnit">
+                    {{weightUnit}}
+                  </option>
+                </select>
+              </div>
+              <div class="col-lg-4 fv-row">
+                <label class="col-form-label fw-bold fs-6">
+                  Distance Unit
+                </label>
+                <select
+                  class="form-select form-select-solid form-select-lg"
+                  formControlName="distanceUnit">
+                  <option [ngValue]="null">Select Distance Unit</option>
+                  <option *ngFor="let distanceUnit of this.distanceUnits" [ngValue]="distanceUnit">
+                    {{distanceUnit}}
+                  </option>
+                </select>
+              </div>
+              <div class="col-lg-4 fv-row">
+                <label class="col-form-label fw-bold fs-6">
+                  Temperature Unit
+                </label>
+                <select
+                  class="form-select form-select-solid form-select-lg"
+                  formControlName="temperatureUnit">
+                  <option [ngValue]="null">Select Temperature Unit</option>
+                  <option *ngFor="let temperatureUnit of this.temperatureUnits" [ngValue]="temperatureUnit">
+                    {{temperatureUnit}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer d-flex justify-content-end py-6 px-9">
+      </div>
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary">
+      <ng-container *ngIf="!isLoading">Save Changes</ng-container>
+      <ng-container *ngIf="isLoading">
+                  <span class="indicator-progress" [style.display]="'block'">
+                    Please wait...{{ " " }}
+                    <span
+                      class="spinner-border spinner-border-sm align-middle ms-2"
+                    ></span>
+                  </span>
+      </ng-container>
+    </button>
+  </form>
+</div>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="cog"
+>
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+
+<ng-template
+  #formError
+  let-control="control"
+  let-message="message"
+  let-validation="validation"
+  let-isTouched="isTouched"
+>
+  <ng-container
+    *ngIf="control.hasError(validation)"
+  >
+    <div *ngIf="isTouched && control.touched" class="fv-plugins-message-container text-danger">
+      <span role="alert">
+        {{ message }}
+      </span>
+    </div>
+
+    <div *ngIf="!isTouched" class="fv-plugins-message-container text-danger">
+      <span role="alert">
+        {{ message }}
+      </span>
+    </div>
+  </ng-container>
+</ng-template>

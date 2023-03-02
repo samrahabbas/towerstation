@@ -1,0 +1,100 @@
+<p-toast></p-toast>
+<div class="card mb-5 mb-xl-10">
+  <div
+    class="card-header border-0 cursor-pointer"
+    role="button"
+    aria-expanded="true">
+    <div class="card-title m-0">
+      <h3 class="fw-bolder m-0">Add New Role</h3>
+    </div>
+  </div>
+  <div class="card-body border-top p-9">
+    <form [formGroup]="roleFormGroup" id="kt_modal_add_role_form"
+          class="form fv-plugins-bootstrap5 fv-plugins-framework">
+      <div class="d-flex flex-column me-n7 pe-7">
+        <div class="fv-row mb-10 fv-plugins-icon-container">
+          <label class="fs-5 fw-bolder form-label mb-2">
+            <span class="required">Role name</span>
+          </label>
+          <input formControlName="roleName" class="form-control form-control-solid"
+                 placeholder="Enter a role name" name="role_name">
+          <div class="fv-plugins-message-container invalid-feedback">
+          </div>
+        </div>
+        <div class="fv-row">
+          <label class="fs-5 fw-bolder form-label mb-2">Role Permissions</label>
+
+          <div class="table-responsive">
+            <table class="table align-middle table-row-dashed fs-6 gy-5">
+              <tbody class="text-gray-600 fw-bold">
+              <tr>
+                <!-- <td class="text-gray-800">
+                  Administrator Access
+                  <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title=""
+                     data-bs-original-title="Allows a full access to the system"
+                     aria-label="Allows a full access to the system">
+                  </i>
+                </td> -->
+                <!-- <td>
+                  <label class="form-check form-check-custom form-check-solid me-9" >
+                    <input class="form-check-input" id="selectAll" type="checkbox" name="full-access"
+                    (change)="onFullAccessChange($event.target)">
+                    <span class="form-check-label" for="kt_roles_select_all">Select all</span>
+                  </label>
+                </td> -->
+              </tr>
+              <tr formArrayName="permissions"
+              *ngFor="let permission of permissionsFormArray?.controls; let i = index">
+            <td class="text-gray-800">{{permission.value.moduleName}}</td>
+            <td>
+              <div class="d-flex">
+                <label class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20"
+                       *ngFor="let privilege of this.getPrivilegesFormArray(permission)?.controls; let j = index"
+                       formArray="privileges">
+                  <input class="form-check-input" type="checkbox"
+                         [formControl]="getIsSelectedPrivilegeControl(privilege)">
+                  <span class="form-check-label">{{privilege.value.privilegeType | titlecase}}</span>
+                </label>
+              </div>
+            </td>
+          </tr>
+              <!-- <tr *ngFor="let privilege of privileges_array;">
+                <td class="text-gray-800">{{privilege.name}}</td>
+                <td>
+                  <div class="d-flex">
+                    <label class="form-check form-check-sm form-check-custom form-check-solid me-5 me-lg-20"
+                           *ngFor="let permission of permission_array"
+                           formArray="privileges">
+                      <input class="form-check-input" id="options" type="checkbox"
+                          value="{{permission.name | titlecase}}">
+                      <span class="form-check-label">{{permission.name | titlecase}}</span>
+                    </label>
+                  </div>
+                </td>
+              </tr> -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="pt-15">
+        <button type="submit" class="btn btn-primary" data-kt-roles-modal-action="submit" (click)="submitNewRole()">
+          <span class="indicator-label">Submit</span>
+          <span class="indicator-progress">Please wait...
+          <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+        </button>
+      </div>
+      <div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="cog"
+>
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>

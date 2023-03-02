@@ -1,0 +1,162 @@
+<div>
+  <form novalidate="" class="form" [formGroup]="form">
+    <div class="card mb-5 mb-xl-10">
+      <div
+        class="card-header border-0 cursor-pointer"
+        aria-expanded="true">
+        <div class="card-title m-0">
+          <h3 class="fw-bolder m-0">Add New User</h3>
+        </div>
+        <div role="button" class="card-title m-0" (click)="closeModal()">
+          <i class="fas fa-window-close fa-1x"></i>
+        </div>
+      </div>
+      <div class="collapse show">
+        <div class="card-body border-top p-9">
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Full Name
+                  </label>
+                  <input
+                    type="text" class="form-control form-control-solid form-control-lg"
+                    placeholder="Full Name"
+                    formControlName="fullName">
+                </div>
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Email Address / Username
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control form-control-solid form-control-lg"
+                    placeholder="Email Address / Username"
+                    formControlName="username">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Contact Number
+                  </label>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <div class="">
+                        <ng-select class="custom" [items]="contactNumberCountryCodes"
+                                   [ngModelOptions]="{standalone: true}"
+                                   [(ngModel)]="contactNumberCountryCodeSelected" [searchable]="false"
+                                   [clearable]="false">
+                          <ng-template ng-label-tmp let-item="item">
+                          <span
+                            [inlineSVG]="item.flag"
+                            class="svg-icon svg-icon-1">
+                          </span> &nbsp;
+                            <span class="fs-6">{{item.callingCode}}</span>
+                          </ng-template>
+                          <ng-template ng-option-tmp let-item="item">
+                          <span
+                            [inlineSVG]="item.flag"
+                            class="svg-icon svg-icon-1">
+                          </span> &nbsp;
+                            <span class="fs-6">{{item.callingCode}}</span>
+                          </ng-template>
+                        </ng-select>
+                      </div>
+                    </div>
+                    <input type="tel" formControlName="contactNumber" placeholder="Contact Number"
+                           mask="(000) 000-0000" [showMaskTyped]="true"
+                           class="form-control form-control-lg form-control-solid">
+                  </div>
+                </div>
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Password
+                  </label>
+                  <input
+                    [type]="showPassword ? 'text' : 'password'"
+                    class="form-control form-control-solid form-control-lg"
+                    placeholder="Password"
+                    formControlName="username">
+                  <span class="btn btn-icon btn-sm end-0 pb-14 pe-10 position-absolute translate-middle">
+											<i class="bi bi-eye-slash fs-2" [ngClass]="{
+                        'bi-eye': showPassword,
+                        'bi-eye-slash': !showPassword
+                      }" (click)="showPassword = !showPassword">
+                      </i>
+                  </span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <label class="col-form-label fw-bold fs-6">
+                    User Permission Groups
+                  </label>
+                  <ng-select
+                    [items]="this.userPermissions" formControlName="userPermissionGroups"
+                    [addTag]="false" [multiple]="true" class="custom-tag-select"
+                    [selectOnTab]="true" placeholder="Select permission groups">
+                  </ng-select>
+                  <span class="text-muted">
+                    Heads Up! All users must be a member of at least one permissions group.
+                  </span>
+                </div>
+                <div class="col-lg-6">
+                  <label class="col-form-label fw-bold fs-6">
+                    User Branches / Departments
+                  </label>
+                  <ng-select
+                    [items]="this.userBranches" formControlName="userBranches"
+                    [addTag]="false" [multiple]="true" class="custom-tag-select"
+                    [selectOnTab]="true" placeholder="Select Branches / Departments">
+                  </ng-select>
+                  <span class="text-muted">
+                    Heads Up! All users must be a member of Shared. You cannot remove users from this Branch / Department.
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mb-10 mt-5 bg-light-danger p-8 rounded">
+            <div class="text-danger">
+              <strong>
+                <i class="fas fa-exclamation-triangle text-danger"></i>Heads Up!
+              </strong>
+              <ul>
+                <li>
+                  When your <strong>Premium Plan Trial</strong> expires, if you have not yet enrolled in the <strong>Premium Plan</strong>, you are automatically enrolled into the <strong>Basic Plan</strong>. If you have more than 2 users at that time, your account will be limited as described in the <strong>Basic Plan</strong> below.
+                </li>
+                <li>
+                  As a subscriber to the <strong>Basic Plan</strong>, your account is limited to only allow 2 active users in the system. If you add more than two users, the first two that were added to the user list will be the only users that will be able to log into the system.
+                </li>
+                <li>
+                  As a subscriber to the <strong>Premium Plan</strong>, you have the ability to add as many users as you would like. At the end of each monthly billing cycle, your default payment method will be charged $79.00 for each user in your user list. Additionally any users added in the middle of a billing cycle will be charged at a prorated amount.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer py-6 px-9">
+          <div class="row">
+            <div class="col-lg-12">
+              <button
+                type="button"
+                class="btn btn-primary"> Save Changes
+                <!--          <ng-container *ngIf="!isLoading">Save Changes</ng-container>-->
+                <!--          <ng-container *ngIf="isLoading">-->
+                <!--            <span clas="indicator-progress" [style.display]="'block'">-->
+                <!--              Please wait...{{ " " }}-->
+                <!--              <span-->
+                <!--                class="spinner-border spinner-border-sm align-middle ms-2"-->
+                <!--              ></span>-->
+                <!--            </span>-->
+                <!--          </ng-container>-->
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

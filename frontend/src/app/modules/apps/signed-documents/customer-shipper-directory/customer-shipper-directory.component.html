@@ -1,0 +1,677 @@
+<p-toast></p-toast>
+<div class="card mb-5 mb-xl-8">
+  <!-- begin::Header -->
+  <div class="card-header border-0 pt-5">
+    <h3 class="card-title align-items-start flex-column">
+      <span class="card-label fw-bolder fs-3 mb-1">Signed Documents</span>
+    </h3>
+    <!--    <div class="card-toolbar">-->
+    <!--      &lt;!&ndash; begin::Menu &ndash;&gt;-->
+    <!--      <button-->
+    <!--        type="button"-->
+    <!--        class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary"-->
+    <!--        data-kt-menu-trigger="click"-->
+    <!--        data-kt-menu-placement="bottom-end"-->
+    <!--        data-kt-menu-flip="top-end"-->
+    <!--      >-->
+    <!--      <span-->
+    <!--        [inlineSVG]="'./assets/media/icons/duotune/general/gen024.svg'"-->
+    <!--        class="svg-icon svg-icon-2"-->
+    <!--      ></span>-->
+    <!--      </button>-->
+    <!--      &lt;!&ndash; begin::Menu 2 &ndash;&gt;-->
+    <!--      &lt;!&ndash;      <app-dropdown-menu2></app-dropdown-menu2>&ndash;&gt;-->
+    <!--      &lt;!&ndash; end::Menu 2 &ndash;&gt;-->
+    <!--      &lt;!&ndash; end::Menu &ndash;&gt;-->
+    <!--    </div>-->
+  </div>
+  <!-- end::Header -->
+  <!-- begin::Body -->
+  <div class="card-body py-3">
+    
+
+   
+
+    <!-- begin::Table container -->
+    <div class="table-responsive">
+      <!-- begin::Table -->
+      <table class="table align-middle gs-0 gy-4">
+        <!-- begin::Table head -->
+        <thead>
+        <tr class="fw-bolder text-muted bg-light">
+          <th class="ps-4 min-w-300px rounded-start">Signed By</th>
+          <th class="min-w-125px">Document</th>
+          <th class="min-w-125px">Date</th>
+<!--          <th class="min-w-200px text-end rounded-end pe-4">Actions</th>-->
+        </tr>
+        </thead>
+        <!-- end::Table head -->
+        <!-- begin::Table body -->
+        <tbody>
+        <tr *ngFor="let shipper of shippers let i = index">
+          
+          <td>
+            <div class="d-flex align-items-center">
+              <div class="symbol symbol-50px me-5">
+                <span class="symbol-label bg-light">
+                  <img
+                    src="./assets/media/svg/avatars/001-boy.svg"
+                    class="h-75 align-self-end"
+                    alt=""
+                  />
+                </span>
+              </div>
+              <div class="d-flex justify-content-start flex-column">
+                
+                <!-- <span 
+                  class="text-dark fw-bolder text-hover-primary mb-1 fs-6">
+                  {{shipper.signedBy ?? 'N/A'}}
+                </span> -->
+
+                <span *ngFor="let user of users let i = index">
+
+                  <td class="text-dark fw-bolder text-hover-primary mb-1 fs-6" *ngIf="shipper.signedBy == user.id">{{user.fullName}}</td>
+                  
+                  <!-- Signed -->
+                </span>
+
+                
+                <!--                <span class="text-muted fw-bold text-muted d-block fs-7">-->
+                <!--                  HTML, JS, ReactJS-->
+                <!--                </span>-->
+              </div>
+            </div>
+          </td>
+          <td>
+             <span 
+                  class="text-dark fw-bolder text-hover-primary mb-1 fs-6">
+            <a href="{{this.env.apiUrlForDownload}}{{shipper.file}}" target="_blank">Download</a>
+           </span>
+
+            <!--            <span class="text-muted fw-bold text-muted d-block fs-7">Pending</span>-->
+          </td>
+          <td>
+            <span *ngIf="shipper.state == ''"
+              class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">
+              N/A
+            </span>
+            <span  *ngIf="shipper.state != ''"
+              class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">
+              {{shipper.createdAt ?? 'N/A'}}
+            </span>
+            <!--            <span class="text-muted fw-bold text-muted d-block fs-7">Paid</span>-->
+          </td>
+          
+          <!--          <td>-->
+          <!--            <div class="rating">-->
+          <!--              <div class="rating-label me-2 checked">-->
+          <!--                <i class="bi bi-star-fill fs-5"></i>-->
+          <!--              </div>-->
+          <!--              <div class="rating-label me-2 checked">-->
+          <!--                <i class="bi bi-star-fill fs-5"></i>-->
+          <!--              </div>-->
+          <!--              <div class="rating-label me-2 checked">-->
+          <!--                <i class="bi bi-star-fill fs-5"></i>-->
+          <!--              </div>-->
+          <!--              <div class="rating-label me-2 checked">-->
+          <!--                <i class="bi bi-star-fill fs-5"></i>-->
+          <!--              </div>-->
+          <!--              <div class="rating-label me-2 checked">-->
+          <!--                <i class="bi bi-star-fill fs-5"></i>-->
+          <!--              </div>-->
+          <!--            </div>-->
+          <!--            <span class="text-muted fw-bold text-muted d-block fs-7 mt-1">-->
+          <!--              Best Rated-->
+          <!--            </span>-->
+          <!--          </td>-->
+<!--          <td class="text-end">-->
+<!--            <a-->
+<!--              href="#"-->
+<!--              class="-->
+<!--                btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm-->
+<!--                px-4-->
+<!--                me-2-->
+<!--              "-->
+<!--            >-->
+<!--              View-->
+<!--            </a>-->
+<!--            <a-->
+<!--              href="#"-->
+<!--              class="-->
+<!--                btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm-->
+<!--                px-4-->
+<!--              "-->
+<!--            >-->
+<!--              Edit-->
+<!--            </a>-->
+<!--          </td>-->
+        </tr>
+        <tr [ngbCollapse]="!isExpanded">
+          <td class=""></td>
+          <td class="text-center pe-5" colspan="5" style="background: #eaedef">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="row justify-content-center mb-2">
+                  <div class="col-lg-2 fv-row text-start">
+                    <span class="text-dark fw-bolder">
+                      Company Name
+                    </span>
+                  </div>
+                  <div class="col-lg-3 fv-row text-start">
+                    <span>
+                      <span class="col-form-label fw-bold fs-6">
+                        {{customerShipper.companyName}}
+                      </span>
+                    </span>
+                  </div>
+                </div>
+                <div class="row justify-content-center mb-2">
+                  <div class="col-lg-2 fv-row text-start">
+                    <span class="text-dark fw-bolder">
+                      Street Address
+                    </span>
+                  </div>
+                  <div class="col-lg-3 fv-row text-start">
+                    <span>
+                      <span class="col-form-label fw-bold fs-6">
+                        {{customerShipper.address}}
+
+                      </span>
+                    </span>
+                  </div>
+                </div>
+                <div class="row justify-content-center mb-2">
+                  <div class="col-lg-2 fv-row text-start">
+                    <span class="text-dark fw-bolder">
+                      City
+                    </span>
+                  </div>
+                  <div class="col-lg-3 fv-row text-start">
+                    <span>
+                      <span class="col-form-label fw-bold fs-6">
+                        {{customerShipper.city}}
+                      </span>
+                    </span>
+                  </div>
+                </div>
+                <div class="row justify-content-center mb-2">
+                  <div class="col-lg-2 fv-row text-start">
+                    <span class="text-dark fw-bolder">
+                      State
+                    </span>
+                  </div>
+                  <div class="col-lg-3 fv-row text-start">
+                    <span>
+                      <span class="col-form-label fw-bold fs-6">
+                        {{customerShipper.state}}
+                      </span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+<!--            <form class="form-horizontal" style="margin-top: 15px;">-->
+<!--              <div class="form-group"><label class="control-label col-sm-3">Company Name</label>-->
+<!--                <div class="col-sm-8" style="padding-top: 7.25px;"><a class="upgrade" href="/settings/features">Upgrade-->
+<!--                  now to view premium content</a></div>-->
+<!--              </div>-->
+<!--              <div class="form-group"><label class="control-label col-sm-3">Street Address</label>-->
+<!--                <div class="col-sm-8" style="padding-top: 7.25px;"><a class="upgrade" href="/settings/features">Upgrade-->
+<!--                  now to view premium content</a></div>-->
+<!--              </div>-->
+<!--              <div class="form-group"><label class="control-label col-sm-3">City</label>-->
+<!--                <div class="col-sm-8" style="padding-top: 7.25px;"><a class="upgrade" href="/settings/features">Upgrade-->
+<!--                  now to view premium content</a></div>-->
+<!--              </div>-->
+<!--              <div class="form-group"><label class="control-label col-sm-3">State</label>-->
+<!--                <div class="col-sm-8" style="padding-top: 7.25px;"><a class="upgrade" href="/settings/features">Upgrade-->
+<!--                  now to view premium content</a></div>-->
+<!--              </div>-->
+<!--              <div class="form-group"><label class="control-label col-sm-3">Zip</label>-->
+<!--                <div class="col-sm-8" style="padding-top: 7.25px;"><a class="upgrade" href="/settings/features">Upgrade-->
+<!--                  now to view premium content</a></div>-->
+<!--              </div>-->
+<!--              <div class="form-group"><label class="control-label col-sm-3">Business Phone</label>-->
+<!--                <div class="col-sm-8" style="padding-top: 7.25px;"><a class="upgrade" href="/settings/features">Upgrade-->
+<!--                  now to view premium content</a></div>-->
+<!--              </div>-->
+<!--              <div class="form-group"><label class="control-label col-sm-3">Docket Number</label>-->
+<!--                <div class="col-sm-8" style="padding-top: 7.25px;"><a class="upgrade" href="/settings/features">Upgrade-->
+<!--                  now to view premium content</a></div>-->
+<!--              </div>-->
+<!--              <div class="form-group"><label class="control-label col-sm-3">Estimated Credit Rating</label>-->
+<!--                <div class="col-sm-8" style="padding-top: 7.25px;"><a class="upgrade" href="/settings/features">Upgrade-->
+<!--                  now to view premium content</a></div>-->
+<!--              </div>-->
+<!--              <div class="form-group"><label class="control-label col-sm-3">Entity Type</label>-->
+<!--                <div class="col-sm-8" style="padding-top: 7.25px;"><a class="upgrade" href="/settings/features">Upgrade-->
+<!--                  now to view premium content</a></div>-->
+<!--              </div>-->
+<!--              <div class="form-group"><label class="control-label col-sm-3">Active</label>-->
+<!--                <div class="col-sm-8" style="padding-top: 7.25px;"><a class="upgrade" href="/settings/features">Upgrade-->
+<!--                  now to view premium content</a></div>-->
+<!--              </div>-->
+<!--              <div class="form-group"><label class="control-label col-sm-3">TIA Member</label>-->
+<!--                <div class="col-sm-8" style="padding-top: 7.25px;"><a class="upgrade" href="/settings/features">Upgrade-->
+<!--                  now to view premium content</a></div>-->
+<!--              </div>-->
+<!--            </form>-->
+          </td>
+        </tr>
+        <!--        <tr>-->
+        <!--          <td>-->
+        <!--            <div class="d-flex align-items-center">-->
+        <!--              <div class="symbol symbol-50px me-5">-->
+        <!--                <span class="symbol-label bg-light">-->
+        <!--                  <img-->
+        <!--                    src="./assets/media/svg/avatars/047-girl-25.svg"-->
+        <!--                    class="h-75 align-self-end"-->
+        <!--                    alt=""-->
+        <!--                  />-->
+        <!--                </span>-->
+        <!--              </div>-->
+        <!--              <div class="d-flex justify-content-start flex-column">-->
+        <!--                <a-->
+        <!--                  href="#"-->
+        <!--                  class="text-dark fw-bolder text-hover-primary mb-1 fs-6"-->
+        <!--                >-->
+        <!--                  Lebron Wayde-->
+        <!--                </a>-->
+        <!--                <span class="text-muted fw-bold text-muted d-block fs-7">-->
+        <!--                  PHP, Laravel, VueJS-->
+        <!--                </span>-->
+        <!--              </div>-->
+        <!--            </div>-->
+        <!--          </td>-->
+        <!--          <td>-->
+        <!--            <a-->
+        <!--              href="#"-->
+        <!--              class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"-->
+        <!--            >-->
+        <!--              $8,750,000-->
+        <!--            </a>-->
+        <!--            <span class="text-muted fw-bold text-muted d-block fs-7">Paid</span>-->
+        <!--          </td>-->
+        <!--          <td>-->
+        <!--            <a-->
+        <!--              href="#"-->
+        <!--              class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"-->
+        <!--            >-->
+        <!--              $7,400-->
+        <!--            </a>-->
+        <!--            <span class="text-muted fw-bold text-muted d-block fs-7">Paid</span>-->
+        <!--          </td>-->
+        <!--          <td>-->
+        <!--            <a-->
+        <!--              href="#"-->
+        <!--              class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"-->
+        <!--            >-->
+        <!--              Agoda-->
+        <!--            </a>-->
+        <!--            <span class="text-muted fw-bold text-muted d-block fs-7">-->
+        <!--              Houses &amp; Hotels-->
+        <!--            </span>-->
+        <!--          </td>-->
+        <!--          <td>-->
+        <!--            <div class="rating">-->
+        <!--              <div class="rating-label me-2 checked">-->
+        <!--                <i class="bi bi-star-fill fs-5"></i>-->
+        <!--              </div>-->
+        <!--              <div class="rating-label me-2 checked">-->
+        <!--                <i class="bi bi-star-fill fs-5"></i>-->
+        <!--              </div>-->
+        <!--              <div class="rating-label me-2 checked">-->
+        <!--                <i class="bi bi-star-fill fs-5"></i>-->
+        <!--              </div>-->
+        <!--              <div class="rating-label me-2 checked">-->
+        <!--                <i class="bi bi-star-fill fs-5"></i>-->
+        <!--              </div>-->
+        <!--              <div class="rating-label me-2">-->
+        <!--                <i class="bi bi-star-fill fs-5"></i>-->
+        <!--              </div>-->
+        <!--            </div>-->
+        <!--            <span class="text-muted fw-bold text-muted d-block fs-7 mt-1">-->
+        <!--              Above Avarage-->
+        <!--            </span>-->
+        <!--          </td>-->
+        <!--          <td class="text-end">-->
+        <!--            <a-->
+        <!--              href="#"-->
+        <!--              class="-->
+        <!--                btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm-->
+        <!--                px-4-->
+        <!--                me-2-->
+        <!--              "-->
+        <!--            >-->
+        <!--              View-->
+        <!--            </a>-->
+        <!--            <a-->
+        <!--              href="#"-->
+        <!--              class="-->
+        <!--                btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm-->
+        <!--                px-4-->
+        <!--              "-->
+        <!--            >-->
+        <!--              Edit-->
+        <!--            </a>-->
+        <!--          </td>-->
+        <!--        </tr>-->
+        <!--        <tr>-->
+        <!--          <td>-->
+        <!--            <div class="d-flex align-items-center">-->
+        <!--              <div class="symbol symbol-50px me-5">-->
+        <!--                <span class="symbol-label bg-light">-->
+        <!--                  <img-->
+        <!--                    src="./assets/media/svg/avatars/006-girl-3.svg"-->
+        <!--                    class="h-75 align-self-end"-->
+        <!--                    alt=""-->
+        <!--                  />-->
+        <!--                </span>-->
+        <!--              </div>-->
+        <!--              <div class="d-flex justify-content-start flex-column">-->
+        <!--                <a-->
+        <!--                  href="#"-->
+        <!--                  class="text-dark fw-bolder text-hover-primary mb-1 fs-6"-->
+        <!--                >-->
+        <!--                  Brad Simmons-->
+        <!--                </a>-->
+        <!--                <span class="text-muted fw-bold text-muted d-block fs-7">-->
+        <!--                  HTML, JS, ReactJS-->
+        <!--                </span>-->
+        <!--              </div>-->
+        <!--            </div>-->
+        <!--          </td>-->
+        <!--          <td>-->
+        <!--            <a-->
+        <!--              href="#"-->
+        <!--              class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"-->
+        <!--            >-->
+        <!--              $8,000,000-->
+        <!--            </a>-->
+        <!--            <span class="text-muted fw-bold text-muted d-block fs-7"-->
+        <!--            >In Proccess</span-->
+        <!--            >-->
+        <!--          </td>-->
+        <!--          <td>-->
+        <!--            <a-->
+        <!--              href="#"-->
+        <!--              class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"-->
+        <!--            >-->
+        <!--              $2,500-->
+        <!--            </a>-->
+        <!--            <span class="text-muted fw-bold text-muted d-block fs-7"-->
+        <!--            >Rejected</span-->
+        <!--            >-->
+        <!--          </td>-->
+        <!--          <td>-->
+        <!--            <a-->
+        <!--              href="#"-->
+        <!--              class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"-->
+        <!--            >-->
+        <!--              RoadGee-->
+        <!--            </a>-->
+        <!--            <span class="text-muted fw-bold text-muted d-block fs-7">Paid</span>-->
+        <!--          </td>-->
+        <!--          <td>-->
+        <!--            <div class="rating">-->
+        <!--              <div class="rating-label me-2 checked">-->
+        <!--                <i class="bi bi-star-fill fs-5"></i>-->
+        <!--              </div>-->
+        <!--              <div class="rating-label me-2 checked">-->
+        <!--                <i class="bi bi-star-fill fs-5"></i>-->
+        <!--              </div>-->
+        <!--              <div class="rating-label me-2 checked">-->
+        <!--                <i class="bi bi-star-fill fs-5"></i>-->
+        <!--              </div>-->
+        <!--              <div class="rating-label me-2 checked">-->
+        <!--                <i class="bi bi-star-fill fs-5"></i>-->
+        <!--              </div>-->
+        <!--              <div class="rating-label me-2 checked">-->
+        <!--                <i class="bi bi-star-fill fs-5"></i>-->
+        <!--              </div>-->
+        <!--            </div>-->
+        <!--            <span class="text-muted fw-bold text-muted d-block fs-7 mt-1">-->
+        <!--              Best Rated-->
+        <!--            </span>-->
+        <!--          </td>-->
+        <!--          <td class="text-end">-->
+        <!--            <a-->
+        <!--              href="#"-->
+        <!--              class="-->
+        <!--                btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm-->
+        <!--                px-4-->
+        <!--                me-2-->
+        <!--              "-->
+        <!--            >-->
+        <!--              View-->
+        <!--            </a>-->
+        <!--            <a-->
+        <!--              href="#"-->
+        <!--              class="-->
+        <!--                btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm-->
+        <!--                px-4-->
+        <!--              "-->
+        <!--            >-->
+        <!--              Edit-->
+        <!--            </a>-->
+        <!--          </td>-->
+        <!--        </tr>-->
+        <!--        <tr>-->
+        <!--          <td>-->
+        <!--            <div class="d-flex align-items-center">-->
+        <!--              <div class="symbol symbol-50px me-5">-->
+        <!--                <span class="symbol-label bg-light">-->
+        <!--                  <img-->
+        <!--                    src="./assets/media/svg/avatars/014-girl-7.svg"-->
+        <!--                    class="h-75 align-self-end"-->
+        <!--                    alt=""-->
+        <!--                  />-->
+        <!--                </span>-->
+        <!--              </div>-->
+        <!--              <div class="d-flex justify-content-start flex-column">-->
+        <!--                <a-->
+        <!--                  href="#"-->
+        <!--                  class="text-dark fw-bolder text-hover-primary mb-1 fs-6"-->
+        <!--                >-->
+        <!--                  Natali Trump-->
+        <!--                </a>-->
+        <!--                <span class="text-muted fw-bold text-muted d-block fs-7">-->
+        <!--                  HTML, JS, ReactJS-->
+        <!--                </span>-->
+        <!--              </div>-->
+        <!--            </div>-->
+        <!--          </td>-->
+        <!--          <td>-->
+        <!--            <a-->
+        <!--              href="#"-->
+        <!--              class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"-->
+        <!--            >-->
+        <!--              $700,000-->
+        <!--            </a>-->
+        <!--            <span class="text-muted fw-bold text-muted d-block fs-7"-->
+        <!--            >Pending</span-->
+        <!--            >-->
+        <!--          </td>-->
+        <!--          <td>-->
+        <!--            <a-->
+        <!--              href="#"-->
+        <!--              class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"-->
+        <!--            >-->
+        <!--              $7,760-->
+        <!--            </a>-->
+        <!--            <span class="text-muted fw-bold text-muted d-block fs-7">Paid</span>-->
+        <!--          </td>-->
+        <!--          <td>-->
+        <!--            <a-->
+        <!--              href="#"-->
+        <!--              class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"-->
+        <!--            >-->
+        <!--              The Hill-->
+        <!--            </a>-->
+        <!--            <span class="text-muted fw-bold text-muted d-block fs-7"-->
+        <!--            >Insurance</span-->
+        <!--            >-->
+        <!--          </td>-->
+        <!--          <td>-->
+        <!--            <div class="rating">-->
+        <!--              <div class="rating-label me-2 checked">-->
+        <!--                <i class="bi bi-star-fill fs-5"></i>-->
+        <!--              </div>-->
+        <!--              <div class="rating-label me-2 checked">-->
+        <!--                <i class="bi bi-star-fill fs-5"></i>-->
+        <!--              </div>-->
+        <!--              <div class="rating-label me-2 checked">-->
+        <!--                <i class="bi bi-star-fill fs-5"></i>-->
+        <!--              </div>-->
+        <!--              <div class="rating-label me-2">-->
+        <!--                <i class="bi bi-star-fill fs-5"></i>-->
+        <!--              </div>-->
+        <!--              <div class="rating-label me-2">-->
+        <!--                <i class="bi bi-star-fill fs-5"></i>-->
+        <!--              </div>-->
+        <!--            </div>-->
+        <!--            <span class="text-muted fw-bold text-muted d-block fs-7 mt-1"-->
+        <!--            >Avarage</span-->
+        <!--            >-->
+        <!--          </td>-->
+        <!--          <td class="text-end">-->
+        <!--            <a-->
+        <!--              href="#"-->
+        <!--              class="-->
+        <!--                btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm-->
+        <!--                px-4-->
+        <!--                me-2-->
+        <!--              "-->
+        <!--            >-->
+        <!--              View-->
+        <!--            </a>-->
+        <!--            <a-->
+        <!--              href="#"-->
+        <!--              class="-->
+        <!--                btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm-->
+        <!--                px-4-->
+        <!--              "-->
+        <!--            >-->
+        <!--              Edit-->
+        <!--            </a>-->
+        <!--          </td>-->
+        <!--        </tr>-->
+        <!--        <tr>-->
+        <!--          <td>-->
+        <!--            <div class="d-flex align-items-center">-->
+        <!--              <div class="symbol symbol-50px me-5">-->
+        <!--                <span class="symbol-label bg-light">-->
+        <!--                  <img-->
+        <!--                    src="./assets/media/svg/avatars/020-girl-11.svg"-->
+        <!--                    class="h-75 align-self-end"-->
+        <!--                    alt=""-->
+        <!--                  />-->
+        <!--                </span>-->
+        <!--              </div>-->
+        <!--              <div class="d-flex justify-content-start flex-column">-->
+        <!--                <a-->
+        <!--                  href="#"-->
+        <!--                  class="text-dark fw-bolder text-hover-primary mb-1 fs-6"-->
+        <!--                >-->
+        <!--                  Jessie Clarcson-->
+        <!--                </a>-->
+        <!--                <span class="text-muted fw-bold text-muted d-block fs-7">-->
+        <!--                  HTML, JS, ReactJS-->
+        <!--                </span>-->
+        <!--              </div>-->
+        <!--            </div>-->
+        <!--          </td>-->
+        <!--          <td>-->
+        <!--            <a-->
+        <!--              href="#"-->
+        <!--              class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"-->
+        <!--            >-->
+        <!--              $1,320,000-->
+        <!--            </a>-->
+        <!--            <span class="text-muted fw-bold text-muted d-block fs-7"-->
+        <!--            >Pending</span-->
+        <!--            >-->
+        <!--          </td>-->
+        <!--          <td>-->
+        <!--            <a-->
+        <!--              href="#"-->
+        <!--              class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"-->
+        <!--            >-->
+        <!--              $6,250-->
+        <!--            </a>-->
+        <!--            <span class="text-muted fw-bold text-muted d-block fs-7">Paid</span>-->
+        <!--          </td>-->
+        <!--          <td>-->
+        <!--            <a-->
+        <!--              href="#"-->
+        <!--              class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6"-->
+        <!--            >-->
+        <!--              Intertico-->
+        <!--            </a>-->
+        <!--            <span class="text-muted fw-bold text-muted d-block fs-7">-->
+        <!--              Web, UI/UX Design-->
+        <!--            </span>-->
+        <!--          </td>-->
+        <!--          <td>-->
+        <!--            <div class="rating">-->
+        <!--              <div class="rating-label me-2 checked">-->
+        <!--                <i class="bi bi-star-fill fs-5"></i>-->
+        <!--              </div>-->
+        <!--              <div class="rating-label me-2 checked">-->
+        <!--                <i class="bi bi-star-fill fs-5"></i>-->
+        <!--              </div>-->
+        <!--              <div class="rating-label me-2 checked">-->
+        <!--                <i class="bi bi-star-fill fs-5"></i>-->
+        <!--              </div>-->
+        <!--              <div class="rating-label me-2 checked">-->
+        <!--                <i class="bi bi-star-fill fs-5"></i>-->
+        <!--              </div>-->
+        <!--              <div class="rating-label me-2 checked">-->
+        <!--                <i class="bi bi-star-fill fs-5"></i>-->
+        <!--              </div>-->
+        <!--            </div>-->
+        <!--            <span class="text-muted fw-bold text-muted d-block fs-7 mt-1">-->
+        <!--              Best Rated-->
+        <!--            </span>-->
+        <!--          </td>-->
+        <!--          <td class="text-end">-->
+        <!--            <a-->
+        <!--              href="#"-->
+        <!--              class="-->
+        <!--                btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm-->
+        <!--                px-4-->
+        <!--                me-2-->
+        <!--              "-->
+        <!--            >-->
+        <!--              View-->
+        <!--            </a>-->
+        <!--            <a-->
+        <!--              href="#"-->
+        <!--              class="-->
+        <!--                btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm-->
+        <!--                px-4-->
+        <!--              "-->
+        <!--            >-->
+        <!--              Edit-->
+        <!--            </a>-->
+        <!--          </td>-->
+        <!--        </tr>-->
+        </tbody>
+        <!-- end::Table body -->
+      </table>
+      <!-- end::Table -->
+    </div>
+    <!-- end::Table container -->
+  </div>
+  <!-- begin::Body -->
+
+</div>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="cog"
+>
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>

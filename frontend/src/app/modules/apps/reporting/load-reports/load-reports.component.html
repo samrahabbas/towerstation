@@ -1,0 +1,446 @@
+<div>
+  <form novalidate="" class="form" [formGroup]="form">
+    <div class="card mb-5 mb-xl-10">
+      <div
+        class="card-header border-0"
+        aria-expanded="true">
+        <div class="card-title m-0">
+          <h3 class="fw-bolder m-0">Load Reporting</h3>
+        </div>
+      </div>
+      <div class="collapse show">
+        <div class="card-body border-top p-9">
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row mb-6">
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Saved Reports
+                  </label>
+                  <select
+                    class="form-select form-select-solid form-select-lg"
+                    formControlName="savedReports">
+                    <option [ngValue]="null">Choose a Saved Report</option>
+                    <option *ngFor="let report of this.savedReports" [ngValue]="report">
+                      {{report}}
+                    </option>
+                  </select>
+                </div>
+                <div class="col-lg-3 fv-row">
+                  <button class="btn btn-success mt-13">
+                    <i class="fas fa-save"></i>
+                    <span>Save Report</span>
+                  </button>
+                </div>
+              </div>
+              <div class="row mb-6">
+                <div class="col-lg-4">
+                  <label class="col-form-label fw-bold fs-6">
+                    Search Terms
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="searchTerms"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Search Terms">
+                </div>
+                <div class="col-lg-4">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Origin
+                  </label>
+                  <ng-select
+                    [items]="this.origins" formControlName="originState"
+                    class="custom-tag-select" bindLabel="text" bindValue="value"
+                    placeholder="Select Origin">
+                  </ng-select>
+                </div>
+                <div class="col-lg-4">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Destination
+                  </label>
+                  <ng-select
+                    [items]="this.destinations" formControlName="destinationState"
+                    class="custom-tag-select" bindLabel="text" bindValue="value"
+                    placeholder="Select Destination">
+                  </ng-select>
+                </div>
+              </div>
+              <div class="row mb-6">
+                <div class="col-lg-6">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Date Range
+                  </label>
+                  <input mwlFlatpickr type="text" formControlName="dateRange"
+                         placeholder="Date Range" mode="range"
+                         [altInput]="true" [convertModelValue]="true"
+                         class="form-control form-control-lg form-control-solid" />
+                </div>
+                <div class="col-lg-6">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Search By
+                  </label>
+                  <ng-select
+                    [items]="this.searchByFilters" formControlName="searchBy"
+                    class="custom-tag-select" bindLabel="text" bindValue="value"
+                    placeholder="Select search by filters">
+                  </ng-select>
+                </div>
+              </div>
+              <div class="row mb-6">
+                <div class="col-lg-6">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Load Entities
+                  </label>
+                  <ng-select
+                    [items]="this.loadEntities" formControlName="loadEntities"
+                    class="custom-tag-select" [multiple]="true" [selectOnTab]="true"
+                    bindLabel="text" bindValue="value"
+                    placeholder="Select load entities">
+                  </ng-select>
+                </div>
+                <div class="col-lg-6">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Branches
+                  </label>
+                  <ng-select
+                    [items]="this.branches" formControlName="branches"
+                    class="custom-tag-select" [multiple]="true" [selectOnTab]="true"
+                    bindLabel="text" bindValue="value"
+                    placeholder="Select branches">
+                  </ng-select>
+                </div>
+              </div>
+              <div class="row mb-6">
+                <div class="col-lg-4">
+                  <label class="col-form-label required fw-bold fs-6">
+                    User Assignments
+                  </label>
+                  <ng-select
+                    [items]="this.users" formControlName="userAssignments"
+                    class="custom-tag-select" [multiple]="true" [selectOnTab]="true"
+                    bindLabel="text" bindValue="value"
+                    placeholder="Select users">
+                  </ng-select>
+                </div>
+                <div class="col-lg-4">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Load Status
+                  </label>
+                  <ng-select
+                    [items]="this.loadStatuses" formControlName="loadStatuses"
+                    class="custom-tag-select" [multiple]="true" [selectOnTab]="true"
+                    bindLabel="text" bindValue="value"
+                    placeholder="Select load statuses">
+                  </ng-select>
+                </div>
+                <div class="col-lg-4 mt-14">
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <div class="d-flex align-items-center mt-3">
+                        <label class="form-check form-check-inline form-check-solid me-5">
+                          <input type="checkbox" formControlName="isLive"
+                                 class="form-check-input">
+                          Live
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="d-flex align-items-center mt-3">
+                        <label class="form-check form-check-inline form-check-solid me-5">
+                          <input type="checkbox" formControlName="isCancelled"
+                                 class="form-check-input">
+                          Cancelled
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="d-flex align-items-center mt-3">
+                        <label class="form-check form-check-inline form-check-solid me-5">
+                          <input type="checkbox" formControlName="isArchived"
+                                 class="form-check-input">
+                          Archived
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-6">
+                <div class="col-lg-12">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Column Layout
+                  </label>
+                  <ng-select
+                    [items]="this.columnLayouts" formControlName="columnLayout"
+                    class="custom-tag-select" placeholder="Select column layout">
+                  </ng-select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer py-6 px-9">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="row">
+                <div class="col-lg-5">
+                  <button class="btn btn-info">
+                    <span class="btn-icon">
+                      <i class="far fa-file-excel"></i>
+                    </span>
+                    Export to Excel
+                  </button>
+                </div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-6">
+                  <button
+                    type="button"
+                    class="btn btn-primary">
+                    <i class="fas fa-search"></i> Search Loads / Preview Report
+                    <!--          <ng-container *ngIf="!isLoading">Save Changes</ng-container>-->
+                    <!--          <ng-container *ngIf="isLoading">-->
+                    <!--            <span clas="indicator-progress" [style.display]="'block'">-->
+                    <!--              Please wait...{{ " " }}-->
+                    <!--              <span-->
+                    <!--                class="spinner-border spinner-border-sm align-middle ms-2"-->
+                    <!--              ></span>-->
+                    <!--            </span>-->
+                    <!--          </ng-container>-->
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div class="card mb-5 mb-xl-10">
+    <div
+      class="card-header border-0"
+      aria-expanded="true">
+      <div class="card-title m-0">
+        <h3 class="fw-bolder m-0">Showing Report Summary for 0 Loads</h3>
+      </div>
+    </div>
+    <div class="collapse show">
+      <div class="card-body border-top p-4">
+        <div class="row mb-6">
+          <div class="col-lg-4">
+            <div class="card py-4">
+              <div class="card-body bg-gray-200">
+                <div class="d-flex justify-content-between mb-2">
+                  <span class="fw-bold">
+                    Total Revenue
+                  </span>
+                  <span>
+                    __
+                  </span>
+                </div>
+                <div class="d-flex justify-content-between mb-2">
+                  <span class="fw-bold">
+                    Average Revenue
+                  </span>
+                  <span>
+                    __
+                  </span>
+                </div>
+                <div class="d-flex justify-content-between mb-2">
+                  <span class="fw-bold">
+                    Average Revenue Per Mile
+                  </span>
+                  <span>
+                    __
+                  </span>
+                </div>
+                <div class="d-flex justify-content-between mb-2">
+                  <span class="fw-bold">
+                    Total Customer Miles
+                  </span>
+                  <span>
+                    __
+                  </span>
+                </div>
+                <div class="d-flex justify-content-between mb-2">
+                  <span class="fw-bold">
+                    Average Customer Miles
+                  </span>
+                  <span>
+                    __
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="card py-4">
+              <div class="card-body bg-gray-200">
+                <div class="d-flex justify-content-between mb-2">
+                  <span class="fw-bold">
+                    Total Expenses
+                  </span>
+                  <span>
+                    __
+                  </span>
+                </div>
+                <div class="d-flex justify-content-between mb-2">
+                  <span class="fw-bold">
+                    Average Expenses
+                  </span>
+                  <span>
+                    __
+                  </span>
+                </div>
+                <div class="d-flex justify-content-between mb-2">
+                  <span class="fw-bold">
+                    Average Cost Per Mile
+                  </span>
+                  <span>
+                    __
+                  </span>
+                </div>
+                <div class="d-flex justify-content-between mb-2">
+                  <span class="fw-bold">
+                    Total Carrier Miles
+                  </span>
+                  <span>
+                    __
+                  </span>
+                </div>
+                <div class="d-flex justify-content-between mb-2">
+                  <span class="fw-bold">
+                    Average Carrier Miles
+                  </span>
+                  <span>
+                    __
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="card py-4">
+              <div class="card-body bg-gray-200">
+                <div class="d-flex justify-content-between mb-2">
+                  <span class="fw-bold">
+                    Total Gross Profit
+                  </span>
+                  <span>
+                    __
+                  </span>
+                </div>
+                <div class="d-flex justify-content-between mb-2">
+                  <span class="fw-bold">
+                    Average Gross Profit
+                  </span>
+                  <span>
+                    __
+                  </span>
+                </div>
+                <div class="d-flex justify-content-between mb-2">
+                  <span class="fw-bold">
+                    Gross Margin
+                  </span>
+                  <span>
+                    __
+                  </span>
+                </div>
+                <div class="d-flex justify-content-between mb-2">
+                  <span class="fw-bold">
+                    Total Deadhead Miles
+                  </span>
+                  <span>
+                    __
+                  </span>
+                </div>
+                <div class="d-flex justify-content-between mb-2">
+                  <span class="fw-bold">
+                    Average Deadhead Miles
+                  </span>
+                  <span>
+                    __
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-5 mb-xl-8">
+<!--    <div class="card-header border-0 pt-5">-->
+<!--      <h3 class="card-title align-items-start flex-column">-->
+<!--        <span class="card-label fw-bolder fs-3 mb-1">Accounts Receivable</span>-->
+<!--      </h3>-->
+<!--    </div>-->
+    <div class="card-body py-3">
+<!--      <div class="row mb-4">-->
+<!--        <div class="col-lg-12">-->
+<!--          <div class="row">-->
+<!--            <div class="col-lg-6">-->
+<!--              <input-->
+<!--                type="text" [(ngModel)]="arSearchText"-->
+<!--                class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"-->
+<!--                placeholder="Search Accounts Receivable" />-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+      <p-table [value]="[]" dataKey="id" responsiveLayout="scroll">
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="loadID">
+              Load ID
+              <p-sortIcon field="loadID"></p-sortIcon>
+            </th>
+            <th pSortableColumn="pickups">
+              Pickups
+              <p-sortIcon field="pickups"></p-sortIcon>
+            </th>
+            <th pSortableColumn="deliveries">
+              Deliveries
+              <p-sortIcon field="deliveries"></p-sortIcon>
+            </th>
+            <th pSortableColumn="allStopsActions">
+              All Stops & Actions
+              <p-sortIcon field="allStopsActions"></p-sortIcon>
+            </th>
+            <th pSortableColumn="customer">
+              Customer
+              <p-sortIcon field="customer"></p-sortIcon>
+            </th>
+            <th pSortableColumn="carrier">
+              Carrier
+              <p-sortIcon field="carrier"></p-sortIcon>
+            </th>
+            <th pSortableColumn="drivers">
+              Drivers
+              <p-sortIcon field="drivers"></p-sortIcon>
+            </th>
+            <th pSortableColumn="powerUnit">
+              Power Unit
+              <p-sortIcon field="powerUnit"></p-sortIcon>
+            </th>
+            <th pSortableColumn="trailer">
+              Trailer
+              <p-sortIcon field="trailer"></p-sortIcon>
+            </th>
+            <!--          <th>Actions</th>-->
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item let-ri="rowIndex">
+          <tr>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="11" class="text-center">No data found</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>

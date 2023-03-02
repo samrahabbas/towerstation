@@ -1,0 +1,325 @@
+<p-toast></p-toast>
+<div>
+  <input hidden type="file" #imageUploadInput (change)="onFileChange($event.target)">
+  <form novalidate="" class="form" [formGroup]="contactForm">
+    <div class="card mb-5 mb-xl-10">
+      <div
+        class="card-header border-0 cursor-pointer"
+        role="button"
+        aria-expanded="true"
+      >
+        <div class="card-title m-0">
+          <h3 class="fw-bolder m-0">Edit Company Contact Info</h3>
+        </div>
+      </div>
+      <div class="collapse show">
+        <div class="card-body border-top p-9">
+          <div class="row mb-6">
+            <div class="col-lg-8">
+              <div class="row mb-6">
+                <div class="col-lg-12">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Name of Organization
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="name"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Name of Organization" />
+                </div>
+                <span class="text-muted">
+              Enter the name of your company or organization so we can customize your load documents.
+            </span>
+              </div>
+              <div class="row mb-6">
+                <div class="col-lg-12">
+                  <div class="row">
+                    <div class="col-lg-6 fv-row">
+                      <label class="col-form-label required fw-bold fs-6">
+                        Street 1
+                      </label>
+                      <input
+                        type="text"
+                        formControlName="street1"
+                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                        placeholder="Street 1" />
+                    </div>
+                    <div class="col-lg-6 fv-row">
+                      <label class="col-form-label fw-bold fs-6">
+                        Street 2
+                      </label>
+                      <input
+                        type="text"
+                        formControlName="street2"
+                        class="form-control form-control-lg form-control-solid"
+                        placeholder="Street 2" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-6">
+                <div class="col-lg-12">
+                  <div class="row">
+                    <div class="col-lg-4 fv-row">
+                      <label class="col-form-label required fw-bold fs-6">
+                        Zip Code
+                      </label>
+                      <input
+                        type="text"
+                        formControlName="zipCode"
+                        mask="99999"
+                        class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                        placeholder="Zip Code" />
+                    </div>
+                    <div class="col-lg-4 fv-row">
+                      <label class="col-form-label required fw-bold fs-6">
+                        State
+                      </label>
+                      <select
+                        class="form-select form-select-solid form-select-lg"
+                        formControlName="state">
+                        <option [ngValue]="null">Select State</option>
+                        <option *ngFor="let state of states" [ngValue]="state.stateName">
+                          {{state.stateName}}
+                        </option>
+                      </select>
+                      <ng-container
+                        [ngTemplateOutlet]="formError"
+                        [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'Enter Zip Code First',
+                  control: f.zipCode
+                  }">
+                      </ng-container>
+                      <ng-container
+                        [ngTemplateOutlet]="formError"
+                        [ngTemplateOutletContext]="{
+                  validation: 'zipCodeNotFound',
+                  message: 'Zip Code not found',
+                  control: f.zipCode
+                  }">
+                      </ng-container>
+                    </div>
+                    <div class="col-lg-4 fv-row">
+                      <label class="col-form-label required fw-bold fs-6">
+                        City
+                      </label>
+                      <select
+                        class="form-select form-select-solid form-select-lg"
+                        formControlName="city">
+                        <option [ngValue]="null">Select City</option>
+                        <option *ngFor="let city of this.cities" [ngValue]="city.placeName">
+                          {{city.placeName}}
+                        </option>
+                      </select>
+                      <ng-container
+                        [ngTemplateOutlet]="formError"
+                        [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'Enter Zip Code First',
+                  control: f.zipCode
+                  }">
+                      </ng-container>
+                      <ng-container
+                        [ngTemplateOutlet]="formError"
+                        [ngTemplateOutletContext]="{
+                  validation: 'zipCodeNotFound',
+                  message: 'Zip Code not found',
+                  control: f.zipCode
+                  }">
+                      </ng-container>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-6">
+                <div class="col-lg-12">
+                  <div class="row">
+                    <div class="col-lg-6 fv-row">
+                      <label class="col-form-label required fw-bold fs-6">
+                        Telephone
+                      </label>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <div class="">
+                            <ng-select class="custom" [items]="telephoneCountryCodes" [ngModelOptions]="{standalone: true}"
+                                       appendTo="body"
+                                       [(ngModel)]="telephoneCountryCodeSelected" [searchable]="false" [clearable]="false">
+                              <ng-template ng-label-tmp let-item="item">
+                          <span
+                            [inlineSVG]="item.flag"
+                            class="svg-icon svg-icon-1">
+                          </span> &nbsp;
+                                <span class="fs-6">{{item.callingCode}}</span>
+                              </ng-template>
+                              <ng-template ng-option-tmp let-item="item">
+                          <span
+                            [inlineSVG]="item.flag"
+                            class="svg-icon svg-icon-1">
+                          </span> &nbsp;
+                                <span class="fs-6">{{item.callingCode}}</span>
+                              </ng-template>
+                            </ng-select>
+                          </div>
+                        </div>
+                        <input type="tel" formControlName="telephone" placeholder="Telephone"
+                               mask="(000) 000-0000" [showMaskTyped]="true" [dropSpecialCharacters]="false"
+                               class="form-control form-control-lg form-control-solid">
+                      </div>
+                    </div>
+                    <div class="col-lg-6 fv-row">
+                      <label class="col-form-label fw-bold fs-6">
+                        Fax
+                      </label>
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <div class="">
+                            <ng-select class="custom" [items]="faxCountryCodes" [ngModelOptions]="{standalone: true}"
+                                       appendTo="body"
+                                       [(ngModel)]="faxCountryCodeSelected" [searchable]="false" [clearable]="false">
+                              <ng-template ng-label-tmp let-item="item">
+                          <span
+                            [inlineSVG]="item.flag"
+                            class="svg-icon svg-icon-1">
+                          </span> &nbsp;
+                                <span class="fs-6">{{item.callingCode}}</span>
+                              </ng-template>
+                              <ng-template ng-option-tmp let-item="item">
+                          <span
+                            [inlineSVG]="item.flag"
+                            class="svg-icon svg-icon-1">
+                          </span> &nbsp;
+                                <span class="fs-6">{{item.callingCode}}</span>
+                              </ng-template>
+                            </ng-select>
+                          </div>
+                        </div>
+                        <input type="tel" formControlName="fax" placeholder="Fax"
+                               mask="(000) 000-0000" [showMaskTyped]="true" [dropSpecialCharacters]="false"
+                               class="form-control form-control-lg form-control-solid">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <img [src]="this.f?.logo?.value"  alt="avatar" class="img-fluid mb-4" custom-fallback>
+              <button class="btn w-100 d-block btn-primary" (click)="imageUploadInput.click()">
+                Upload your logo
+              </button>
+              <br>
+              <span class="text-muted">
+                Upload your company logo to customize TowerStation for your users and to include your logo on outgoing documents.
+              </span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-4 fv-row">
+              <label class="col-form-label fw-bold fs-6">
+                MC/FF/MX Number
+              </label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <div class="">
+                    <ng-select class="custom" [items]="operatingAuthorityNumberTypes"
+                               [ngModelOptions]="{standalone: true}" appendTo="body"
+                               [(ngModel)]="selectedOperatingAuthorityNumberType" [searchable]="false"
+                               [clearable]="false">
+                    </ng-select>
+                  </div>
+                </div>
+                <input type="text" formControlName="docketNumber" placeholder="MC/FF/MX Number"
+                       class="form-control form-control-lg form-control-solid" mask="0*">
+                <span class="text-muted">
+                  If your organization is has an docket number, enter it above to include it on your outgoing documents.
+                </span>
+              </div>
+            </div>
+            <div class="col-lg-4 fv-row">
+              <label class="col-form-label fw-bold fs-6">
+                USDOT Number
+              </label>
+              <input type="text" formControlName="USDOTNumber" placeholder="USDOT Number"
+                     class="form-control form-control-lg form-control-solid" mask="0*">
+            </div>
+            <div class="col-lg-4 fv-row">
+              <label class="col-form-label fw-bold fs-6">
+                SCAC Code
+              </label>
+              <input type="text" formControlName="SCACCode" placeholder="SCAC Code"
+                     class="form-control form-control-lg form-control-solid" mask="0*">
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Freight Broker Features
+                  </label>
+                  <p-selectButton [options]="enabledDisabledOptions" formControlName="isFreightBrokerFeatures"
+                                  optionLabel="label" optionValue="value" styleClass="freight-broker-features-buttons">
+                  </p-selectButton>
+                  <span class="text-muted">
+                    <i class="fas fa-info-circle me-1"></i>If you use 3rd party carriers, brokers or freight forwarders, enable this feature to allow you to edit carriers and add them to loads.
+                  </span>
+                </div>
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Carrier Features
+                  </label>
+                  <p-selectButton [options]="enabledDisabledOptions" formControlName="isCarrierFeatures"
+                                  optionLabel="label" optionValue="value" styleClass="carrier-features-buttons">
+                  </p-selectButton>
+                  <span class="text-muted">
+                    <i class="fas fa-info-circle me-1"></i>If you use you own drivers, power units or trailers, enable this feature to allow you to edit your assets and add them to loads.
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button
+      type="button"
+      class="btn btn-primary"> Save Changes
+      <!--          <ng-container *ngIf="!isLoading">Save Changes</ng-container>-->
+      <!--          <ng-container *ngIf="isLoading">-->
+      <!--            <span clas="indicator-progress" [style.display]="'block'">-->
+      <!--              Please wait...{{ " " }}-->
+      <!--              <span-->
+      <!--                class="spinner-border spinner-border-sm align-middle ms-2"-->
+      <!--              ></span>-->
+      <!--            </span>-->
+      <!--          </ng-container>-->
+    </button>
+  </form>
+</div>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="cog"
+>
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+
+<ng-template
+  #formError
+  let-control="control"
+  let-message="message"
+  let-validation="validation"
+>
+  <ng-container
+    *ngIf="control.hasError(validation)"
+  >
+    <div class="fv-plugins-message-container">
+      <span role="alert">
+        {{ message }}
+      </span>
+    </div>
+  </ng-container>
+</ng-template>

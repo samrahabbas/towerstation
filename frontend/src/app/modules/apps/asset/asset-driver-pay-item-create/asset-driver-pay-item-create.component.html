@@ -1,0 +1,192 @@
+<div>
+  <form novalidate="" class="form" [formGroup]="payItemForm">
+    <div class="card mb-5 mb-xl-10">
+      <div
+        class="card-header border-0 cursor-pointer"
+        aria-expanded="true">
+        <div class="card-title m-0">
+          <h3 class="fw-bolder m-0">Add Pay Item</h3>
+        </div>
+        <div *ngIf="isModal" role="button" class="card-title m-0" (click)="closeModal()">
+          <i class="fas fa-window-close fa-1x" ></i>
+        </div>
+      </div>
+      <div class="collapse show">
+        <div class="card-body border-top p-9">
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Rate Basis
+                  </label>
+                  <select
+                  class="form-select form-select-solid form-select-lg"
+                  formControlName="rateBasis">
+                  <option [ngValue]="null">Select Rate</option>
+                  <option *ngFor="let rateBasisType of rateBasisTypes" [ngValue]="rateBasisType.name">
+                    {{rateBasisType.name}}
+                  </option>
+                </select>
+                  <!-- <ng-select
+                    [items]="this.rateBasisTypes" formControlName="rateBasis"
+                    class="custom-tag-select" bindLabel="name"
+                    placeholder="Select rate basis">
+                  </ng-select> -->
+                </div>
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Description
+                  </label>
+                  <textarea
+                    type="text" rows="3"
+                    formControlName="description"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Description"> </textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Driver
+                  </label>
+                <select [(ngModel)]="selectedDriver"
+                  class="form-select form-select-solid form-select-lg"
+                  formControlName="drivers">
+                  <option [ngValue]="null">Select Driver</option>
+                  <option *ngFor="let driver of drivers" [ngValue]="driver.id">
+                    {{driver.firstName}}  {{driver.lastName}}
+                  </option>
+                </select>
+                  <!-- <ng-select
+                    [items]="this.testDrivers" formControlName="drivers"
+                    class="custom-tag-select"
+                    placeholder="Select Driver">
+                  </ng-select> -->
+                </div>
+                <div class="col-lg-6 fv-row" *ngIf="this.f.rateBasis.value?.group === 'Rates based on load data' || this.f.rateBasis.value === null">
+                  <label class="col-form-label fw-bold fs-6">
+                    Adjustment
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="adjustment" mask="separator"
+                    [allowNegativeNumbers]="true" thousandSeparator=","
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Adjustment" />
+                </div>
+                <div class="col-lg-6 fv-row" *ngIf="this.f.rateBasis.value?.group === 'Percentage of load income items'">
+                  <label class="col-form-label fw-bold fs-6">
+                    Rate ( % )
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="rate" mask="separator.2" suffix="%" thousandSeparator="," separatorLimit="100"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Rate ( % )" />
+                </div>
+                <div class="col-lg-6 fv-row" *ngIf="this.f.rateBasis.value?.group === 'Rates based on time intervals' || this.f.rateBasis.value?.group === 'Misc.'">
+                  <label class="col-form-label fw-bold fs-6">
+                    Rate
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="rate" mask="separator" prefix="$" thousandSeparator=","
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Rate" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-6 fv-row" *ngIf="this.f.rateBasis.value?.group === 'Rates based on load data' || this.f.rateBasis.value === null">
+                  <label class="col-form-label fw-bold fs-6">
+                    Rate
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="rate" mask="separator" prefix="$" thousandSeparator=","
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Rate" />
+                </div>
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Notes
+                  </label>
+                  <textarea
+                    type="text" rows="3"
+                    formControlName="notes"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Notes"> </textarea>
+                </div>
+                <div class="col-lg-6 fv-row" *ngIf="this.f.rateBasis.value?.group === 'Rates based on time intervals'">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Date Range
+                  </label>
+                  <input mwlFlatpickr type="text" formControlName="dateRange"
+                         placeholder="Date Range"
+                         [altInput]="true" [convertModelValue]="true" [options]="flatPickrOptions"
+                         class="form-control form-control-lg form-control-solid" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-2 col-form-label required fw-bold fs-6">
+                  Auto-Add to Load
+                </div>
+                <div class="col-lg-1 fv-row fv-plugins-icon-center">
+                  <div class="d-flex align-items-center mt-3">
+                    <label class="form-check form-check-inline form-check-solid me-5">
+                      <input type="checkbox" formControlName="isAutoAddToLoad"
+                             class="form-check-input">
+                    </label>
+                  </div>
+                </div>
+                <div class="col-lg-9 col-form-label fw-bold fs-6">
+                  Automatically add item to load when driver is selected
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer py-6 px-9">
+          <div class="row">
+            <div class="col-lg-12">
+              <button
+                type="button"
+                class="btn btn-primary" (click)="addPayItems()">
+                         <ng-container *ngIf="!isLoading">Save Changes</ng-container>
+                         <ng-container *ngIf="isLoading">
+                           <span clas="indicator-progress" [style.display]="'block'">
+                             Please wait...{{ " " }}
+                             <span
+                               class="spinner-border spinner-border-sm align-middle ms-2"
+                             ></span>
+                           </span>
+                         </ng-container>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="cog"
+>
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>

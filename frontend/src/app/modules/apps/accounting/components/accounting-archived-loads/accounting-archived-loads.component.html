@@ -1,0 +1,128 @@
+<div class="card mb-5 mb-xl-8">
+  <div class="card-header border-0 pt-5">
+    <h3 class="card-title align-items-start flex-column">
+      <span class="card-label fw-bolder fs-3 mb-1">List of Archived Loads Sent to Accounting Management in All Branches</span>
+    </h3>
+  </div>
+  <div class="card-body py-3">
+    <div class="row mb-4">
+      <div class="col-lg-12">
+        <div class="row">
+          <div class="col-lg-6">
+            <input
+              type="text" [(ngModel)]="searchText"
+              class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+              placeholder="Search company name or load #" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <!-- begin::Table -->
+      <table class="table align-middle gs-0 gy-4">
+        <!-- begin::Table head -->
+        <thead>
+        <tr class="fw-bolder text-muted bg-light">
+          <th class="ps-4 min-w-125px rounded-start">Load #</th>
+          <th class="min-w-200px">Company Name(s)</th>
+          <th class="min-w-125px">Paid Status</th>
+          <th class="min-w-125px">Invoice(s) Total</th>
+          <th class="min-w-125px">Bill(s) Total</th>
+          <th class="min-w-120px">Gross P/L</th>
+          <!--            <th class="min-w-200px text-end rounded-end pe-4">Actions</th>-->
+        </tr>
+        </thead>
+        <!-- end::Table head -->
+        <!-- begin::Table body -->
+        <tbody>
+        <tr>
+          <td>
+            <div class="d-flex align-items-center ps-4">
+              <div class="d-flex justify-content-start flex-column me-5">
+                <a class="text-dark fw-bolder text-hover-primary mb-1 fs-6">
+                  Load #
+                </a>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="d-flex align-items-center">
+              <div class="d-flex justify-content-start flex-column">
+                <a class="text-dark fw-bolder text-hover-primary mb-1 fs-6">
+                  Company Name
+                </a>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="d-flex align-items-center">
+              <div class="d-flex justify-content-start flex-column">
+                <a class="text-dark fw-bolder text-hover-primary mb-1 fs-6">
+                  Paid
+                </a>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="d-flex align-items-center">
+              <div class="d-flex justify-content-start flex-column">
+                <a class="text-dark fw-bolder text-hover-primary mb-1 fs-6">
+                  10
+                </a>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="d-flex align-items-center">
+              <div class="d-flex justify-content-start flex-column">
+                <a class="text-dark fw-bolder text-hover-primary mb-1 fs-6">
+                  10
+                </a>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="d-flex align-items-center">
+              <div class="d-flex justify-content-start flex-column">
+                <a class="text-dark fw-bolder text-hover-primary mb-1 fs-6">
+                  10
+                </a>
+              </div>
+            </div>
+          </td>
+          <!--            <td class="text-end">-->
+          <!--              &lt;!&ndash;            <a&ndash;&gt;-->
+          <!--              &lt;!&ndash;              href="#"&ndash;&gt;-->
+          <!--              &lt;!&ndash;              class="&ndash;&gt;-->
+          <!--              &lt;!&ndash;                btn btn-icon btn-bg-light btn-active-color-primary btn-sm&ndash;&gt;-->
+          <!--              &lt;!&ndash;                me-1&ndash;&gt;-->
+          <!--              &lt;!&ndash;              "&ndash;&gt;-->
+          <!--              &lt;!&ndash;            >&ndash;&gt;-->
+          <!--              &lt;!&ndash;              <span&ndash;&gt;-->
+          <!--              &lt;!&ndash;                [inlineSVG]="'./assets/media/icons/duotune/general/gen019.svg'"&ndash;&gt;-->
+          <!--              &lt;!&ndash;                class="svg-icon svg-icon-3"&ndash;&gt;-->
+          <!--              &lt;!&ndash;              ></span>&ndash;&gt;-->
+          <!--              &lt;!&ndash;            </a>&ndash;&gt;-->
+          <!--              <a class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"-->
+          <!--                 (click)="editCustomer()" ngbTooltip="Edit">-->
+          <!--              <span-->
+          <!--                [inlineSVG]="'./assets/media/icons/duotune/art/art005.svg'"-->
+          <!--                class="svg-icon svg-icon-3">-->
+          <!--              </span>-->
+          <!--              </a>-->
+          <!--              <a class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"-->
+          <!--                 (click)="deleteCustomer()" ngbTooltip="Delete">-->
+          <!--              <span-->
+          <!--                [inlineSVG]="'./assets/media/icons/duotune/general/gen027.svg'"-->
+          <!--                class="svg-icon svg-icon-3">-->
+          <!--              </span>-->
+          <!--              </a>-->
+          <!--            </td>-->
+        </tr>
+        </tbody>
+        <!-- end::Table body -->
+      </table>
+      <!-- end::Table -->
+    </div>
+  </div>
+</div>

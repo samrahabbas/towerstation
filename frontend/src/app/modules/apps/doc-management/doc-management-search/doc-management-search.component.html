@@ -1,0 +1,94 @@
+<div>
+  <div class="card mb-5 mb-xl-10" [formGroup]="searchForm">
+    <div
+      class="card-header border-0 cursor-pointer"
+      role="button"
+      aria-expanded="true">
+      <div class="card-title m-0">
+        <h3 class="fw-bolder m-0">Document Search</h3>
+      </div>
+    </div>
+    <div class="collapse show">
+      <div class="card-body border-top p-9">
+        <div class="row mb-6">
+          <div class="col-lg-6">
+            <label class="col-form-label fw-bold fs-6">
+              Attach This Document to Which Load(s) / Entities
+            </label>
+            <ng-select
+              [items]="this.attachedToItems" formControlName="attachedTo"
+              class="custom-tag-select" [multiple]="true" [clearable]="true"
+              placeholder="Select entities">
+            </ng-select>
+          </div>
+          <div class="col-lg-6">
+            <label class="col-form-label fw-bold fs-6">
+              Document Type(s)
+            </label>
+            <ng-select
+              [items]="this.docTypes" formControlName="documentTypes"
+              class="custom-tag-select" groupBy="group" [multiple]="true"
+              [clearable]="true" bindLabel="name"
+              placeholder="Select document types">
+            </ng-select>
+          </div>
+        </div>
+        <div class="row mb-6">
+          <div class="col-lg-6">
+            <label class="col-form-label required fw-bold fs-6">
+              Date Range
+            </label>
+            <input mwlFlatpickr type="text" formControlName="dateRange"
+                   placeholder="Date Range" mode="range"
+                   [altInput]="true" [convertModelValue]="true"
+                   class="form-control form-control-lg form-control-solid" />
+          </div>
+          <div class="col-lg-6">
+            <div class="d-flex align-items-center mt-17">
+              <label class="form-check form-check-inline form-check-solid me-5">
+                Upload Date
+                <input type="checkbox" formControlName="isUploadDate"
+                       class="form-check-input">
+              </label>
+              <label class="form-check form-check-inline form-check-solid me-5">
+                Modified Date
+                <input type="checkbox" formControlName="isModifiedDate"
+                       class="form-check-input">
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-6">
+          <div class="col-lg-12">
+            <label class="col-form-label required fw-bold fs-6">
+              Document Status
+            </label>
+            <br>
+            <label class="form-check form-check-inline form-check-solid me-5">
+              Processed
+              <input type="checkbox" formControlName="isDocumentProcessed"
+                     class="form-check-input">
+            </label>
+            <label class="form-check form-check-inline form-check-solid me-5">
+              Unprocessed
+              <input type="checkbox" formControlName="isDocumentUnProcessed"
+                     class="form-check-input">
+            </label>
+            <br>
+            <label class="form-check form-check-inline form-check-solid me-5 mt-5">
+              Search only for Company Documents
+              <input type="checkbox" formControlName="isSearchOnlyForCompanyDocs"
+                     class="form-check-input">
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer d-flex justify-content-end py-6 px-9">
+      <button class="btn btn-primary btn-lg" type="submit"
+              [disabled]="!searchForm.valid">
+        Search
+      </button>
+    </div>
+  </div>
+</div>

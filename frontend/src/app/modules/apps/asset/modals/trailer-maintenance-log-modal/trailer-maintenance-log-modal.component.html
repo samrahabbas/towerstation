@@ -1,0 +1,143 @@
+<div>
+  <form novalidate="" class="form" [formGroup]="maintenanceForm">
+    <div class="card mb-5 mb-xl-10">
+      <div
+        class="card-header border-0"
+        aria-expanded="true">
+        <div class="card-title m-0">
+          <h3 class="fw-bolder m-0">Maintenance Log</h3>
+        </div>
+        <div class="card-title m-0" role="button" (click)="closeModal()">
+          <i class="fas fa-window-close fa-1x" ></i>
+        </div>
+      </div>
+      <div class="collapse show">
+        <div class="card-body border-top p-9">
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Mileage
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="mileage" mask="0*"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Mileage" />
+                </div>
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Date
+                  </label>
+                  <input mwlFlatpickr type="text" formControlName="date"
+                         placeholder="Date"
+                         [altInput]="true" [convertModelValue]="true"
+                         class="form-control form-control-lg form-control-solid" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Maintenance Type
+                  </label>
+                  <select formControlName="maintenanceType" class="form-select form-select-solid form-select-lg">
+                    <option [ngValue]="null">Select Maintenance Type</option>
+                    <option *ngFor="let maintenanceType of maintenanceTypes" [ngValue]="maintenanceType">
+                      {{ maintenanceType }}
+                    </option>
+                  </select>
+                </div>
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Maintenance Performed
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="maintenancePerformed"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Maintenance Performed" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Performed By
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="performedBy"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Performed By" />
+                </div>
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Location
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="location"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Location" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Bill To
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="billTo"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Bill To" />
+                </div>
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Amount
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="amount" mask="separator" prefix="$" thousandSeparator=","
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Amount" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer py-6 px-9">
+          <div class="row">
+            <div class="col-lg-12">
+              <button
+                type="submit"
+                class="btn btn-primary" (click)="addTrailerLog()">
+                         <ng-container *ngIf="!isLoading">Save Changes</ng-container>
+                         <ng-container *ngIf="isLoading">
+                           <span clas="indicator-progress" [style.display]="'block'">
+                             Please wait...{{ " " }}
+                             <span
+                               class="spinner-border spinner-border-sm align-middle ms-2"
+                             ></span>
+                           </span>
+                         </ng-container>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

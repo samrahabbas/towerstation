@@ -1,0 +1,92 @@
+<div class="card mb-5 mb-xl-8">
+  <!-- begin::Header -->
+  <div class="card-header border-0 pt-5">
+    <h3 class="card-title align-items-start flex-column">
+      <span class="card-label fw-bolder fs-3 mb-1">Add / Edit Roles</span>
+      <span class="text-muted mt-1 fw-bold fs-7">Manage all roles and default commission rates, as well as disable/enable roles from this page.</span>
+    </h3>
+    <div class="card-toolbar">
+      <a href="#" class="btn btn-sm btn-light-primary" [routerLink]="['/apps/settings/add-role']">
+      <span
+        [inlineSVG]="'./assets/media/icons/duotune/arrows/arr075.svg'"
+        class="svg-icon svg-icon-3"
+      ></span>
+        New Role
+      </a>
+    </div>
+  </div>
+  <!-- end::Header -->
+  <!-- begin::Body -->
+  <div class="card-body py-3">
+    <!-- begin::Table container -->
+    <div class="table-responsive">
+      <!-- begin::Table -->
+      <table class="table align-middle gs-0 gy-4">
+        <!-- begin::Table head -->
+        <thead>
+        <tr class="fw-bolder text-muted bg-light">
+          <th class="ps-4 min-w-125px rounded-start">Role Title</th>
+          <th class="min-w-200px">Description</th>
+          <th class="min-w-125px">Rate Type</th>
+          <th class="min-w-125px">Rate Amount</th>
+          <th class="min-w-200px text-end rounded-end pe-4">Actions</th>
+        </tr>
+        </thead>
+        <!-- end::Table head -->
+        <!-- begin::Table body -->
+        <tbody>
+        <tr>
+          <td>
+            <span class="fw-bolder d-block mb-1 fs-6 ps-4">
+              <span class="d-block">Admin</span>
+              <span class="d-block text-muted">(Admin)</span>
+            </span>
+          </td>
+          <td>
+            <span class="fw-bolder d-block mb-1 fs-6">
+              <span class="d-block">Admin Description</span>
+            </span>
+          </td>
+          <td>
+            <span class="fw-bolder d-block mb-1 fs-6">
+              <span class="d-block">% of Gross Revenue</span>
+            </span>
+          </td>
+          <td>
+            <span class="fw-bolder d-block mb-1 fs-6">
+              <span class="d-block">10%</span>
+            </span>
+          </td>
+          <td class="text-end">
+            <div class="pe-4">
+              <a class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                 (click)="editRole()" ngbTooltip="Edit">
+              <span
+                [inlineSVG]="'./assets/media/icons/duotune/art/art005.svg'"
+                class="svg-icon svg-icon-3">
+              </span>
+              </a>
+              <a class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
+                 (click)="disableRole()" ngbTooltip="Disable">
+                <i class="fas fa-ban"></i>
+              </a>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+        <!-- end::Table body -->
+      </table>
+      <!-- end::Table -->
+    </div>
+    <!-- end::Table container -->
+  </div>
+  <!-- begin::Body -->
+</div>
+
+<swal #DisableRoleSwal
+      text="This cannot be undone!"
+      icon="question"
+      [showCancelButton]="true" [focusCancel]="true" (confirm)="confirmDisableRole()">
+
+</swal>
+

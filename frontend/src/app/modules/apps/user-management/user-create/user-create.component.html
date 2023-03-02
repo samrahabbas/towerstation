@@ -1,0 +1,167 @@
+<p-toast></p-toast>
+<div class="card mb-5 mb-xl-10">
+  <div
+    class="card-header border-0 cursor-pointer"
+    role="button"
+    aria-expanded="true">
+    <div class="card-title m-0">
+      <h3 class="fw-bolder m-0">Add User</h3>
+    </div>
+  </div>
+  <div class="card-body border-top p-9">
+    <form [formGroup]="userForm" id="kt_modal_add_user_form" class="form fv-plugins-bootstrap5 fv-plugins-framework">
+      <div class="d-flex flex-column me-n7 pe-7">
+        <!-- <div class="fv-row mb-7">
+          <label class="d-block fw-bold fs-6 mb-5">Avatar</label>
+          <div class="image-input image-input-outline" data-kt-image-input="true"
+               style="background-image: url('/assets/media/svg/avatars/001-boy.svg')">
+            <div *ngIf="this.isEditing" class="image-input-wrapper w-125px h-125px"
+                 style="background-image: url('/assets/media/avatars/150-5.jpg');">
+
+            </div>
+            <div *ngIf="!isEditing" class="image-input-wrapper w-125px h-125px">
+
+            </div>
+            <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                   data-kt-image-input-action="change" data-bs-toggle="tooltip" title=""
+                   data-bs-original-title="Change avatar">
+              <i class="bi bi-pencil-fill fs-7"></i>
+              <input type="file" name="avatar" accept=".png, .jpg, .jpeg">
+              <input type="hidden" name="avatar_remove">
+            </label>
+            <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                  data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title=""
+                  data-bs-original-title="Cancel avatar">
+																				<i class="bi bi-x fs-2"></i>
+																			</span>
+            <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                  data-kt-image-input-action="remove" data-bs-toggle="tooltip" title=""
+                  data-bs-original-title="Remove avatar">
+																				<i class="bi bi-x fs-2"></i>
+																			</span>
+          </div>
+          <div class="form-text">Allowed file types: png, jpg, jpeg.</div>
+        </div> -->
+        <div class="fv-row mb-7 fv-plugins-icon-container">
+          <label class="required fw-bold fs-6 mb-2">
+            Full Name
+          </label>
+          <input type="text" name="fullName"
+                 class="form-control form-control-solid mb-3 mb-lg-0"
+                 placeholder="Full name"
+                 formControlName="fullName">
+          <div class="fv-plugins-message-container invalid-feedback"></div>
+        </div>
+        <div class="fv-row mb-7 fv-plugins-icon-container">
+          <label class="required fw-bold fs-6 mb-2">Email</label>
+          <input type="email" name="email" class="form-control form-control-solid mb-3 mb-lg-0"
+                 placeholder="example@domain.com"
+                 formControlName="email">
+          <div class="fv-plugins-message-container invalid-feedback"></div>
+        </div>
+        <div class="fv-row mb-7 fv-plugins-icon-container">
+          <label class="required fw-bold fs-6 mb-2">Password</label>
+          <input type="text" name="password" class="form-control form-control-solid mb-3 mb-lg-0"
+                 placeholder="Password"
+                 formControlName="password">
+          <div class="fv-plugins-message-container invalid-feedback"></div>
+        </div>
+        <div class="mb-7">
+          <label class="required fw-bold fs-6 mb-5">Role</label>
+          <div class="d-flex fv-row mb-5" *ngFor="let role of roles">
+            <div class="form-check form-check-custom form-check-solid">
+              <input class="form-check-input me-3" name="userRole" type="radio" value="{{role.id}}"
+              formControlName="userRole" id="kt_modal_update_role_option_0">
+              <label class="form-check-label" for="kt_modal_update_role_option_0">
+                <div class="fw-bolder text-gray-800"> {{role.roleName}}</div>
+                <!-- <div class="text-gray-600">Best for business owners and company administrators</div> -->
+              </label>
+            </div>
+          </div>
+          <div class="separator separator-dashed my-5"></div>
+          <!-- <div class="d-flex fv-row">
+            <div class="form-check form-check-custom form-check-solid">
+              <input class="form-check-input me-3" name="user_role" type="radio" value="1"
+                     id="kt_modal_update_role_option_1">
+              <label class="form-check-label" for="kt_modal_update_role_option_1">
+                <div class="fw-bolder text-gray-800">Developer</div>
+                <div class="text-gray-600">Best for developers or people primarily using the API</div>
+              </label>
+            </div>
+          </div>
+          <div class="separator separator-dashed my-5"></div>
+          <div class="d-flex fv-row">
+            <div class="form-check form-check-custom form-check-solid">
+              <input class="form-check-input me-3" name="user_role" type="radio" value="2"
+                     id="kt_modal_update_role_option_2">
+              <label class="form-check-label" for="kt_modal_update_role_option_2">
+                <div class="fw-bolder text-gray-800">Analyst</div>
+                <div class="text-gray-600">Best for people who need full access to analytics data, but don't need to
+                  update business settings
+                </div>
+              </label>
+            </div>
+          </div>
+          <div class="separator separator-dashed my-5"></div>
+          <div class="d-flex fv-row">
+            <div class="form-check form-check-custom form-check-solid">
+              <input class="form-check-input me-3" name="user_role" type="radio" value="3"
+                     id="kt_modal_update_role_option_3">
+              <label class="form-check-label" for="kt_modal_update_role_option_3">
+                <div class="fw-bolder text-gray-800">Support</div>
+                <div class="text-gray-600">Best for employees who regularly refund payments and respond to disputes
+                </div>
+              </label>
+            </div>
+          </div>
+          <div class="separator separator-dashed my-5"></div>
+          <div class="d-flex fv-row">
+            <div class="form-check form-check-custom form-check-solid">
+              <input class="form-check-input me-3" name="user_role" type="radio" value="4"
+                     id="kt_modal_update_role_option_4">
+              <label class="form-check-label" for="kt_modal_update_role_option_4">
+                <div class="fw-bolder text-gray-800">Trial</div>
+                <div class="text-gray-600">Best for people who need to preview content data, but don't need to make any
+                  updates
+                </div>
+              </label>
+            </div>
+          </div> -->
+        </div>
+      </div>
+      <div class="pt-15">
+        <button
+        type="submit"
+        class="btn btn-primary"  (click)="createUser()">
+        <ng-container *ngIf="!isLoading">Save Changes</ng-container>
+        <ng-container *ngIf="isLoading">
+                    <span class="indicator-progress" [style.display]="'block'">
+                      Please wait...{{ " " }}
+                      <span
+                        class="spinner-border spinner-border-sm align-middle ms-2"
+                      ></span>
+                    </span>
+        </ng-container>
+      </button>
+        <!-- <button type="submit" class="btn btn-primary" data-kt-users-modal-action="submit"">
+          <span class="indicator-label">Submit</span>
+          <span class="indicator-progress">
+          Please wait...
+          <span class="spinner-border spinner-border-sm align-middle ms-2">
+          </span>
+        </span>
+        </button> -->
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="cog"
+>
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>

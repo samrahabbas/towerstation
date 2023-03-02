@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+@import "./assets/sass/style";
+
+// Replace above style with this SCSS file to enable dark mode styles
+//@import "./assets/sass/style.dark";
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap');
+@import "~primeicons/primeicons.css";
+@import "~primeng/resources/primeng.min.css";
+@import "~primeng/resources/themes/mdc-light-indigo/theme.css";
+@import "~@ng-select/ng-select/themes/default.theme.css";
+@import "~flatpickr/dist/flatpickr.min.css";
+@import '~quill/dist/quill.core.css';
+@import "~quill/dist/quill.snow.css";
+
+* {
+  font-family: Poppins, Helvetica, 'sans-serif';
+}
+
+html, body { height: 100%; }
+body { margin: 0; }

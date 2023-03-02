@@ -1,0 +1,138 @@
+<div>
+  <form novalidate="" class="form" [formGroup]="violationForm">
+    <div class="card mb-5 mb-xl-10">
+      <div
+        class="card-header border-0"
+        aria-expanded="true">
+        <div class="card-title m-0">
+          <h3 class="fw-bolder m-0">Violations Log</h3>
+        </div>
+        <div class="card-title m-0" role="button" (click)="closeModal()">
+          <i class="fas fa-window-close fa-1x" ></i>
+        </div>
+      </div>
+      <div class="collapse show">
+        <div class="card-body border-top p-9">
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Violation/Infraction Type
+                  </label>
+                  <select
+                    class="form-select form-select-solid form-select-lg"
+                    formControlName="violationType">
+                    <option [ngValue]="null">Select Violation Type</option>
+                    <option *ngFor="let violationType of this.violationTypes" [ngValue]="violationType">
+                      {{violationType}}
+                    </option>
+                  </select>
+                </div>
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Date
+                  </label>
+                  <!--                  <p-calendar formControlName="date" id="calendar" [showIcon]="true"-->
+                  <!--                              inputId="icon" styleClass="form-control form-control-lg form-control-solid">-->
+                  <!--                  </p-calendar>-->
+                  <input mwlFlatpickr type="text" formControlName="date"
+                         placeholder="Date"
+                         [altInput]="true" [convertModelValue]="true" [options]="flatPickrOptions"
+                         class="form-control form-control-lg form-control-solid" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Description
+                  </label>
+                  <textarea
+                    type="text" rows="3"
+                    formControlName="violationDescription"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Violation/Infraction Description"> </textarea>
+                </div>
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Authority
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="authority"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Authority" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Location
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="location"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Location" />
+                </div>
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Fine Amount
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="fineAmount"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Fine Amount" mask="separator.2" prefix="$" thousandSeparator="," />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-12 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Notes
+                  </label>
+                  <textarea
+                    type="text" rows="3"
+                    formControlName="notes"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Notes"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer py-6 px-9">
+          <div class="row">
+            <div class="col-lg-12">
+              <button
+                type="submit"
+                class="btn btn-primary" (click)="addViolationLog()">
+                         <ng-container *ngIf="!isLoading">Save Changes</ng-container>
+                         <ng-container *ngIf="isLoading">
+                           <span clas="indicator-progress" [style.display]="'block'">
+                             Please wait...{{ " " }}
+                             <span
+                               class="spinner-border spinner-border-sm align-middle ms-2"
+                             ></span>
+                           </span>
+                         </ng-container>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

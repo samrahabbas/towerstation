@@ -1,0 +1,188 @@
+<div class="card mb-5 mb-xl-8">
+  <div class="card-header border-0 pt-5">
+    <h3 class="card-title align-items-start flex-column">
+      <span class="card-label fw-bolder fs-3 mb-1">Commissions Management for All Branches</span>
+      <span class="text-muted mt-1 fw-bold fs-7">
+        View and manage unpaid commissions across all loads not cancelled.
+      </span>
+    </h3>
+  </div>
+  <!-- end::Header -->
+  <!-- begin::Body -->
+  <div class="card-body py-3">
+    <div class="row mb-4">
+      <div class="col-lg-12">
+        <div class="row">
+          <div class="col-lg-3">
+            <label class="col-form-label required fw-bold fs-6">
+              Role
+            </label>
+            <select
+              class="form-select form-select-solid form-select-lg"
+              [(ngModel)]="searchFilters.role">
+              <option *ngFor="let role of this.roles" [ngValue]="role.value">
+                {{role.text}}
+              </option>
+            </select>
+          </div>
+          <div class="col-lg-3">
+            <label class="col-form-label required fw-bold fs-6">
+              Users
+            </label>
+            <select
+              class="form-select form-select-solid form-select-lg"
+              [(ngModel)]="searchFilters.user">
+              <option *ngFor="let user of this.users" [ngValue]="user.value">
+                {{user.text}}
+              </option>
+            </select>
+          </div>
+          <div class="col-lg-3">
+            <label class="col-form-label required fw-bold fs-6">
+              Status
+            </label>
+            <select
+              class="form-select form-select-solid form-select-lg"
+              [(ngModel)]="searchFilters.status">
+              <option *ngFor="let status of this.statuses" [ngValue]="status.value">
+                {{status.text}}
+              </option>
+            </select>
+          </div>
+          <div class="col-lg-3">
+            <label class="col-form-label required fw-bold fs-6">
+              Invoice Status
+            </label>
+            <select
+              class="form-select form-select-solid form-select-lg"
+              [(ngModel)]="searchFilters.invoiceStatus">
+              <option *ngFor="let invoiceStatus of this.invoiceStatuses" [ngValue]="invoiceStatus.value">
+                {{invoiceStatus.text}}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- begin::Table container -->
+    <div class="table-responsive">
+      <!-- begin::Table -->
+      <table class="table align-middle gs-0 gy-4">
+        <!-- begin::Table head -->
+        <thead>
+        <tr class="fw-bolder text-muted bg-light">
+          <th class="ps-4 min-w-125px rounded-start">Load#</th>
+          <th class="min-w-200px">Paid Status</th>
+          <th class="min-w-125px">Payroll Date</th>
+          <th class="min-w-125px">User</th>
+          <th class="min-w-125px">Role</th>
+          <th class="min-w-120px">Rate Type</th>
+          <th class="min-w-125px">Rate Amount</th>
+          <!--            <th class="min-w-200px text-end rounded-end pe-4">Actions</th>-->
+        </tr>
+        </thead>
+        <!-- end::Table head -->
+        <!-- begin::Table body -->
+        <tbody>
+        <tr>
+          <td>
+            <div class="d-flex align-items-center ps-4">
+              <div class="d-flex justify-content-start flex-column me-5">
+                <a class="text-dark fw-bolder text-hover-primary mb-1 fs-6">
+                  Load #123
+                </a>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="d-flex align-items-center">
+              <div class="d-flex justify-content-start flex-column">
+                <a class="text-dark fw-bolder text-hover-primary mb-1 fs-6">
+                  Paid
+                </a>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="d-flex align-items-center">
+              <div class="d-flex justify-content-start flex-column">
+                <a class="text-dark fw-bolder text-hover-primary mb-1 fs-6">
+                  12/12/2019
+                </a>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="d-flex align-items-center">
+              <div class="d-flex justify-content-start flex-column">
+                <a class="text-dark fw-bolder text-hover-primary mb-1 fs-6">
+                  John Doe
+                </a>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="d-flex align-items-center">
+              <div class="d-flex justify-content-start flex-column">
+                <a class="text-dark fw-bolder text-hover-primary mb-1 fs-6">
+                  Admin
+                </a>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="d-flex align-items-center">
+              <div class="d-flex justify-content-start flex-column">
+                <a class="text-dark fw-bolder text-hover-primary mb-1 fs-6">
+                  Hourly
+                </a>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="d-flex align-items-center">
+              <div class="d-flex justify-content-start flex-column">
+                <a class="text-dark fw-bolder text-hover-primary mb-1 fs-6">
+                  $10.00
+                </a>
+              </div>
+            </div>
+          </td>
+          <!--            <td class="text-end">-->
+          <!--              &lt;!&ndash;            <a&ndash;&gt;-->
+          <!--              &lt;!&ndash;              href="#"&ndash;&gt;-->
+          <!--              &lt;!&ndash;              class="&ndash;&gt;-->
+          <!--              &lt;!&ndash;                btn btn-icon btn-bg-light btn-active-color-primary btn-sm&ndash;&gt;-->
+          <!--              &lt;!&ndash;                me-1&ndash;&gt;-->
+          <!--              &lt;!&ndash;              "&ndash;&gt;-->
+          <!--              &lt;!&ndash;            >&ndash;&gt;-->
+          <!--              &lt;!&ndash;              <span&ndash;&gt;-->
+          <!--              &lt;!&ndash;                [inlineSVG]="'./assets/media/icons/duotune/general/gen019.svg'"&ndash;&gt;-->
+          <!--              &lt;!&ndash;                class="svg-icon svg-icon-3"&ndash;&gt;-->
+          <!--              &lt;!&ndash;              ></span>&ndash;&gt;-->
+          <!--              &lt;!&ndash;            </a>&ndash;&gt;-->
+          <!--              <a class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"-->
+          <!--                 (click)="editCustomer()" ngbTooltip="Edit">-->
+          <!--              <span-->
+          <!--                [inlineSVG]="'./assets/media/icons/duotune/art/art005.svg'"-->
+          <!--                class="svg-icon svg-icon-3">-->
+          <!--              </span>-->
+          <!--              </a>-->
+          <!--              <a class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"-->
+          <!--                 (click)="deleteCustomer()" ngbTooltip="Delete">-->
+          <!--              <span-->
+          <!--                [inlineSVG]="'./assets/media/icons/duotune/general/gen027.svg'"-->
+          <!--                class="svg-icon svg-icon-3">-->
+          <!--              </span>-->
+          <!--              </a>-->
+          <!--            </td>-->
+        </tr>
+        </tbody>
+        <!-- end::Table body -->
+      </table>
+      <!-- end::Table -->
+    </div>
+    <!-- end::Table container -->
+  </div>
+  <!-- begin::Body -->
+</div>

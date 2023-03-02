@@ -1,0 +1,158 @@
+<div>
+  <form novalidate="" class="form" [formGroup]="internationCustomizations">
+    <div class="card mb-5 mb-xl-10">
+      <div
+        class="card-header border-0 cursor-pointer"
+        aria-expanded="true">
+        <div class="card-title m-0">
+          <h3 class="fw-bolder m-0">International Customization</h3>
+        </div>
+        <div role="button" class="card-title m-0" (click)="closeModal()">
+          <i class="fas fa-window-close fa-1x" ></i>
+        </div>
+      </div>
+      <div class="collapse show">
+        <div class="card-body border-top p-9">
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Currency
+                  </label>
+                  <ng-select
+                    [items]="this.currencies" formControlName="currency"
+                    class="custom-tag-select"
+                    placeholder="Select currency">
+                  </ng-select>
+                </div>
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Thousand Separator
+                  </label>
+                  <select class="form-select form-select-solid form-select-lg" formControlName="thousandSeparator">
+                    <option [ngValue]="null">Select Thousand Separator</option>
+                    <option *ngFor="let field of this.thousandSeparators" [ngValue]="field">
+                      {{field}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Decimal Separator
+                  </label>
+                  <select class="form-select form-select-solid form-select-lg" formControlName="decimalSeparator">
+                    <option [ngValue]="null">Select Decimal Separator</option>
+                    <option *ngFor="let field of this.decimalSeparators" [ngValue]="field">
+                      {{field}}
+                    </option>
+                  </select>
+                </div>
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Precision <small>(digits after decimal)</small>
+                  </label>
+                  <input
+                    type="text" mask="0*"
+                    class="form-control form-control-solid form-control-lg"
+                    placeholder="Enter Precision"
+                    formControlName="precision">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="d-flex">
+              <label class="col-form-label required fw-bold fs-6 me-4">
+                Currency Display
+              </label>
+              <p-radioButton class="me-3" name="currencyDisplay" label="Use Symbol" value="symbol"
+                             formControlName="currencyDisplay">
+              </p-radioButton>
+              <p-radioButton name="currencyDisplay" label="Use Code" value="code"
+                             formControlName="currencyDisplay">
+              </p-radioButton>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="d-flex">
+              <label class="col-form-label required fw-bold fs-6 me-4">
+                Currency Placement
+              </label>
+              <p-radioButton class="me-3" name="currencyPlacement" label="Before Value" value="before"
+                             formControlName="currencyPlacement">
+              </p-radioButton>
+              <p-radioButton name="currencyPlacement" label="After Value" value="after"
+                             formControlName="currencyPlacement">
+              </p-radioButton>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Weight Unit
+                  </label>
+                  <select class="form-select form-select-solid form-select-lg" formControlName="weightUnit">
+                    <option [ngValue]="null">Select Weight Unit</option>
+                    <option *ngFor="let field of this.weightUnits" [ngValue]="field">
+                      {{field}}
+                    </option>
+                  </select>
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Distance Unit
+                  </label>
+                  <select class="form-select form-select-solid form-select-lg" formControlName="distanceUnit">
+                    <option [ngValue]="null">Select Distance Unit</option>
+                    <option *ngFor="let field of this.distanceUnits" [ngValue]="field">
+                      {{field}}
+                    </option>
+                  </select>
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Weight Unit
+                  </label>
+                  <select class="form-select form-select-solid form-select-lg" formControlName="temperatureUnit">
+                    <option [ngValue]="null">Select Temperature Unit</option>
+                    <option *ngFor="let field of this.temperatureUnits" [ngValue]="field">
+                      {{field}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer py-6 px-9">
+          <div class="row">
+            <div class="col-lg-12">
+              <button
+                type="button"
+                class="btn btn-primary"> Save Changes
+                <!--          <ng-container *ngIf="!isLoading">Save Changes</ng-container>-->
+                <!--          <ng-container *ngIf="isLoading">-->
+                <!--            <span clas="indicator-progress" [style.display]="'block'">-->
+                <!--              Please wait...{{ " " }}-->
+                <!--              <span-->
+                <!--                class="spinner-border spinner-border-sm align-middle ms-2"-->
+                <!--              ></span>-->
+                <!--            </span>-->
+                <!--          </ng-container>-->
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

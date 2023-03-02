@@ -1,0 +1,685 @@
+<p-toast></p-toast>
+
+<div>
+  <form novalidate="" class="form" [formGroup]="trailerForm">
+    <div class="card mb-5 mb-xl-10">
+      <div
+        class="card-header border-0 cursor-pointer"
+        role="button"
+        aria-expanded="true"
+      >
+        <div class="card-title m-0">
+          <h3 class="fw-bolder m-0">Add New Trailer</h3>
+        </div>
+      </div>
+      <div class="collapse show">
+        <div class="card-body border-top p-9">
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Make/Model
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="model"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Make/Model" />
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Trailer Number
+                  </label>
+                  <input
+                    type="text"  [class.error] = "trailerForm.controls['trailerNumber'].dirty && trailerForm.hasError('required', 'trailerNumber')"
+                    formControlName="trailerNumber"
+                    class="form-control form-control-lg form-control-solid"
+                    placeholder="Trailer Number" />
+                    <span class="text-danger" *ngIf="trailerForm.controls['trailerNumber'].dirty && trailerForm.hasError('required', 'trailerNumber')">Trailer Number required</span>
+
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Trailer Type
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="trailerType"
+                    class="form-control form-control-lg form-control-solid"
+                    placeholder="Trailer Type" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Generator Info
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="generatorInfo"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Generator Info" />
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    License Plate
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="licensePlate"
+                    class="form-control form-control-lg form-control-solid"
+                    placeholder="License Plate" />
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Model Year
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="modelYear" mask="9999"
+                    class="form-control form-control-lg form-control-solid"
+                    placeholder="Model Year" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Vehicle ID Number
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="vehicleIdNumber"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Vehicle ID Number" />
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Status
+                  </label>
+                  <select
+                    class="form-select form-select-solid form-select-lg"
+                    formControlName="status">
+                    <option [ngValue]="null">Select Status</option>
+                    <option *ngFor="let status of this.statuses" [ngValue]="status">
+                      {{status}}
+                    </option>
+                  </select>
+                  <ng-container
+                    [ngTemplateOutlet]="formError"
+                    [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'Status is required',
+                  control: f.status
+                  }">
+                  </ng-container>
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Insurance Information
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="insuranceInformation"
+                    class="form-control form-control-lg form-control-solid"
+                    placeholder="Insurance Information" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Registered States
+                  </label>
+                  <ng-select
+                    [items]="this.states" formControlName="registeredStates"
+                    [addTag]="false" class="custom-tag-select"
+                    [selectOnTab]="true" placeholder="Enter multiple states">
+                  </ng-select>
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Length
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="length" mask="999.99"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Length" />
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Width
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="width" mask="999.99"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Width" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Height
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="height" mask="999.99"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Height" />
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Number of Axles
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="numberOfAxles" mask="9*"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Number of Axles" />
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Unloaded Vehicle Weight
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="unloadedVehicleWeight" mask="999.99"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Unloaded Vehicle Weight" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Gross Vehicle Weight
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="grossVehicleWeight" mask="999.99"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Gross Vehicle Weight" />
+                </div>
+                <div class="col-lg-8 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Notes
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="notes"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Notes" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card mb-5 mb-xl-10">
+      <div
+        class="card-header border-0 cursor-pointer"
+        role="button"
+        aria-expanded="true"
+      >
+        <div class="card-title m-0">
+          <h3 class="fw-bolder m-0">Ownership Info</h3>
+        </div>
+      </div>
+      <div class="collapse show">
+        <div class="card-body border-top p-9">
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Ownership
+                  </label>
+                  <select
+                    class="form-select form-select-solid form-select-lg"
+                    formControlName="ownership">
+                    <option [ngValue]="null">Select Ownership</option>
+                    <option *ngFor="let ownership of this.ownershipTypes" [ngValue]="ownership">
+                      {{ownership}}
+                    </option>
+                  </select>
+                  <ng-container
+                    [ngTemplateOutlet]="formError"
+                    [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'Ownership is required',
+                  control: f.ownership
+                  }">
+                  </ng-container>
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Purchased or Leased?
+                  </label>
+                  <select
+                    class="form-select form-select-solid form-select-lg"
+                    formControlName="isPurchased">
+                    <option [ngValue]="null">Select</option>
+                    <option *ngFor="let value of this.purchasesOrLeased" [ngValue]="value">
+                      {{value}}
+                    </option>
+                  </select>
+                  <ng-container
+                    [ngTemplateOutlet]="formError"
+                    [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'License type is required',
+                  control: f.isPurchased
+                  }">
+                  </ng-container>
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Purchased/Leased From
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="purchasedFrom"
+                    class="form-control form-control-lg form-control-solid"
+                    placeholder="Purchased/Leased From" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Sold To
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="soldTo"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Sold To" />
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Purchase/Lease Date
+                  </label>
+                  <input mwlFlatpickr type="text" formControlName="purchasedDate" placeholder="Purchase/Lease Date"
+                         [altInput]="true" [convertModelValue]="true"
+                         class="form-control form-control-lg form-control-solid" />
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Sold Date/Lease End Date
+                  </label>
+                  <input mwlFlatpickr type="text" formControlName="soldDate" placeholder="Sold Date/Lease End Date"
+                         [altInput]="true" [convertModelValue]="true"
+                         class="form-control form-control-lg form-control-solid" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Purchase/Lease Amount
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="purchasedPrice" mask="separator" prefix="$" thousandSeparator=","
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Purchase/Lease Amount" />
+                </div>
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Sold Amount
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="soldPrice" mask="separator" prefix="$" thousandSeparator=","
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Sold Amount" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Factory Price
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="factoryPrice" mask="separator" prefix="$" thousandSeparator=","
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Factory Price" />
+                </div>
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Current Value
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="currentValue" mask="separator" prefix="$" thousandSeparator=","
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Current Value" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card mb-5 mb-xl-10">
+      <div
+        class="card-header border-0 cursor-pointer"
+        role="button"
+        aria-expanded="true"
+      >
+        <div class="card-title m-0">
+          <h3 class="fw-bolder m-0">Maintenance And Safety</h3>
+        </div>
+      </div>
+      <div class="collapse show">
+        <div class="card-body border-top p-9">
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    License Plate Expiration
+                  </label>
+                  <input mwlFlatpickr type="text" formControlName="licensePlateExpiration"
+                         placeholder="Select Date"
+                         [altInput]="true" [convertModelValue]="true"
+                         class="form-control form-control-lg form-control-solid" />
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Inspection Expiration
+                  </label>
+                  <input mwlFlatpickr type="text" formControlName="inspectionExpiration"
+                         placeholder="Select Date"
+                         [altInput]="true" [convertModelValue]="true"
+                         class="form-control form-control-lg form-control-solid" />
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    DOT Expiration
+                  </label>
+                  <input mwlFlatpickr type="text" formControlName="DOTExpiration" placeholder="Select Date"
+                         [altInput]="true" [convertModelValue]="true"
+                         class="form-control form-control-lg form-control-solid" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Registration Expiration
+                  </label>
+                  <input mwlFlatpickr type="text" formControlName="registrationExpiration"
+                         placeholder="Select Date"
+                         [altInput]="true" [convertModelValue]="true"
+                         class="form-control form-control-lg form-control-solid" />
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Insurance Expiration
+                  </label>
+                  <input mwlFlatpickr type="text" formControlName="insuranceExpiration"
+                         placeholder="Select Date"
+                         [altInput]="true" [convertModelValue]="true"
+                         class="form-control form-control-lg form-control-solid" />
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Last Service Date
+                  </label>
+                  <input mwlFlatpickr type="text" formControlName="lastServiceDate" placeholder="Select Date"
+                         [altInput]="true" [convertModelValue]="true"
+                         class="form-control form-control-lg form-control-solid" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Estimated Odometer Reading
+                  </label>
+                  <input
+                    type="text" mask="9*"
+                    formControlName="estimatedOdometerReading"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Estimated Odometer Reading" />
+                </div>
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Last Service Mileage
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="lastServiceMileage" mask="9*"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Last Service Mileage" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card mb-5 mb-xl-8">
+      <!-- begin::Header -->
+      <div class="card-header border-0 pt-5">
+        <h3 class="card-title align-items-start flex-column">
+          <span class="card-label fw-bolder fs-3 mb-1">Maintenance Log</span>
+          <!--          <span class="text-muted mt-1 fw-bold fs-7"></span>-->
+        </h3>
+        <div class="card-toolbar">
+          <a class="btn btn-sm btn-light-primary" (click)="openLogModal()">
+            <span
+              [inlineSVG]="'./assets/media/icons/duotune/arrows/arr075.svg'"
+              class="svg-icon svg-icon-3">
+            </span>
+            New Log Entry
+          </a>
+        </div>
+      </div>
+      <!-- end::Header -->
+      <!-- begin::Body -->
+      <div class="card-body py-3">
+        <!-- begin::Table container -->
+        <div class="table-responsive">
+          <!-- begin::Table -->
+          <table class="table align-middle gs-0 gy-4">
+            <!-- begin::Table head -->
+            <thead>
+            <tr class="fw-bolder text-muted bg-light">
+              <th class="ps-4 min-w-125px rounded-start">Date</th>
+              <th class="min-w-125px">Mileage</th>
+              <th class="min-w-125px">Maintenance Type</th>
+              <th class="min-w-125px">Maintenance Performed</th>
+              <th class="min-w-125px">Performed By</th>
+              <th class="min-w-150px">Location</th>
+              <th class="min-w-120px">Bill To</th>
+              <th class="min-w-120px">Amount</th>
+              <th class="min-w-125px text-end rounded-end pe-4">Actions</th>
+            </tr>
+            </thead>
+            <!-- end::Table head -->
+            <!-- begin::Table body -->
+            <tbody>
+            <tr *ngFor="let trailerLog of trailersLog let i = index">
+              <td>
+                <div class="d-flex align-items-center ps-2">
+                  <span class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">
+                    {{ trailerLog.date ?? 'N/A' | date: 'dd MMM yyyy'}}
+                  </span>
+                </div>
+
+              </td>
+              <td>
+                <span class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">
+                  {{trailerLog.mileage ?? 'N/A'}}
+
+                </span>
+              </td>
+              <td>
+                <span class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">
+                  {{trailerLog.maintenanceType ?? 'N/A'}}
+
+                </span>
+                <!--            <span class="text-muted fw-bold text-muted d-block fs-7">Rejected</span>-->
+              </td>
+              <td>
+                <span class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">
+                  {{trailerLog.maintenancePerformed ?? 'N/A'}}
+
+                </span>
+                <!--            <span class="text-muted fw-bold text-muted d-block fs-7">Insurance</span>-->
+              </td>
+              <td>
+                <span class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">
+                  {{trailerLog.performedBy ?? 'N/A'}}
+
+                </span>
+                <!--            <span class="badge badge-light-primary fs-7 fw-bold">Approved</span>-->
+              </td>
+              <td>
+                <span class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">
+                  {{trailerLog.location ?? 'N/A'}}
+
+                </span>
+              </td>
+              <td>
+                <span class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">
+                  {{trailerLog.billTo ?? 'N/A'}}
+
+                </span>
+                <!--            <span class="badge badge-light-primary fs-7 fw-bold">Approved</span>-->
+              <td>
+                <span class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">
+                  {{trailerLog.amount ?? 'N/A'}}
+
+                </span>
+              </td>
+              <td class="text-end">
+                <!--            <a-->
+                <!--              href="#"-->
+                <!--              class="-->
+                <!--                btn btn-icon btn-bg-light btn-active-color-primary btn-sm-->
+                <!--                me-1-->
+                <!--              "-->
+                <!--            >-->
+                <!--              <span-->
+                <!--                [inlineSVG]="'./assets/media/icons/duotune/general/gen019.svg'"-->
+                <!--                class="svg-icon svg-icon-3"-->
+                <!--              ></span>-->
+                <!--            </a>-->
+                <a class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                   (click)="editLog(trailerLog.id)" ngbTooltip="Edit">
+              <span
+                [inlineSVG]="'./assets/media/icons/duotune/art/art005.svg'"
+                class="svg-icon svg-icon-3">
+              </span>
+                </a>
+                <a class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
+                   (click)="deleteLog(trailerLog.id)" ngbTooltip="Delete">
+              <span
+                [inlineSVG]="'./assets/media/icons/duotune/general/gen027.svg'"
+                class="svg-icon svg-icon-3">
+              </span>
+                </a>
+              </td>
+            </tr>
+            </tbody>
+            <!-- end::Table body -->
+          </table>
+          <!-- end::Table -->
+        </div>
+        <!-- end::Table container -->
+      </div>
+      <!-- begin::Body -->
+    </div>
+
+    <button
+      type="button"
+      class="btn btn-primary" (click)="addTrailer()">
+               <ng-container *ngIf="!isLoading">Save Changes</ng-container>
+               <ng-container *ngIf="isLoading">
+                 <span clas="indicator-progress" [style.display]="'block'">
+                   Please wait...{{ " " }}
+                   <span
+                     class="spinner-border spinner-border-sm align-middle ms-2"
+                   ></span>
+                 </span>
+               </ng-container>
+    </button>
+  </form>
+</div>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="cog"
+>
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+
+<ng-template
+  #formError
+  let-control="control"
+  let-message="message"
+  let-validation="validation"
+>
+  <ng-container
+    *ngIf="control.hasError(validation)"
+  >
+    <div class="fv-plugins-message-container">
+      <span role="alert">
+        {{ message }}
+      </span>
+    </div>
+  </ng-container>
+</ng-template>
+
+<swal #DeleteLogSwal
+      text="This cannot be undone!"
+      icon="question"
+      [showCancelButton]="true" [focusCancel]="true" (confirm)="confirmDeleteLog()">
+
+</swal>

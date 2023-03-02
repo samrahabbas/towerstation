@@ -1,0 +1,110 @@
+<p-toast></p-toast>
+<div class="card mb-5 mb-xl-8">
+  <!-- begin::Header -->
+  <div class="card-header border-0 pt-5">
+    <h3 class="card-title align-items-start flex-column">
+      <span class="card-label fw-bolder fs-3 mb-1">Document Processing</span>
+      <!--      <span class="text-muted mt-1 fw-bold fs-7">Over 500 new locations</span>-->
+    </h3>
+    <div *ngIf="docManagementCreate"class="card-toolbar">
+      <a class="btn btn-sm btn-light-primary" (click)="openDocUploadModal()">
+        Upload a new doc
+      </a>
+    </div>
+  </div>
+  <!-- end::Header -->
+  <!-- begin::Body -->
+  <div class="card-body py-3">
+    <!-- begin::Table container -->
+    <div class="table-responsive">
+      <!-- begin::Table -->
+      <table class="table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
+        <!-- begin::Table head -->
+        <thead>
+        <tr class="fw-bolder text-muted">
+          <!-- <th class="w-25px">
+            <div
+              class="form-check form-check-sm form-check-custom form-check-solid">
+              <input
+                class="form-check-input"
+                type="checkbox"
+              />
+            </div>
+          </th> -->
+          <th class="ps-4 min-w-125px rounded-start">Document Name</th>
+          <th class="min-w-125px">Upload Source</th>
+          <th class="min-w-125px">Upload Date</th>
+          <th class="min-w-200px text-end rounded-end pe-4">Actions</th>
+        </tr>
+        </thead>
+        <!-- end::Table head -->
+        <!-- begin::Table body -->
+        <tbody>
+        <tr *ngFor="let document of documents let i = index">
+          <!-- <td>
+            <div
+              class="form-check form-check-sm form-check-custom form-check-solid">
+              <input
+                class="form-check-input widget-13-check"
+                type="checkbox"
+              />
+            </div>
+          </td> -->
+          <td>
+            <span class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6 ps-2">
+              {{document.documentName ?? 'N/A'}}
+            </span>
+          </td>
+          <td>
+            <span class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">
+              Local Storage
+            </span>
+            <!--            <span class="text-muted fw-bold text-muted d-block fs-7">Rejected</span>-->
+          </td>
+          <td>
+            <span class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6">
+              {{ document.createdAt | date: 'dd MMM yyyy'}}
+            </span>
+            <!--            <span class="text-muted fw-bold text-muted d-block fs-7">Insurance</span>-->
+          </td>
+          <td class="text-end">
+            <a class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+               (click)="previewDoc()" ngbTooltip="Preview/Process Doc">
+              <i class="fas fa-search"></i>
+            </a>
+            <a class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+               (click)="downloadDoc(document.documentName)" ngbTooltip="Download Doc">
+              <i class="fas fa-download"></i>
+            </a>
+            <a *ngIf="docManagementDelete"class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
+               (click)="deleteDoc(document.id)" ngbTooltip="Delete Doc">
+              <i class="fas fa-trash"></i>
+            </a>
+          </td>
+        </tr>
+        </tbody>
+        <!-- end::Table body -->
+      </table>
+      <!-- end::Table -->
+    </div>
+    <!-- end::Table container -->
+  </div>
+  <!-- begin::Body -->
+</div>
+
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="cog"
+>
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+
+<swal #DeleteDocumentSwal
+      text="This cannot be undone!"
+      icon="question"
+      [showCancelButton]="true" [focusCancel]="true">
+
+</swal>

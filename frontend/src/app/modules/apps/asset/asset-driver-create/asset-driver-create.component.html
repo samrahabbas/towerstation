@@ -1,0 +1,745 @@
+<p-toast></p-toast>
+<div>
+  <form novalidate="" class="form" [formGroup]="driverForm">
+    <div class="card mb-5 mb-xl-10">
+      <div
+        class="card-header border-0 cursor-pointer"
+        role="button"
+        aria-expanded="true"
+      >
+        <div class="card-title m-0">
+          <h3 class="fw-bolder m-0">Add New Driver</h3>
+        </div>
+      </div>
+      <div class="collapse show">
+        <div class="card-body border-top p-9">
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    First Name
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="firstName"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="First Name" />
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Middle Name
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="middleName"
+                    class="form-control form-control-lg form-control-solid"
+                    placeholder="Middle Name"
+                  />
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Last Name
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="lastName"
+                    class="form-control form-control-lg form-control-solid"
+                    placeholder="Last Name"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Street 1
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="street1"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Street 1" />
+                </div>
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Street 2
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="street2"
+                    class="form-control form-control-lg form-control-solid"
+                    placeholder="Street 2" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Zip Code
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="zipCode"
+                    mask="99999"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Zip Code" />
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    State
+                  </label>
+                  <select
+                    class="form-select form-select-solid form-select-lg"
+                    formControlName="state">
+                    <option [ngValue]="null">Select State</option>
+                    <option *ngFor="let state of states" [ngValue]="state.stateName">
+                      {{state.stateName}}
+                    </option>
+                  </select>
+                  <ng-container
+                    [ngTemplateOutlet]="formError"
+                    [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'Enter State First',
+                  control: f.state
+                  }">
+                  </ng-container>
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    City
+                  </label>
+                  <select
+                    class="form-select form-select-solid form-select-lg"
+                    formControlName="city">
+                    <option [ngValue]="null">Select City</option>
+                    <option *ngFor="let city of this.cities" [ngValue]="city.placeName">
+                      {{city.placeName}}
+                    </option>
+                  </select>
+                  <ng-container
+                    [ngTemplateOutlet]="formError"
+                    [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'Enter Zip Code First',
+                  control: f.zipCode
+                  }">
+                  </ng-container>
+                  <ng-container
+                    [ngTemplateOutlet]="formError"
+                    [ngTemplateOutletContext]="{
+                  validation: 'zipCodeNotFound',
+                  message: 'Zip Code not found',
+                  control: f.zipCode
+                  }">
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Phone Number
+                  </label>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <div class="">
+                        <ng-select class="custom" [items]="cellPhoneCountryCodes" [ngModelOptions]="{standalone: true}"
+                                   appendTo="body"
+                                   [(ngModel)]="cellPhoneCountryCodeSelected" [searchable]="false" [clearable]="false">
+                          <ng-template ng-label-tmp let-item="item">
+                          <span
+                            [inlineSVG]="item.flag"
+                            class="svg-icon svg-icon-1">
+                          </span> &nbsp;
+                            <span class="fs-6">{{item.callingCode}}</span>
+                          </ng-template>
+                          <ng-template ng-option-tmp let-item="item">
+                          <span
+                            [inlineSVG]="item.flag"
+                            class="svg-icon svg-icon-1">
+                          </span> &nbsp;
+                            <span class="fs-6">{{item.callingCode}}</span>
+                          </ng-template>
+                        </ng-select>
+                      </div>
+                    </div>
+                    <input type="tel" formControlName="cellPhone" placeholder="Cell Phone"
+                           mask="(000) 000-0000" [showMaskTyped]="true"
+                           class="form-control form-control-lg form-control-solid">
+                  </div>
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    formControlName="email"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Email" />
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Driver Type
+                  </label>
+                  <select
+                    class="form-select form-select-solid form-select-lg"
+                    formControlName="driverType">
+                    <option [ngValue]="null">Select Driver Type</option>
+                    <option *ngFor="let driverType of this.driverTypes" [ngValue]="driverType">
+                      {{driverType}}
+                    </option>
+                  </select>
+                  <ng-container
+                    [ngTemplateOutlet]="formError"
+                    [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'Driver type is required',
+                  control: f.driverType
+                  }">
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Status
+                  </label>
+                  <select [(ngModel)]="status"
+                    class="form-select form-select-solid form-select-lg"
+                    formControlName="status">
+                    <option [ngValue]="null">Select Status</option>
+                    <option *ngFor="let status of this.statuses" [ngValue]="status">
+                      {{status}}
+                    </option>
+                  </select>
+                  <ng-container
+                    [ngTemplateOutlet]="formError"
+                    [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'Status is required',
+                  control: f.status
+                  }">
+                  </ng-container>
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Driver/Employee Number
+                  </label>
+                  <input
+                    type="text"
+                    formControlName="driverNumber"
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    placeholder="Driver/Employee Number" />
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="col-form-label required fw-bold fs-6">
+                    Ownership
+                  </label>
+                  <select
+                    class="form-select form-select-solid form-select-lg"
+                    formControlName="ownershipType">
+                    <option [ngValue]="null">Select Ownership</option>
+                    <option *ngFor="let ownershipType of this.ownershipTypes" [ngValue]="ownershipType">
+                      {{ownershipType}}
+                    </option>
+                  </select>
+                  <ng-container
+                    [ngTemplateOutlet]="formError"
+                    [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'Ownership is required',
+                  control: f.ownershipType
+                  }">
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-6">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Date of Birth
+                  </label>
+                  <input mwlFlatpickr type="text" formControlName="dateOfBirth" placeholder="Date of Birth"
+                         [altInput]="true" [convertModelValue]="true" [options]="flatPickrOptions"
+                         class="form-control form-control-lg form-control-solid" />
+                </div>
+                <div class="col-lg-6 fv-row">
+                  <label class="col-form-label fw-bold fs-6">
+                    Notes
+                  </label>
+                  <textarea formControlName="notes" class="form-control form-control-lg form-control-solid"
+                            rows="3" placeholder="Private Notes">
+                </textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card mb-5 mb-xl-10">
+      <div
+        class="card-header border-0 cursor-pointer"
+        role="button"
+        aria-expanded="true">
+        <div class="card-title m-0">
+          <h3 class="fw-bolder m-0">Driver Experience</h3>
+        </div>
+      </div>
+      <div class="card-body border-top">
+        <div class="row mb-6">
+          <div class="col-lg-12">
+            <div class="row">
+              <div class="col-lg-4 fv-row">
+                <label class="col-form-label fw-bold fs-6">
+                  Commercial Driver Since Year
+                </label>
+                <input
+                  type="text"
+                  formControlName="commercialDriverSinceYear" mask="0*"
+                  class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                  placeholder="Commercial Driver Since Year" />
+              </div>
+              <div class="col-lg-4 fv-row">
+                <label class="col-form-label fw-bold fs-6">
+                  Type of Experience
+                </label>
+                <input
+                  type="text"
+                  formControlName="experienceType"
+                  class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                  placeholder="Type of Experience" />
+              </div>
+              <div class="col-lg-4 fv-row">
+                <label class="col-form-label fw-bold fs-6">
+                  Driving School
+                </label>
+                <input
+                  type="text"
+                  formControlName="drivingSchool"
+                  class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                  placeholder="Driving School" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-6">
+          <div class="col-lg-12">
+            <div class="row">
+              <div class="col-lg-4 fv-row">
+                <label class="col-form-label fw-bold fs-6">
+                  CDL Number
+                </label>
+                <input
+                  type="text"
+                  formControlName="CDLNumber" mask="0*"
+                  class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                  placeholder="CDL Number" />
+              </div>
+              <div class="col-lg-4 fv-row">
+                <label class="col-form-label fw-bold fs-6">
+                  License Endorsements
+                </label>
+                <ng-select
+                  [items]="this.licenseEndorsements" formControlName="licenseEndorsements"
+                  [addTag]="false" [multiple]="true" class="custom-tag-select"
+                  [selectOnTab]="true" placeholder="Enter multiple license endorsements">
+                </ng-select>
+              </div>
+              <div class="col-lg-4 fv-row">
+                <label class="col-form-label required fw-bold fs-6">
+                  License Type/Class
+                </label>
+                <select
+                  class="form-select form-select-solid form-select-lg"
+                  formControlName="licenseType">
+                  <option [ngValue]="null">Select License Type/Class</option>
+                  <option *ngFor="let licenseType of this.licenseTypes" [ngValue]="licenseType">
+                    {{licenseType}}
+                  </option>
+                </select>
+                <ng-container
+                  [ngTemplateOutlet]="formError"
+                  [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'License type is required',
+                  control: f.licenseType
+                  }">
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer d-flex justify-content-end py-6 px-9">
+      </div>
+    </div>
+
+    <div class="card mb-5 mb-xl-10">
+      <div
+        class="card-header border-0 cursor-pointer"
+        role="button"
+        aria-expanded="true">
+        <div class="card-title m-0">
+          <h3 class="fw-bolder m-0">Driver Employment</h3>
+        </div>
+      </div>
+
+      <div class="card-body border-top">
+        <div class="row mb-6">
+          <div class="col-lg-12">
+            <div class="row">
+              <div class="col-lg-4 fv-row">
+                <label class="col-form-label fw-bold fs-6">
+                  Application Date
+                </label>
+                <input mwlFlatpickr type="text" formControlName="applicationDate" placeholder="Application Date"
+                       [altInput]="true" [convertModelValue]="true" [options]="flatPickrOptions"
+                       class="form-control form-control-lg form-control-solid" />
+              </div>
+              <div class="col-lg-4 fv-row">
+                <label class="col-form-label fw-bold fs-6">
+                  Hire Date
+                </label>
+                <input mwlFlatpickr type="text" formControlName="hireDate" placeholder="Hire Date"
+                       [altInput]="true" [convertModelValue]="true" [options]="flatPickrOptions"
+                       class="form-control form-control-lg form-control-solid" />
+              </div>
+              <div class="col-lg-4 fv-row">
+                <label class="col-form-label fw-bold fs-6">
+                  Termination Date
+                </label>
+                <input mwlFlatpickr type="text" formControlName="terminationDate" placeholder="Termination Date"
+                       [altInput]="true" [convertModelValue]="true" [options]="flatPickrOptions"
+                       class="form-control form-control-lg form-control-solid" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-6">
+          <div class="col-lg-12">
+            <div class="row">
+              <div class="col-lg-4 fv-row">
+                <label class="col-form-label fw-bold fs-6">
+                  Rehirable?
+                </label>
+                <input
+                  type="text"
+                  formControlName="canHireAgain"
+                  class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                  placeholder="Rehirable?" />
+              </div>
+              <div class="col-lg-4 fv-row">
+                <label class="col-form-label fw-bold fs-6">
+                  Bonus Eligibility Date
+                </label>
+                <input mwlFlatpickr type="text" formControlName="bonusEligibilityDate"
+                       placeholder="Bonus Eligibility Date"
+                       [altInput]="true" [convertModelValue]="true" [options]="flatPickrOptions"
+                       class="form-control form-control-lg form-control-solid" />
+              </div>
+              <div class="col-lg-4 fv-row">
+                <label class="col-form-label fw-bold fs-6">
+                  Employment Status
+                </label>
+                <textarea formControlName="employmentNotes" class="form-control form-control-lg form-control-solid"
+                          rows="3" placeholder="Employment Notes">
+                </textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-footer d-flex justify-content-end py-6 px-9">
+      </div>
+    </div>
+
+    <div class="card mb-5 mb-xl-10">
+      <div
+        class="card-header border-0 cursor-pointer"
+        role="button"
+        aria-expanded="true">
+        <div class="card-title m-0">
+          <h3 class="fw-bolder m-0">Driver Insurance</h3>
+        </div>
+      </div>
+
+      <div class="card-body border-top">
+        <div class="row mb-6">
+          <div class="col-lg-12">
+            <div class="row">
+              <div class="col-lg-4 fv-row">
+                <label class="col-form-label fw-bold fs-6">
+                  Insurance Company
+                </label>
+                <input
+                  type="text"
+                  formControlName="insuranceCompany"
+                  class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                  placeholder="Insurance Company" />
+              </div>
+              <div class="col-lg-4 fv-row">
+                <label class="col-form-label fw-bold fs-6">
+                  Group Number
+                </label>
+                <input
+                  type="text"
+                  formControlName="groupNumber"
+                  class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                  placeholder="Group Number" />
+              </div>
+              <div class="col-lg-4 fv-row">
+                <label class="col-form-label fw-bold fs-6">
+                  ID Number
+                </label>
+                <input
+                  type="text"
+                  formControlName="idNumber"
+                  class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                  placeholder="ID Number" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-footer d-flex justify-content-end py-6 px-9">
+      </div>
+    </div>
+
+    <div class="card mb-5 mb-xl-10">
+      <div
+        class="card-header border-0 cursor-pointer"
+        role="button"
+        aria-expanded="true">
+        <div class="card-title m-0">
+          <h3 class="fw-bolder m-0">Driver Safety</h3>
+        </div>
+      </div>
+
+      <div class="card-body border-top">
+        <div class="row mb-6">
+          <div class="col-lg-12">
+            <div class="row">
+              <div class="col-lg-4 fv-row">
+                <label class="col-form-label fw-bold fs-6">
+                  License Expiration Date
+                </label>
+                <input mwlFlatpickr type="text" formControlName="licenseExpirationDate"
+                       placeholder="License Expiration Date"
+                       [altInput]="true" [convertModelValue]="true" [options]="flatPickrOptions"
+                       class="form-control form-control-lg form-control-solid" />
+              </div>
+              <div class="col-lg-4 fv-row">
+                <label class="col-form-label fw-bold fs-6">
+                  TWIC Card Expiration Date
+                </label>
+                <input mwlFlatpickr type="text" formControlName="TWICCardExpirationDate"
+                       placeholder="TWIC Card Expiration Date"
+                       [altInput]="true" [convertModelValue]="true" [options]="flatPickrOptions"
+                       class="form-control form-control-lg form-control-solid" />
+              </div>
+              <div class="col-lg-4 fv-row">
+                <label class="col-form-label fw-bold fs-6">
+                  Hazmat Endorsement Expiration Date
+                </label>
+                <input mwlFlatpickr type="text" formControlName="hazmatEndorsementExpirationDate"
+                       placeholder="Hazmat Endorsement Expiration Date"
+                       [altInput]="true" [convertModelValue]="true" [options]="flatPickrOptions"
+                       class="form-control form-control-lg form-control-solid" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-6">
+          <div class="col-lg-12">
+            <div class="row">
+              <div class="col-lg-4 fv-row">
+                <label class="col-form-label fw-bold fs-6">
+                  DOT Medical Card Expiration Date
+                </label>
+                <input mwlFlatpickr type="text" formControlName="DOTMedicalCardExpirationDate"
+                       placeholder="DOT Medical Card Expiration Date"
+                       [altInput]="true" [convertModelValue]="true" [options]="flatPickrOptions"
+                       class="form-control form-control-lg form-control-solid" />
+              </div>
+              <div class="col-lg-4 fv-row">
+                <label class="col-form-label fw-bold fs-6">
+                  Insurance Expiration Date
+                </label>
+                <input mwlFlatpickr type="text" formControlName="insuranceExpirationDate"
+                       placeholder="Insurance Expiration Date"
+                       [altInput]="true" [convertModelValue]="true" [options]="flatPickrOptions"
+                       class="form-control form-control-lg form-control-solid" />
+              </div>
+              <div class="col-lg-4 fv-row">
+                <label class="col-form-label fw-bold fs-6">
+                  Last Road Test Date
+                </label>
+                <input mwlFlatpickr type="text" formControlName="lastRoadTestDate" placeholder="Last Road Test Date"
+                       [altInput]="true" [convertModelValue]="true" [options]="flatPickrOptions"
+                       class="form-control form-control-lg form-control-solid" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-6">
+          <div class="col-lg-12">
+            <div class="row">
+              <div class="col-lg-4 fv-row">
+                <label class="col-form-label fw-bold fs-6">
+                  Last Drug Test Date
+                </label>
+                <input mwlFlatpickr type="text" formControlName="lastDrugTestDate" placeholder="Last Drug Test Date"
+                       [altInput]="true" [convertModelValue]="true" [options]="flatPickrOptions"
+                       class="form-control form-control-lg form-control-solid" />
+              </div>
+              <div class="col-lg-4 fv-row">
+                <label class="col-form-label fw-bold fs-6">
+                  Last Alcohol Test Date
+                </label>
+                <input mwlFlatpickr type="text" formControlName="lastAlcoholTestDate"
+                       placeholder="Last Alcohol Test Date"
+                       [altInput]="true" [convertModelValue]="true" [options]="flatPickrOptions"
+                       class="form-control form-control-lg form-control-solid" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-footer d-flex justify-content-end py-6 px-9">
+      </div>
+    </div>
+
+    <div class="card mb-5 mb-xl-10">
+      <div
+        class="card-header border-0 cursor-pointer"
+        role="button"
+        aria-expanded="true">
+        <div class="card-title m-0">
+          <h3 class="fw-bolder m-0">Customize Units of Measurements</h3>
+        </div>
+      </div>
+      <div class="card-body border-top">
+        <div class="row mb-6">
+          <div class="col-lg-12">
+            <div class="row">
+              <div class="col-lg-4 fv-row">
+                <label class="col-form-label fw-bold fs-6">
+                  Weight Unit
+                </label>
+                <select
+                  class="form-select form-select-solid form-select-lg"
+                  formControlName="weightUnit">
+                  <option [ngValue]="null">Select Weight Unit</option>
+                  <option *ngFor="let weightUnit of this.weightUnits" [ngValue]="weightUnit">
+                    {{weightUnit}}
+                  </option>
+                </select>
+              </div>
+              <div class="col-lg-4 fv-row">
+                <label class="col-form-label fw-bold fs-6">
+                  Distance Unit
+                </label>
+                <select
+                  class="form-select form-select-solid form-select-lg"
+                  formControlName="distanceUnit">
+                  <option [ngValue]="null">Select Distance Unit</option>
+                  <option *ngFor="let distanceUnit of this.distanceUnits" [ngValue]="distanceUnit">
+                    {{distanceUnit}}
+                  </option>
+                </select>
+              </div>
+              <div class="col-lg-4 fv-row">
+                <label class="col-form-label fw-bold fs-6">
+                  Temperature Unit
+                </label>
+                <select
+                  class="form-select form-select-solid form-select-lg"
+                  formControlName="temperatureUnit">
+                  <option [ngValue]="null">Select Temperature Unit</option>
+                  <option *ngFor="let temperatureUnit of this.temperatureUnits" [ngValue]="temperatureUnit">
+                    {{temperatureUnit}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer d-flex justify-content-end py-6 px-9">
+      </div>
+    </div>
+
+
+
+    <button
+      type="submit"
+      class="btn btn-primary" (click)="addDriver()">
+               <ng-container *ngIf="!isLoading">Save Changes</ng-container>
+               <ng-container *ngIf="isLoading">
+                 <span clas="indicator-progress" [style.display]="'block'">
+                   Please wait...{{ " " }}
+                   <span
+                     class="spinner-border spinner-border-sm align-middle ms-2"
+                   ></span>
+                 </span>
+               </ng-container>
+    </button>
+  </form>
+</div>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="cog"
+>
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+
+<ng-template
+  #formError
+  let-control="control"
+  let-message="message"
+  let-validation="validation"
+>
+  <ng-container
+    *ngIf="control.hasError(validation)"
+  >
+    <div class="fv-plugins-message-container">
+      <span role="alert">
+        {{ message }}
+      </span>
+    </div>
+  </ng-container>
+</ng-template>
+
+<swal #DeleteLogSwal
+      text="This cannot be undone!"
+      icon="question"
+      [showCancelButton]="true" [focusCancel]="true" (confirm)="confirmDeleteLog()">
+
+</swal>

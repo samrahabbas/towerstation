@@ -1,0 +1,24 @@
+{
+  "development": {
+    "username": "townary_usman",
+    "password": "Dark!321",
+    "database": "tower_station_new",
+    "host": "70.62.23.133",
+    "dialect": "mysql", 
+    "port": 3306
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}

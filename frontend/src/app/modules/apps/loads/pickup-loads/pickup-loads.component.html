@@ -1,0 +1,457 @@
+<p-toast></p-toast>
+
+<div>
+    <div class="card mb-5 mb-xl-10">
+      <div
+        class="card-header border-0"
+        aria-expanded="true">
+        <div class="card-title m-0">
+          <h3 class="fw-bolder m-0">Loads</h3>
+        </div>
+      </div>
+      <div class="collapse show">
+        <div class="card-body border-top p-9">
+          <p-table [value]="loads" dataKey="id" responsiveLayout="scroll">
+            <ng-template pTemplate="header">
+              <tr>
+                <th pSortableColumn="age">
+                  Age
+                  <p-sortIcon field="age"></p-sortIcon>
+                </th>
+                <th pSortableColumn="pickup">
+                  Pickup
+                  <p-sortIcon field="pickup"></p-sortIcon>
+                </th>
+                <th pSortableColumn="origin">
+                  Origin
+                  <p-sortIcon field="origin"></p-sortIcon>
+                </th>
+                <th pSortableColumn="DHO">
+                  DH-O
+                  <p-sortIcon field="DHO"></p-sortIcon>
+                </th>
+                <th pSortableColumn="destination">
+                  DEST
+                  <p-sortIcon field="destination"></p-sortIcon>
+                </th>
+                <th pSortableColumn="DHD">
+                  DH-D
+                  <p-sortIcon field="DHD"></p-sortIcon>
+                </th>
+                <th pSortableColumn="trip">
+                  Trip
+                  <p-sortIcon field="trip"></p-sortIcon>
+                </th>
+                <th pSortableColumn="eq">
+                  EQ
+                  <p-sortIcon field="eq"></p-sortIcon>
+                </th>
+                <th pSortableColumn="length">
+                  LEN
+                  <p-sortIcon field="length"></p-sortIcon>
+                </th>
+                <th pSortableColumn="weight">
+                  Weight
+                  <p-sortIcon field="weight"></p-sortIcon>
+                </th>
+                <th pSortableColumn="type">
+                  F/P
+                  <p-sortIcon field="type"></p-sortIcon>
+                </th>
+                <th pSortableColumn="factor">
+                  Factor
+                  <p-sortIcon field="factor"></p-sortIcon>
+                </th>
+                <th pSortableColumn="CS">
+                  CS
+                  <p-sortIcon field="CS"></p-sortIcon>
+                </th>
+                <th pSortableColumn="DTP">
+                  DTP
+                  <p-sortIcon field="DTP"></p-sortIcon>
+                </th>
+                <th pSortableColumn="company">
+                  Company
+                  <p-sortIcon field="company"></p-sortIcon>
+                </th>
+                <th pSortableColumn="contact">
+                  Contact
+                  <p-sortIcon field="contact"></p-sortIcon>
+                </th>
+                <th pSortableColumn="offer">
+                  Offer
+                  <p-sortIcon field="offer"></p-sortIcon>
+                </th>
+                <!-- <th>
+                  Status
+                </th> -->
+                <th  class="min-w-200px rounded-end pe-4">Actions</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-item let-ri="rowIndex" *ngIf="!noData">
+              <tr>
+                <td>
+                  <span *ngIf="item.pickup">{{ item.pickup }}</span>
+                  <span *ngIf="!item.pickup">-</span>
+                </td>
+                <td>
+                  <span *ngIf="item.pickup">{{ item.pickup }}</span>
+                  <span *ngIf="!item.pickup">-</span>
+                </td>
+                <td>
+                  <span *ngIf="item.origin">{{ item.origin }}</span>
+                  <span *ngIf="!item.origin">-</span>
+                </td>
+                <td>
+                  <span *ngIf="item.DHO">{{ item.DHO }}</span>
+                  <span *ngIf="!item.DHO">-</span>
+                </td>
+                <td>
+                  <span *ngIf="item.destination">{{ item.destination }}</span>
+                  <span *ngIf="!item.destination">-</span>
+                </td>
+                <td>
+                  <span *ngIf="item.DHD">{{ item.DHD }}</span>
+                  <span *ngIf="!item.DHD">-</span>
+                </td>
+                <td>
+                  <span *ngIf="item.trip">{{ item.trip }}</span>
+                  <span *ngIf="!item.trip">-</span>
+                </td>
+                <td>
+                  <span *ngIf="item.eq">{{ item.eq }}</span>
+                  <span *ngIf="!item.eq">-</span>
+                </td>
+                <td>
+                  <span *ngIf="item.length">{{ item.length }}</span>
+                  <span *ngIf="!item.length">-</span>
+                </td>
+                <td>
+                  <span *ngIf="item.weight">{{ item.weight }}</span>
+                  <span *ngIf="!item.weight">-</span>
+                </td>
+                <td>
+                  <span *ngIf="item.load_type">{{ item.load_type }}</span>
+                  <span *ngIf="!item.load_type">-</span>
+                </td>
+                <td>
+                  <span *ngIf="item.factor">{{ item.factor }}</span>
+                  <span *ngIf="!item.factor">-</span>
+                </td>
+                <td>
+                  <span *ngIf="item.cs">{{ item.cs }}</span>
+                  <span *ngIf="!item.cs">-</span>
+                </td>
+                <td>
+                  <span *ngIf="item.DTP">{{ item.DTP }}</span>
+                  <span *ngIf="!item.DTP">-</span>
+                </td>
+                <td>
+                  <span *ngIf="item.company">{{ item.company }}</span>
+                  <span *ngIf="!item.company">-</span>
+                </td>
+                <td>
+                  <span *ngIf="item.contact">{{ item.contact }}</span>
+                  <span *ngIf="!item.contact">-</span>
+                </td>
+                <td>
+                  <span *ngIf="item.offer">{{ item.offer }}</span>
+                  <span *ngIf="!item.offer">-</span>
+                </td>
+                <!-- <td>
+                  <span *ngIf="item.status">{{ item.status }}</span>
+                  <span *ngIf="!item.status">-</span>
+                </td> -->
+                <td>
+                  <button class="btn btn-sm btn-outline-primary" (click)="onAddLoad(item.id)" data-bs-toggle="modal"
+                  data-bs-target="#kt_modal_add_load_date">
+                    Book
+                  </button>
+
+                  <a class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                    ngbTooltip="Document" (click)="onAddDocument(item.id)" data-bs-toggle="modal"
+                    data-bs-target="#kt_modal_add_document_date">
+                    <i class="fas fa-solid fa-camera"></i>
+                  </a>
+                  <a class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                  ngbTooltip="Document" (click)="onAddPdf(item.id)" data-bs-toggle="modal"
+                  data-bs-target="#kt_modal_add_document_date">
+                <i class="fas fa-file-alt fs-4"></i>
+                </a>
+                  <a class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                  (click)="previewDoc(item.id)"  data-bs-target="#kt_modal_load_document" data-bs-toggle="modal" ngbTooltip="Preview/Process Doc">
+                  <i class="fas fa-search"></i>
+                </a>
+
+              
+
+                </td>
+              </tr>
+            </ng-template>
+            <ng-template *ngIf="noData">
+              <tr>
+                <td colspan="11" class="text-center">No data found</td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #AddLoadModal>
+        <!--begin::Modal dialog-->
+        <div>
+            <form novalidate="" class="form" [formGroup]="pickupForm">
+              <div class="card mb-5 mb-xl-10">
+                <div
+                  class="card-header border-0"
+                  aria-expanded="true">
+                  <div class="card-title m-0">
+                    <h3 class="fw-bolder m-0">Load</h3>
+                  </div>
+                  <div class="card-title m-0" role="button" (click)="dismissAllModals()">
+                    <i class="fas fa-window-close fa-1x" ></i>
+                  </div>
+                </div>
+                <div class="collapse show">
+                  <div class="card-body border-top p-9">
+                    <div class="row mb-6">
+                      <div class="col-lg-12">
+                        <div class="row">
+                         
+                          <div class="col-lg-12 fv-row">
+                            <label class="col-form-label required fw-bold fs-6">
+                              Pickup Date
+                            </label>
+                            
+                            <input mwlFlatpickr type="text" formControlName="pickupDate"
+                                   placeholder="Pickup Date"
+                                   [altInput]="true" [convertModelValue]="true"
+                                   class="form-control form-control-lg form-control-solid" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row mb-6">
+                      <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-12 fv-row">
+                                <label class="col-form-label required fw-bold fs-6">
+                                Drop Date
+                                </label>
+                                
+                                <input mwlFlatpickr type="text" formControlName="dropDate"
+                                       placeholder="Drop Date"
+                                       [altInput]="true" [convertModelValue]="true"
+                                       class="form-control form-control-lg form-control-solid" />
+                              </div>
+                        
+                        </div>
+                      </div>
+                    </div>
+             
+                    <div class="row mb-6">
+                      <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-12 fv-row">
+                              <label class="col-form-label required fw-bold fs-6">
+                                Status
+                              </label>
+                              <select
+                                class="form-select form-select-solid form-select-lg"
+                                formControlName="status">
+                                <option [ngValue]="null">Select Status</option>
+                                <option *ngFor="let status of this.statuses" [ngValue]="status">
+                                  {{status}}
+                                </option>
+                              </select>
+                              </div>
+                        
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-footer py-6 px-9">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <button
+                          type="submit"
+                          class="btn btn-primary" (click)="addLoadData()">
+                                   <ng-container *ngIf="!isLoading">Save Changes</ng-container>
+                                   <ng-container *ngIf="isLoading">
+                                     <span clas="indicator-progress" [style.display]="'block'">
+                                       Please wait...{{ " " }}
+                                       <span
+                                         class="spinner-border spinner-border-sm align-middle ms-2"
+                                       ></span>
+                                     </span>
+                                   </ng-container>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        <!--end::Modal dialog-->
+      </ng-template>
+
+      <ng-template #LoadDocumentModal>
+        <!--begin::Modal dialog-->
+        <div class="card-body py-3">
+          <div class="card-title m-0 text-end" role="button" (click)="dismissAllModals()">
+            <i class="fas fa-window-close fa-1x" ></i>
+          </div>
+          <!-- begin::Table container -->
+          <div class="table-responsive">
+            <!-- begin::Table -->
+            <table class="table align-middle gs-0 gy-4">
+              <!-- begin::Table head -->
+              <thead>
+              <tr class="fw-bolder text-muted bg-light">
+                <th class="min-w-100px">Document Name</th>
+                <th class="min-w-100px rounded-end pe-4">Actions</th>
+              </tr>
+              </thead>
+              <!-- end::Table head -->
+              <!-- begin::Table body -->
+              <tbody>
+              <tr *ngFor="let loadDocument of loadDocuments let i = index">
+                <td>
+                  <div class="d-flex align-items-center">
+                    <div class="d-flex justify-content-start flex-column">
+                      <a *ngIf="loadDocument.documentType == 'image'"
+                      class="text-dark fw-bolder text-hover-primary mb-1 fs-6">
+                
+                      <div class="symbol symbol-50px me-5">
+                      
+                      <img [src]="'{{this.env.apiUrlForDownload}}/images/'+ loadDocument.documentName">
+                      
+                      </div>
+                      </a>
+
+                      <a *ngIf="loadDocument.documentType == 'document'"
+                      class="text-dark fw-bolder text-hover-primary mb-1 fs-6">
+                         {{loadDocument.documentName}}
+                      
+                    
+                      </a>
+                      
+                    </div>
+                  </div>
+                </td>
+                <td class="">
+                  <!--            <a-->
+                  <!--              href="#"-->
+                  <!--              class="-->
+                  <!--                btn btn-icon btn-bg-light btn-active-color-primary btn-sm-->
+                  <!--                me-1-->
+                  <!--              "-->
+                  <!--            >-->
+                  <!--              <span-->
+                  <!--                [inlineSVG]="'./assets/media/icons/duotune/general/gen019.svg'"-->
+                  <!--                class="svg-icon svg-icon-3"-->
+                  <!--              ></span>-->
+                  <!--            </a>-->
+                  <a class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                      ngbTooltip="Download"  (click)="downloadDoc(loadDocument.documentName)">
+                      <i class="fas fa-download"></i>
+                    <!-- <span
+                      [inlineSVG]="'./assets/media/icons/duotune/art/art005.svg'"
+                      class="svg-icon svg-icon-3">
+                    </span> -->
+                    </a>
+                  
+                </td>
+              </tr>
+              </tbody>
+              <!-- end::Table body -->
+            </table>
+            <!-- end::Table -->
+          </div>
+          <!-- end::Table container -->
+        </div>
+        <!-- <div>
+           
+              <div class="card mb-5 mb-xl-10">
+                <div
+                  class="card-header border-0"
+                  aria-expanded="true">
+                  <div class="card-title m-0">
+                    <h3 class="fw-bolder m-0">Load Documents</h3>
+                  </div>
+                  <div class="card-title m-0" role="button" (click)="dismissAllModals()">
+                    <i class="fas fa-window-close fa-1x" ></i>
+                  </div>
+                </div>
+                <div class="collapse show">
+                  <div class="card-body border-top p-9">
+                    <div class="row mb-6">
+                      <div class="col-lg-12">
+                        <div class="row">
+                         
+                          <div class="col-lg-12 fv-row">
+                           
+                            <img [src]="'http://localhost:3200/images/1667288326752.png'">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row mb-6">
+                      <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-12 fv-row">
+                                <button
+                                type="button"
+                                class="btn btn-success">Download Pdf
+                              </button>
+
+                              <span>{{documentName}}</span>
+                                
+                              </div>
+                        
+                        </div>
+                      </div>
+                    </div>
+             
+                  </div>
+                  <div class="card-footer py-6 px-9">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <button
+                          type="submit"
+                          class="btn btn-primary" (click)="addLoadData()">
+                                   <ng-container *ngIf="!isLoading">Save Changes</ng-container>
+                                   <ng-container *ngIf="isLoading">
+                                     <span clas="indicator-progress" [style.display]="'block'">
+                                       Please wait...{{ " " }}
+                                       <span
+                                         class="spinner-border spinner-border-sm align-middle ms-2"
+                                       ></span>
+                                     </span>
+                                   </ng-container>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
+          </div> -->
+        <!--end::Modal dialog-->
+      </ng-template>
+
+
+
+</div>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="cog"
+>
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+

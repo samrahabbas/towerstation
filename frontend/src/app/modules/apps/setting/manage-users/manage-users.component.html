@@ -1,0 +1,108 @@
+<div class="card mb-5 mb-xl-8">
+  <!-- begin::Header -->
+  <div class="card-header border-0 pt-5">
+    <h3 class="card-title align-items-start flex-column">
+      <span class="card-label fw-bolder fs-3 mb-1">Edit Users</span>
+    </h3>
+    <div class="card-toolbar">
+      <a class="btn btn-sm btn-light-primary" (click)="openAddUserModal()">
+      <span
+        [inlineSVG]="'./assets/media/icons/duotune/arrows/arr075.svg'"
+        class="svg-icon svg-icon-3"
+      ></span>
+        Add New User
+      </a>
+    </div>
+  </div>
+  <!-- end::Header -->
+  <!-- begin::Body -->
+  <div class="card-body py-3">
+    <!-- begin::Table container -->
+    <div class="table-responsive">
+      <!-- begin::Table -->
+      <table class="table align-middle gs-0 gy-4">
+        <!-- begin::Table head -->
+        <thead>
+        <tr class="fw-bolder text-muted bg-light">
+          <th class="ps-4 min-w-125px rounded-start">Full Name</th>
+          <th class="min-w-200px">Email Address / Username</th>
+          <th class="min-w-125px">Contact Number</th>
+          <th class="min-w-125px">Permissions</th>
+          <th class="min-w-125px">Branch / Department List</th>
+          <th class="min-w-200px text-end rounded-end pe-4">Actions</th>
+        </tr>
+        </thead>
+        <!-- end::Table head -->
+        <!-- begin::Table body -->
+        <tbody>
+        <tr>
+          <td>
+            <span class="fw-bolder d-block mb-1 fs-6 ps-4">
+              John Doe
+            </span>
+          </td>
+          <td>
+            <span class="fw-bolder d-block mb-1 fs-6">
+              john.doe@ts.com
+            </span>
+          </td>
+          <td>
+            <span class="fw-bolder d-block mb-1 fs-6">
+              (123) 456-7890
+            </span>
+          </td>
+          <td>
+            <span class="fw-bolder d-block mb-1 fs-6">
+              <span class="badge badge-pill badge-danger">
+                Administrator
+              </span>
+            </span>
+          </td>
+          <td>
+            <span class="fw-bolder d-block mb-1 fs-6">
+              <span class="badge badge-pill badge-success">
+                Branch 1
+              </span>
+              &nbsp;
+              <span class="badge badge-pill badge-success">
+                Branch 2
+              </span>
+            </span>
+          </td>
+          <td class="text-end">
+            <div class="pe-4">
+              <a class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                 (click)="editUser()" ngbTooltip="Edit">
+              <span
+                [inlineSVG]="'./assets/media/icons/duotune/art/art005.svg'"
+                class="svg-icon svg-icon-3">
+              </span>
+              </a>
+              <a class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                 (click)="deleteUser()" ngbTooltip="Disable">
+                <i class="fas fa-ban"></i>
+              </a>
+              <a class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
+                 (click)="assignUserRoles()" ngbTooltip="Assign User Role / Commission Overrides">
+                <i class="fas fa-dollar-sign"></i>
+              </a>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+        <!-- end::Table body -->
+      </table>
+      <!-- end::Table -->
+    </div>
+    <!-- end::Table container -->
+  </div>
+  <!-- begin::Body -->
+</div>
+
+<swal #DeleteUserSwal
+      text="This cannot be undone!"
+      icon="question"
+      [showCancelButton]="true" [focusCancel]="true" (confirm)="confirmDeleteUser()">
+
+</swal>
+

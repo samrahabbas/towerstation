@@ -1,0 +1,493 @@
+<div>
+  <div class="card mb-6 mb-xl-10">
+    <div class="card-header border-0 cursor-pointer"
+         role="button"
+         aria-expanded="true">
+      <div class="card-title m-0">
+        <h3 class="fw-bolder m-0">Automated Workflow Engine</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-6 mb-xl-10">
+    <div class="card-header border-0 cursor-pointer"
+         role="button"
+         aria-expanded="true">
+      <div class="card-title m-0">
+        <h3 class="fw-bolder m-0">Assign current user and set their role when building/creating a load</h3>
+      </div>
+    </div>
+    <div class="card-body border-top p-9">
+      <div class="row mb-6">
+        <span class="fw-bold">
+          When a load is built/created, assign the current user who is building the load to the following role...
+        </span>
+        <div class="row mt-3" *ngFor="let userAssignmentRule of userAssignmentRules; let i = index;">
+          <div class="col-lg-8">
+            <ng-select
+              [items]="this.roles" [(ngModel)]="userAssignmentRule.role"
+              class="custom-tag-select" [clearable]="true" placeholder="Select Role">
+            </ng-select>
+
+          </div>
+          <div class="col-lg-4 align-self-center text-center" *ngIf="i > 0">
+            <button class="btn btn-sm btn-danger" (click)="removeUserAssignmentRule(i)">
+              <i class="fas fa-window-close p-2 fs-2"></i>
+            </button>
+          </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col">
+            <button class="btn btn-primary" (click)="addNewUserAssignmentRule()">
+              <i class="fas fa-plus"></i>Add another user assignment rule
+            </button>
+          </div>
+        </div>
+        <div class="mt-3">
+          <button class="btn btn-success">
+            <i class="fas fa-save"></i>Save Rule
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-6 mb-xl-10">
+    <div class="card-header border-0 cursor-pointer"
+         role="button"
+         aria-expanded="true">
+      <div class="card-title m-0">
+        <h3 class="fw-bolder m-0">
+          Set Load/Truck Status based on Check Call Status
+        </h3>
+      </div>
+    </div>
+    <div class="card-body border-top p-9">
+      <div class="row mb-6">
+        <div class="row">
+          <div class="col-lg-4">
+            <span class="fw-bold">
+              When a check call is made with this status...
+            </span>
+          </div>
+          <div class="col-lg-3">
+            <span class="fw-bold">
+              At this stop type...
+            </span>
+          </div>
+          <div class="col-lg-2">
+            <span class="fw-bold">
+              Change the load's "Load Status" field to
+            </span>
+          </div>
+          <div class="col-lg-2">
+            <span class="fw-bold">
+              Change the load's "Truck Status" field to
+            </span>
+          </div>
+          <div class="col-lg-1"></div>
+        </div>
+        <div class="row mt-3" *ngFor="let rule of checkCallStatusRules; let i = index;">
+          <div class="col-lg-4">
+            <ng-select
+              [items]="this.checkCallStatuses" [(ngModel)]="rule.checkCallStatus"
+              class="custom-tag-select" [clearable]="true" placeholder="Select a check call status to trigger on">
+            </ng-select>
+          </div>
+          <div class="col-lg-3">
+            <ng-select
+              [items]="this.stopTypes" [(ngModel)]="rule.stopType"
+              class="custom-tag-select" [clearable]="true">
+            </ng-select>
+          </div>
+          <div class="col-lg-2">
+            <ng-select
+              [items]="this.loadStatuses" [(ngModel)]="rule.loadStatus"
+              class="custom-tag-select" [clearable]="true"
+              groupBy="group" bindLabel="text" placeholder="Select a load status">
+            </ng-select>
+          </div>
+          <div class="col-lg-2">
+            <ng-select
+              [items]="this.truckStatuses" [(ngModel)]="rule.truckStatus"
+              class="custom-tag-select" [clearable]="true"
+              groupBy="group" bindLabel="text" placeholder="Select a truck status">
+            </ng-select>
+          </div>
+          <div class="col-lg-1 align-self-center text-center" *ngIf="i > 0">
+            <button class="btn btn-sm btn-danger" (click)="removeCheckCallStatusRule(i)">
+              <i class="fas fa-window-close p-2 fs-2"></i>
+            </button>
+          </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col">
+            <button class="btn btn-primary" (click)="addNewCheckCallStatusRule()">
+              <i class="fas fa-plus"></i>Add another check call status rule
+            </button>
+          </div>
+        </div>
+        <div class="mt-3">
+          <button class="btn btn-success">
+            <i class="fas fa-save"></i>Save Check Call Status Rule(s)
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-6 mb-xl-10">
+    <div class="card-header border-0 cursor-pointer"
+         role="button"
+         aria-expanded="true">
+      <div class="card-title m-0">
+        <h3 class="fw-bolder m-0">
+          Set Load/Truck Status when a Carrier is assigned/removed/replaced on a load
+        </h3>
+      </div>
+    </div>
+    <div class="card-body border-top p-9">
+      <div class="row mb-6">
+        <div class="row">
+          <div class="col-lg-4">
+            <span class="fw-bold">
+              When a carrier is...
+            </span>
+          </div>
+          <div class="col-lg-4">
+            <span class="fw-bold">
+              Change the load's "Load Status" field to
+            </span>
+          </div>
+          <div class="col-lg-3">
+            <span class="fw-bold">
+              Change the load's "Truck Status" field to
+            </span>
+          </div>
+          <div class="col-lg-1"></div>
+        </div>
+        <div class="row mt-3" *ngFor="let rule of carrierChangeTriggerRules; let i = index;">
+          <div class="col-lg-4">
+            <ng-select
+              [items]="this.carrierActions" [(ngModel)]="rule.carrierAction"
+              class="custom-tag-select" [clearable]="true" placeholder="Select a check call status to trigger on">
+            </ng-select>
+          </div>
+          <div class="col-lg-4">
+            <ng-select
+              [items]="this.loadStatuses" [(ngModel)]="rule.loadStatus"
+              class="custom-tag-select" [clearable]="true"
+              groupBy="group" bindLabel="text" placeholder="Select a load status">
+            </ng-select>
+          </div>
+          <div class="col-lg-3">
+            <ng-select
+              [items]="this.truckStatuses" [(ngModel)]="rule.truckStatus"
+              class="custom-tag-select" [clearable]="true"
+              groupBy="group" bindLabel="text" placeholder="Select a truck status">
+            </ng-select>
+          </div>
+          <div class="col-lg-1 align-self-center text-center" *ngIf="i > 0">
+            <button class="btn btn-sm btn-danger" (click)="removeCarrierChangeTriggerRule(i)">
+              <i class="fas fa-window-close p-2 fs-2"></i>
+            </button>
+          </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col">
+            <button class="btn btn-primary" (click)="addNewCarrierChangeTriggerRule()">
+              <i class="fas fa-plus"></i>Add another carrier change trigger rule
+            </button>
+          </div>
+        </div>
+        <div class="mt-3">
+          <button class="btn btn-success">
+            <i class="fas fa-save"></i>Save Carrier Change Rule(s)
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-6 mb-xl-10">
+    <div class="card-header border-0 cursor-pointer"
+         role="button"
+         aria-expanded="true">
+      <div class="card-title m-0">
+        <h3 class="fw-bolder m-0">Prevent a Carrier from being assigned if...</h3>
+      </div>
+    </div>
+    <div class="card-body border-top p-9">
+      <div class="row mb-6">
+        <span class="fw-bold">
+          Prevent a Carrier from being assigned if their...
+        </span>
+        <div class="row mt-3" *ngFor="let rule of carrierAssignmentRules; let i = index;">
+          <div class="col-lg-8">
+            <ng-select
+              [items]="this.preventCarrierConditions" [(ngModel)]="rule.carrierCondition"
+              class="custom-tag-select" [clearable]="true" placeholder="Select Carrier Condition">
+            </ng-select>
+
+          </div>
+          <div class="col-lg-4 align-self-center text-center" *ngIf="i > 0">
+            <button class="btn btn-sm btn-danger" (click)="removeCarrierAssignmentRule(i)">
+              <i class="fas fa-window-close p-2 fs-2"></i>
+            </button>
+          </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col">
+            <button class="btn btn-primary" (click)="addNewCarrierAssignmentRule()">
+              <i class="fas fa-plus"></i>Add another carrier assignment rule
+            </button>
+          </div>
+        </div>
+        <div class="mt-3">
+          <button class="btn btn-success">
+            <i class="fas fa-save"></i>Save Carrier Assignment Check Rule(s)
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-6 mb-xl-10">
+    <div class="card-header border-0 cursor-pointer"
+         role="button"
+         aria-expanded="true">
+      <div class="card-title m-0">
+        <h3 class="fw-bolder m-0">
+          Prevent a load status from being set based on a load's financial line items
+        </h3>
+      </div>
+    </div>
+    <div class="card-body border-top p-9">
+      <div class="row mb-6">
+        <div class="row">
+          <div class="col-lg-4">
+            <span class="fw-bold">
+              Prevent the "Load Status" field from being set to...
+            </span>
+          </div>
+          <div class="col-lg-6">
+            <span class="fw-bold">
+              If the load's...
+            </span>
+          </div>
+          <div class="col-lg-2">
+          </div>
+        </div>
+        <div class="row mt-3" *ngFor="let rule of financialItemsCheckRules; let i = index;">
+          <div class="col-lg-4">
+            <ng-select
+              [items]="this.loadStatuses" [(ngModel)]="rule.loadStatuses"
+              [multiple]="true" groupBy="group" bindLabel="text"
+              class="custom-tag-select" [clearable]="true" [selectOnTab]="true"
+              placeholder="Select a check call status to trigger on">
+            </ng-select>
+          </div>
+          <div class="col-lg-6">
+            <div class="row">
+              <div class="col-lg-4">
+                <ng-select
+                  [items]="this.loadsIncomeConditions" [(ngModel)]="rule.incomeCondition"
+                  class="custom-tag-select" [clearable]="true"
+                  placeholder="Select income condition">
+                </ng-select>
+              </div>
+              <div class="col-lg-4">
+                <ng-select
+                  [items]="this.loadsIncomeOperators" [(ngModel)]="rule.incomeOperator"
+                  class="custom-tag-select" [clearable]="true"
+                  placeholder="Select income operator">
+                </ng-select>
+              </div>
+              <div class="col-lg-4">
+                <input
+                  type="text" [(ngModel)]="rule.incomeValue" mask="separator" prefix="$" thousandSeparator=","
+                  class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                  placeholder="Rate" />
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-2 align-self-center text-center" *ngIf="i > 0">
+            <button class="btn btn-sm btn-danger" (click)="removeFinancialItemCheckRule(i)">
+              <i class="fas fa-window-close p-2 fs-2"></i>
+            </button>
+          </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col">
+            <button class="btn btn-primary" (click)="addNewFinancialItemCheckRule()">
+              <i class="fas fa-plus"></i>Add another financial item check rule
+            </button>
+          </div>
+        </div>
+        <div class="mt-3">
+          <button class="btn btn-success">
+            <i class="fas fa-save"></i>Save Financial Item Check Rule(s)
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-6 mb-xl-10">
+    <div class="card-header border-0 cursor-pointer"
+         role="button"
+         aria-expanded="true">
+      <div class="card-title m-0">
+        <h3 class="fw-bolder m-0">
+          Prevent a Customer from being assigned based on the "Credit Hold" field in the Customer's profile
+        </h3>
+      </div>
+    </div>
+    <div class="card-body border-top p-9">
+      <div class="row mb-6">
+        <div class="row">
+          <div class="col-lg-10">
+            <span class="fw-bold">
+              Prevent a Customer from being assigned to a load if their "Credit Hold" status...
+            </span>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-lg-10">
+            <ng-select
+              [items]="this.creditHoldCheckConditions" [(ngModel)]="creditHoldCheckRule"
+              class="custom-tag-select" [clearable]="true"
+              placeholder="Select credit hold rule">
+            </ng-select>
+          </div>
+        </div>
+        <div class="mt-3">
+          <button class="btn btn-success">
+            <i class="fas fa-save"></i>Save Credit Hold Check Rule
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-6 mb-xl-10">
+    <div class="card-header border-0 cursor-pointer"
+         role="button"
+         aria-expanded="true">
+      <div class="card-title m-0">
+        <h3 class="fw-bolder m-0">
+          Prevent a customer or customer income item from being added/edited on a load if their NET available credit
+          falls below...
+        </h3>
+      </div>
+    </div>
+    <div class="card-body border-top p-9">
+      <div class="row mb-6">
+        <div class="row">
+          <div class="col-lg-10">
+            <span class="fw-bold">
+              Prevent a customer or customer income item from being added/edited on a load if their NET available credit falls below...
+            </span>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-lg-4">
+            <input
+              type="text" [(ngModel)]="availableCreditRule" mask="separator" prefix="$" thousandSeparator=","
+              class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+              placeholder="Rate" />
+          </div>
+        </div>
+        <div class="mt-5 bg-light-warning p-3 rounded">
+          <div class="text-dark">
+            <strong>
+              <i class="fas fa-exclamation-triangle text-warning"></i>&nbsp;Note:
+            </strong>
+            This business rule will not apply when building loads from incoming EDI tenders. The customer's available
+            credit will be shown on the Incoming Tenders screen to assist the user in determining whether to accept or
+            reject the tender.
+          </div>
+        </div>
+        <div class="mt-3">
+          <button class="btn btn-success">
+            <i class="fas fa-save"></i>Save Changes to Available Credit Rule
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-6 mb-xl-10">
+    <div class="card-header border-0 cursor-pointer"
+         role="button"
+         aria-expanded="true">
+      <div class="card-title m-0">
+        <h3 class="fw-bolder m-0">
+          Set Load Status when "No Activity" occurs on a load for a specified time period
+        </h3>
+      </div>
+    </div>
+    <div class="card-body border-top p-9">
+      <div class="row mb-6">
+        <div class="row">
+          <div class="col-lg-3">
+            <span class="fw-bold">
+              When "no activity" has occurred on the load for...
+            </span>
+          </div>
+          <div class="col-lg-4">
+            <span class="fw-bold">
+              Change the load's "Load Status" field to...
+            </span>
+          </div>
+          <div class="col-lg-4">
+            <span class="fw-bold">
+              Only if the load's "Load Status" is one of these statuses...
+            </span>
+          </div>
+          <div class="col-lg-1"></div>
+        </div>
+        <div class="row mt-3" *ngFor="let rule of noActivityRules; let i = index;">
+          <div class="col-lg-3">
+            <input
+              type="text" [(ngModel)]="rule.hours" mask="0*"
+              class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+              placeholder="Hours" />
+          </div>
+          <div class="col-lg-4">
+            <ng-select
+              [items]="this.loadStatuses" [(ngModel)]="rule.loadStatus"
+              class="custom-tag-select" [clearable]="true"
+              groupBy="group" bindLabel="text" placeholder="Select a load status">
+            </ng-select>
+          </div>
+          <div class="col-lg-4">
+            <ng-select
+              [items]="this.loadStatuses" [(ngModel)]="rule.loadStatusConditions"
+              [multiple]="true" id="loadStatusConditions"
+              class="custom-tag-select" [clearable]="true"
+              groupBy="group" bindLabel="text" placeholder="You must select one or more load statuses as criteria">
+            </ng-select>
+          </div>
+          <div class="col-lg-1 align-self-center text-center" *ngIf="i > 0">
+            <button class="btn btn-sm btn-danger" (click)="removeNoActivityRule(i)">
+              <i class="fas fa-window-close p-2 fs-2"></i>
+            </button>
+          </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col">
+            <button class="btn btn-primary" (click)="addNewNoActivityRule()">
+              <i class="fas fa-plus"></i>Add another "No Activity" rule
+            </button>
+          </div>
+        </div>
+        <div class="mt-3">
+          <button class="btn btn-success">
+            <i class="fas fa-save"></i>Save "No Activity" Rule(s)
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

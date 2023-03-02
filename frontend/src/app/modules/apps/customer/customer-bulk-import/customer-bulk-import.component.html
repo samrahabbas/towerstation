@@ -1,0 +1,454 @@
+<p-toast></p-toast>
+
+<ng-container *ngTemplateOutlet="this.selectedStage">
+</ng-container>
+
+<ng-template #FileImport>
+  <div class="card mb-5 mb-xl-10">
+    <div
+      class="card-header border-0 cursor-pointer"
+      role="button">
+      <div class="card-title m-0">
+        <h3 class="fw-bolder m-0">Select the file containing your customers to import</h3>
+      </div>
+    </div>
+
+    <div class="card-body border-top p-9">
+      <h4 class="fw-bolder m-0">
+        Select a file first, then press the Import File button.
+      </h4>
+
+      <div class="mb-10 mt-5 bg-light-info p-8 rounded">
+        <div class="text-info">
+          <strong>
+            <ng-container *ngTemplateOutlet="bulbIcon">
+            </ng-container>
+            Helpful tips!
+          </strong>
+          <ul>
+            <li>To help you get you started, download our example template.<br>
+              <a class="btn btn-sm btn-primary"
+                 fileSaver
+                 [fileName]="'customer-import-template.xlsx'"
+                 [http]="getBulkImportTemplateFile()">
+                <i class="fa fa-download"></i>
+                Download
+              </a>
+            </li>
+            <li>If you already have an Excel spreadsheet or Comma-separated file, you may upload that as well.</li>
+            <li>Each row should contain a different customer.</li>
+            <li>Columns will be mapped in upcoming steps.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="card-footer d-flex justify-content-between py-6 px-9 gap-5">
+      <ngx-dropzone (change)="onFileSelect($event)"
+                    accept=".csv,.ods,.ots,.sxc,.xlsx,.xls,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                    [multiple]="false" class="flex-fill custom-dropzone justify-content-center">
+        <ngx-dropzone-label>
+        <span class="text-dark fw-bolder fs-6">
+          Drop files here or click to upload.
+        </span>
+          <span class="text-muted fw-bold text-muted d-block fs-7">
+          Only excel spreadsheet and comma-separated files are allowed for upload
+        </span>
+        </ngx-dropzone-label>
+        <ngx-dropzone-preview *ngIf="selectedFile" [file]="selectedFile" [removable]="true"
+                              (removed)="onFileRemove($event)">
+          <ngx-dropzone-label>
+          <span class="text-muted fw-bold text-muted d-block fs-5">
+            {{ selectedFile.name }}
+          </span>
+          </ngx-dropzone-label>
+        </ngx-dropzone-preview>
+      </ngx-dropzone>
+      <button type="button" [disabled]="!selectedFile"
+              class="btn btn-primary align-self-end" (click)="uploadFile()">
+        <ng-container *ngIf="!isLoading">
+          <ng-container *ngTemplateOutlet="importFileIcon">
+          </ng-container>
+          Import File
+        </ng-container>
+        <ng-container *ngIf="isLoading">
+        <span class="indicator-progress" [style.display]="'block'">
+          Please wait...{{ " " }}
+          <span class="spinner-border spinner-border-sm align-middle ms-2">
+          </span>
+        </span>
+        </ng-container>
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #DataMapping>
+  <div class="card mb-5 mb-xl-10">
+    <div
+      class="card-header border-0 cursor-pointer"
+      role="button">
+      <div class="card-title m-0">
+        <h3 class="fw-bolder m-0">Map the fields</h3>
+      </div>
+    </div>
+
+    <div class="card-body border-top p-9">
+      <h4 class="fw-bolder m-0">
+        Does your file have a header row?
+      </h4>
+      <div class="row mt-4">
+        <div class="mb-0">
+          <label class="d-flex justify-content-start mb-5 cursor-pointer">
+            <span class="form-check form-check-custom form-check-solid">
+              <input [(ngModel)]="hasHeaderRow" type="radio" (click)="resetCustomerData()" [value]="true"
+                     class="form-check-input ng-valid ng-dirty ng-touched">
+            </span>
+            <span class="d-flex align-items-center ms-2">
+              <span class="d-flex flex-column">
+                <span class="fs-6 fw-bold text-gray-400">
+                  Yes, my file has a header row.
+                </span>
+              </span>
+            </span>
+          </label>
+          <label class="d-flex justify-content-start mb-5 cursor-pointer">
+            <span class="form-check form-check-custom form-check-solid">
+              <input [(ngModel)]="hasHeaderRow" type="radio" (click)="resetCustomerData()" [value]="false"
+                     class="form-check-input ng-valid ng-dirty ng-touched">
+            </span>
+            <span class="d-flex align-items-center ms-2">
+              <span class="d-flex flex-column">
+                <span class="fs-6 fw-bold text-gray-400">
+                  No, my file does not have a header row.
+                </span>
+              </span>
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-footer d-flex justify-content-between py-6 px-9 gap-5">
+    </div>
+  </div>
+
+  <div class="card mb-5 mb-xl-10">
+    <div
+      class="card-header border-0 cursor-pointer"
+      role="button">
+      <div class="card-title m-0">
+        <h3 class="fw-bolder m-0">Select the header that best matches each of the fields below.</h3>
+      </div>
+    </div>
+
+    <div class="card-body border-top p-9">
+      <h4 class="fs-6 fw-bold text-gray-400 mb-4">
+        The information from the first customer in your file will be displayed as you select each field.
+      </h4>
+      <div class="row mt-2 mb-5">
+        <label class="col-lg-4 col-form-label required fw-bold fs-6">
+          Name of Customer
+        </label>
+        <div class="col-lg-4">
+          <select class="form-select form-select-solid form-select-lg" (change)="onDropdownSelect($event.target, 'customerName')">
+            <option [ngValue]="null">Select Customer Name Field</option>
+            <option *ngFor="let field of fields" [ngValue]="field">
+              {{field}}
+            </option>
+          </select>
+        </div>
+        <div class="col-lg-4 mt-4 text-center">
+          <span class="fs-6 fw-bold text-gray-400">
+            {{this.customerData.customerName}}
+          </span>
+        </div>
+      </div>
+
+      <div class="row mt-2 mb-5">
+        <label class="col-lg-4 col-form-label required fw-bold fs-6">
+          Street 1
+        </label>
+        <div class="col-lg-4">
+          <select class="form-select form-select-solid form-select-lg" (change)="onDropdownSelect($event.target, 'street1')">
+            <option [ngValue]="null">Select Street 1 Field</option>
+            <option *ngFor="let field of fields" [ngValue]="field">
+              {{field}}
+            </option>
+          </select>
+        </div>
+        <div class="col-lg-4 mt-4 text-center">
+          <span class="fs-6 fw-bold text-gray-400">
+            {{this.customerData.street1}}
+          </span>
+        </div>
+      </div>
+
+      <div class="row mt-2 mb-5">
+        <label class="col-lg-4 col-form-label required fw-bold fs-6">
+          Street 2
+        </label>
+        <div class="col-lg-4">
+          <select class="form-select form-select-solid form-select-lg" (change)="onDropdownSelect($event.target, 'street2')">
+            <option [ngValue]="null">Select Street 2 Field</option>
+            <option *ngFor="let field of fields" [ngValue]="field">
+              {{field}}
+            </option>
+          </select>
+        </div>
+        <div class="col-lg-4 mt-4 text-center">
+          <span class="fs-6 fw-bold text-gray-400">
+            {{this.customerData.street2}}
+          </span>
+        </div>
+      </div>
+
+      <div class="row mt-2 mb-5">
+        <label class="col-lg-4 col-form-label required fw-bold fs-6">
+          City
+        </label>
+        <div class="col-lg-4">
+          <select class="form-select form-select-solid form-select-lg" (change)="onDropdownSelect($event.target, 'city')">
+            <option [ngValue]="null">Select City Field</option>
+            <option *ngFor="let field of fields" [ngValue]="field">
+              {{field}}
+            </option>
+          </select>
+        </div>
+        <div class="col-lg-4 mt-4 text-center">
+          <span class="fs-6 fw-bold text-gray-400">
+            {{this.customerData.city}}
+          </span>
+        </div>
+      </div>
+
+      <div class="row mt-2 mb-5">
+        <label class="col-lg-4 col-form-label required fw-bold fs-6">
+          State
+        </label>
+        <div class="col-lg-4">
+          <select class="form-select form-select-solid form-select-lg" (change)="onDropdownSelect($event.target, 'state')">
+            <option [ngValue]="null">Select State Field</option>
+            <option *ngFor="let field of fields" [ngValue]="field">
+              {{field}}
+            </option>
+          </select>
+        </div>
+        <div class="col-lg-4 mt-4 text-center">
+          <span class="fs-6 fw-bold text-gray-400">
+            {{this.customerData.state}}
+          </span>
+        </div>
+      </div>
+
+      <div class="row mt-2 mb-5">
+        <label class="col-lg-4 col-form-label required fw-bold fs-6">
+          Zip Code
+        </label>
+        <div class="col-lg-4">
+          <select class="form-select form-select-solid form-select-lg" (change)="onDropdownSelect($event.target, 'zip')">
+            <option [ngValue]="null">Select Zip Code Field</option>
+            <option *ngFor="let field of fields" [ngValue]="field">
+              {{field}}
+            </option>
+          </select>
+        </div>
+        <div class="col-lg-4 mt-4 text-center">
+          <span class="fs-6 fw-bold text-gray-400">
+            {{this.customerData.zip}}
+          </span>
+        </div>
+      </div>
+
+      <div class="row mt-2 mb-5">
+        <label class="col-lg-4 col-form-label required fw-bold fs-6">
+          Telephone
+        </label>
+        <div class="col-lg-4">
+          <select class="form-select form-select-solid form-select-lg" (change)="onDropdownSelect($event.target, 'telephone')">
+            <option [ngValue]="null">Select Telephone Field</option>
+            <option *ngFor="let field of fields" [ngValue]="field">
+              {{field}}
+            </option>
+          </select>
+        </div>
+        <div class="col-lg-4 mt-4 text-center">
+          <span class="fs-6 fw-bold text-gray-400">
+            {{this.customerData.telephone}}
+          </span>
+        </div>
+      </div>
+
+      <div class="row mt-2 mb-5">
+        <label class="col-lg-4 col-form-label required fw-bold fs-6">
+          Credit Limit
+        </label>
+        <div class="col-lg-4">
+          <select class="form-select form-select-solid form-select-lg" (change)="onDropdownSelect($event.target, 'creditLimit')">
+            <option [ngValue]="null">Select Credit Limit Field</option>
+            <option *ngFor="let field of fields" [ngValue]="field">
+              {{field}}
+            </option>
+          </select>
+        </div>
+        <div class="col-lg-4 mt-4 text-center">
+          <span class="fs-6 fw-bold text-gray-400">
+            {{this.customerData.creditLimit}}
+          </span>
+        </div>
+      </div>
+
+      <div class="row mt-2 mb-5">
+        <label class="col-lg-4 col-form-label required fw-bold fs-6">
+          Credit Hold
+        </label>
+        <div class="col-lg-4">
+          <select class="form-select form-select-solid form-select-lg" (change)="onDropdownSelect($event.target, 'creditHold')">
+            <option [ngValue]="null">Select Credit Hold Field</option>
+            <option *ngFor="let field of fields" [ngValue]="field">
+              {{field}}
+            </option>
+          </select>
+        </div>
+        <div class="col-lg-4 mt-4 text-center">
+          <span class="fs-6 fw-bold text-gray-400">
+            {{this.customerData.creditHold}}
+          </span>
+        </div>
+      </div>
+
+      <div class="row mt-2 mb-5">
+        <label class="col-lg-4 col-form-label required fw-bold fs-6">
+          Payment Terms
+        </label>
+        <div class="col-lg-4">
+          <select class="form-select form-select-solid form-select-lg" (change)="onDropdownSelect($event.target, 'paymentTerms')">
+            <option [ngValue]="null">Select Payment Terms Field</option>
+            <option *ngFor="let field of fields" [ngValue]="field">
+              {{field}}
+            </option>
+          </select>
+        </div>
+        <div class="col-lg-4 mt-4 text-center">
+          <span class="fs-6 fw-bold text-gray-400">
+            {{this.customerData.paymentTerms}}
+          </span>
+        </div>
+      </div>
+
+      <div class="row mt-2 mb-5">
+        <label class="col-lg-4 col-form-label required fw-bold fs-6">
+          MC/FF/MX Number
+        </label>
+        <div class="col-lg-4">
+          <select class="form-select form-select-solid form-select-lg" (change)="onDropdownSelect($event.target, 'MCFFMXNumber')">
+            <option [ngValue]="null">Select MC/FF/MX Number Field</option>
+            <option *ngFor="let field of fields" [ngValue]="field">
+              {{field}}
+            </option>
+          </select>
+        </div>
+        <div class="col-lg-4 mt-4 text-center">
+          <span class="fs-6 fw-bold text-gray-400">
+            {{this.customerData.MCFFMXNumber}}
+          </span>
+        </div>
+      </div>
+
+      <div class="row mt-2 mb-5">
+        <label class="col-lg-4 col-form-label required fw-bold fs-6">
+          USDOT Number
+        </label>
+        <div class="col-lg-4">
+          <select class="form-select form-select-solid form-select-lg" (change)="onDropdownSelect($event.target, 'USDOTNumber')">
+            <option [ngValue]="null">Select USDOT Number Field</option>
+            <option *ngFor="let field of fields" [ngValue]="field">
+              {{field}}
+            </option>
+          </select>
+        </div>
+        <div class="col-lg-4 mt-4 text-center">
+          <span class="fs-6 fw-bold text-gray-400">
+            {{this.customerData.USDOTNumber}}
+          </span>
+        </div>
+      </div>
+
+      <div class="row mt-2 mb-5">
+        <label class="col-lg-4 col-form-label required fw-bold fs-6">
+          Private Notes
+        </label>
+        <div class="col-lg-4">
+          <select class="form-select form-select-solid form-select-lg" (change)="onDropdownSelect($event.target, 'privateNotes')">
+            <option [ngValue]="null">Select Private Notes Field</option>
+            <option *ngFor="let field of fields" [ngValue]="field">
+              {{field}}
+            </option>
+          </select>
+        </div>
+        <div class="col-lg-4 mt-4 text-center">
+          <span class="fs-6 fw-bold text-gray-400">
+            {{this.customerData.privateNotes}}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-footer d-flex justify-content-between py-6 px-9 gap-5">
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #DataValidation>
+
+</ng-template>
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="cog"
+>
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+
+<ng-template #importFileIcon>
+  <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo1/dist/../src/media/svg/icons/Files/Import.svg-->
+    <svg
+      xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+      viewBox="0 0 24 24" version="1.1">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <rect x="0" y="0" width="24" height="24" />
+      <rect fill="#000000" opacity="0.3"
+            transform="translate(12.000000, 7.000000) rotate(-180.000000) translate(-12.000000, -7.000000) " x="11"
+            y="1" width="2" height="12" rx="1" />
+      <path
+        d="M17,8 C16.4477153,8 16,7.55228475 16,7 C16,6.44771525 16.4477153,6 17,6 L18,6 C20.209139,6 22,7.790861 22,10 L22,18 C22,20.209139 20.209139,22 18,22 L6,22 C3.790861,22 2,20.209139 2,18 L2,9.99305689 C2,7.7839179 3.790861,5.99305689 6,5.99305689 L7.00000482,5.99305689 C7.55228957,5.99305689 8.00000482,6.44077214 8.00000482,6.99305689 C8.00000482,7.54534164 7.55228957,7.99305689 7.00000482,7.99305689 L6,7.99305689 C4.8954305,7.99305689 4,8.88848739 4,9.99305689 L4,18 C4,19.1045695 4.8954305,20 6,20 L18,20 C19.1045695,20 20,19.1045695 20,18 L20,10 C20,8.8954305 19.1045695,8 18,8 L17,8 Z"
+        fill="#000000" fill-rule="nonzero" opacity="0.3" />
+      <path
+        d="M14.2928932,10.2928932 C14.6834175,9.90236893 15.3165825,9.90236893 15.7071068,10.2928932 C16.0976311,10.6834175 16.0976311,11.3165825 15.7071068,11.7071068 L12.7071068,14.7071068 C12.3165825,15.0976311 11.6834175,15.0976311 11.2928932,14.7071068 L8.29289322,11.7071068 C7.90236893,11.3165825 7.90236893,10.6834175 8.29289322,10.2928932 C8.68341751,9.90236893 9.31658249,9.90236893 9.70710678,10.2928932 L12,12.5857864 L14.2928932,10.2928932 Z"
+        fill="#000000" fill-rule="nonzero" />
+    </g>
+  </svg>
+  </span>
+</ng-template>
+
+<ng-template #bulbIcon>
+  <span class="svg-icon svg-icon-info svg-icon-2x"><svg xmlns="http://www.w3.org/2000/svg"
+                                                        xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                                                        height="24px" viewBox="0 0 24 24" version="1.1">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect x="0" y="0" width="24" height="24" />
+        <circle fill="#000000" opacity="0.3" cx="12" cy="9" r="8" />
+        <path
+          d="M14.5297296,11 L9.46184488,11 L11.9758349,17.4645458 L14.5297296,11 Z M10.5679953,19.3624463 L6.53815512,9 L17.4702704,9 L13.3744964,19.3674279 L11.9759405,18.814912 L10.5679953,19.3624463 Z"
+          fill="#000000" fill-rule="nonzero" opacity="0.3" />
+        <path d="M10,22 L14,22 L14,22 C14,23.1045695 13.1045695,24 12,24 L12,24 C10.8954305,24 10,23.1045695 10,22 Z"
+              fill="#000000" opacity="0.3" />
+        <path
+          d="M9,20 C8.44771525,20 8,19.5522847 8,19 C8,18.4477153 8.44771525,18 9,18 C8.44771525,18 8,17.5522847 8,17 C8,16.4477153 8.44771525,16 9,16 L15,16 C15.5522847,16 16,16.4477153 16,17 C16,17.5522847 15.5522847,18 15,18 C15.5522847,18 16,18.4477153 16,19 C16,19.5522847 15.5522847,20 15,20 C15.5522847,20 16,20.4477153 16,21 C16,21.5522847 15.5522847,22 15,22 L9,22 C8.44771525,22 8,21.5522847 8,21 C8,20.4477153 8.44771525,20 9,20 Z"
+          fill="#000000" />
+    </g>
+</svg></span>
+</ng-template>
